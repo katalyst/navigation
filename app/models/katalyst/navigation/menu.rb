@@ -104,8 +104,11 @@ module Katalyst
         attribute :nodes, Types::NodesType.new, default: -> { [] }
 
         def items
-          items = parent.items.where(id: nodes.map(&:id)).index_by(&:id)
+          # support building menus in memory
+          # requires that items are added in order and index and depth are set
+          return parent.items unless parent.persisted?
 
+          items = parent.items.where(id: nodes.map(&:id)).index_by(&:id)
           nodes.map do |node|
             item       = items[node.id]
             item.index = node.index
