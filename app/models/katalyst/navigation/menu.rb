@@ -5,6 +5,8 @@ module Katalyst
     # A menu is a list of items (links, buttons, etc) with order and depth creating a tree structure.
     # Items should be copy-on-write, as menus store their structure as copy-on-write versions using item ids.
     class Menu < ApplicationRecord
+      include GarbageCollection
+
       before_destroy :unset_versions
 
       belongs_to :draft_version,
@@ -22,7 +24,13 @@ module Katalyst
                dependent:   :delete_all,
                foreign_key: :parent_id,
                inverse_of:  :parent,
-               validate:    true
+               validate:    true do
+        def active
+          menu = proxy_association.owner
+          where(id: [menu.published_version_id, menu.draft_version_id].uniq.compact)
+        end
+      end
+
       has_many :items,
                autosave:   true,
                class_name: "Katalyst::Navigation::Item",
