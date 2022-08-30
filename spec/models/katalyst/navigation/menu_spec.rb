@@ -179,20 +179,89 @@ RSpec.describe Katalyst::Navigation::Menu do
   end
 
   describe "#publish!" do
+    let(:item_attributes) { menu.draft_nodes.take(1) }
+
+    before do
+      menu.update(items_attributes: item_attributes)
+    end
+
     it "changes published version" do
-      menu.update(items_attributes: menu.draft_nodes.take(1))
       published = menu.published_version
       draft     = menu.draft_version
       expect { menu.publish! }.to change(menu, :published_version).from(published).to(draft)
     end
+
+    it "removes orphaned version" do
+      expect { menu.publish! }.to change(Katalyst::Navigation::Menu::Version, :count).by(-1)
+    end
+
+    it "removes orphaned published version" do
+      published = menu.published_version
+      menu.publish!
+      expect(Katalyst::Navigation::Menu::Version.find_by(id: published.id)).to be_nil
+    end
+
+    it "doesn't remove orphaned link" do
+      expect { menu.publish! }.not_to change(Katalyst::Navigation::Link, :count)
+    end
+
+    context "when orphaned links for more than 1 day" do
+      before do
+        travel 1.day
+      end
+
+      it { expect { menu.publish! }.to change(Katalyst::Navigation::Link, :count).by(-1) }
+
+      it "removes the correct link" do
+        link_id = menu.draft_items.map(&:id) - menu.published_items.map(&:id)
+        menu.publish!
+        expect(Katalyst::Navigation::Link.find_by(id: link_id.first)).to be_nil
+      end
+    end
   end
 
   describe "#revert!" do
+    let(:item_attributes) { menu.draft_nodes.take(1) }
+
+    before do
+      menu.update(items_attributes: item_attributes)
+    end
+
     it "changes draft version" do
-      menu.update(items_attributes: menu.draft_nodes.take(1))
       published = menu.published_version
       draft     = menu.draft_version
       expect { menu.revert! }.to change(menu, :draft_version).from(draft).to(published)
+    end
+
+    it "removes orphaned version" do
+      expect { menu.revert! }.to change(Katalyst::Navigation::Menu::Version, :count).by(-1)
+    end
+
+    it "removes orphaned draft version" do
+      draft = menu.draft_version
+      menu.revert!
+      expect(Katalyst::Navigation::Menu::Version.find_by(id: draft.id)).to be_nil
+    end
+
+    it "does not remove links" do
+      travel 1.day
+      expect { menu.revert! }.not_to change(Katalyst::Navigation::Link, :count)
+    end
+
+    context "with multiple link changes" do
+      let(:multiple_links) { create_list :katalyst_navigation_link, 2, menu: menu }
+      let(:item_attributes) { [{ id: multiple_links.first.id, depth: 0 }, { id: multiple_links.last.id, depth: 1 }] }
+
+      before do
+        travel 1.day
+      end
+
+      it { expect { menu.revert! }.to change(Katalyst::Navigation::Link, :count).by(-2) }
+
+      it "removes updated link" do
+        menu.revert!
+        expect(Katalyst::Navigation::Link.where(id: multiple_links.map(&:id))).to be_empty
+      end
     end
   end
 end
