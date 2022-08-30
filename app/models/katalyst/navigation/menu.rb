@@ -100,8 +100,12 @@ module Katalyst
         attribute :nodes, Types::NodesType.new, default: -> { [] }
 
         def items
-          items = parent.items.where(id: nodes.map(&:id)).index_by(&:id)
-
+          items = if parent.persisted?
+                    parent.items.where(id: nodes.map(&:id)).index_by(&:id)
+                  else
+                    # index is used as the id
+                    parent.items
+                  end
           nodes.map do |node|
             item       = items[node.id]
             item.index = node.index
