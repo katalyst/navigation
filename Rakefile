@@ -2,18 +2,25 @@
 
 require "bundler/setup"
 require "bundler/gem_tasks"
+require "rspec/core/rake_task"
+require "rubocop/rake_task"
 
 APP_RAKEFILE = File.expand_path("spec/dummy/Rakefile", __dir__)
-load "rails/tasks/engine.rake"
 
+load "rails/tasks/engine.rake"
 load "rails/tasks/statistics.rake"
 
-require "rspec/core/rake_task"
-
-RSpec::Core::RakeTask.new(spec: "app:db:prepare")
-
-require "rubocop/rake_task"
+# prepend test:prepare to run generators, and db:prepare to run migrations
+RSpec::Core::RakeTask.new(spec: %w[app:test:prepare app:db:prepare])
 
 RuboCop::RakeTask.new
 
-task default: %i[spec rubocop]
+desc "Run all linters"
+task lint: %w[rubocop app:yarn:lint]
+
+desc "Run all auto-formatters"
+task format: %w[rubocop:autocorrect app:yarn:format]
+
+task default: %i[lint spec] do
+  puts "🎉 build complete! 🎉"
+end

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  mount Katalyst::Navigation::Engine, at: "navigation"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  root to: redirect("/navigation")
 end
