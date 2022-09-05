@@ -1,0 +1,23 @@
+@mixin fieldset {
+  border: none;
+  border-left: 2px solid var(--site-primary);
+  padding-right: 0;
+  width: 100%;
+
+  > label {
+    margin-bottom: 1rem;
+  }
+
+  > legend {
+    margin-left: -1rem;
+    padding: 0 0 0.5rem;
+    font-size: var(--paragraph);
+    font-weight: bold;
+  }
+
+  &.composite-field {
+    label {
+      font-weight: 300;
+    }
+  }
+}

@@ -1,1 +1,50 @@
+@use "base";
+@use "katalyst/navigation/editor";
 
+:root {
+  --site-primary-light: #cdecef;
+  --site-primary: #16929c;
+  --site-primary-dark: #3a7478;
+  --site-on-primary: #ffffff;
+  --site-secondary-light: #ee5d03;
+  --site-secondary: #e05804;
+  --site-secondary-dark: #c54d02;
+  --site-on-secondary: #ffffff;
+  --site-text-color: #485569;
+  --site-text-color-medium: #485560;
+  --site-text-color-light: #5e5e5e;
+
+  --heading--h1: 2rem;
+  --heading--h2: 1.75rem;
+  --heading--h3: 1.38rem;
+  --heading--h4: 1.25rem;
+  --heading--h5: 1.12rem;
+  --heading--h6: 1rem;
+  --paragraph: 1rem;
+  --paragraph--strong: 1rem;
+  --paragraph--em: 0.88rem;
+  --paragraph--small: 0.88rem;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas:
+    "header header"
+    "content sidebar";
+  column-gap: 1rem;
+}
+
+[data-controller$="status-bar"] {
+  grid-area: header;
+}
+
+.index-table,
+[data-controller$="menu"] {
+  grid-area: content;
+}
+
+#navigation--editor--item-frame,
+.index-table-actions {
+  grid-area: sidebar;
+}

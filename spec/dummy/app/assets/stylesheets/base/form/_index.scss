@@ -1,0 +1,53 @@
+@use "checkbox" as *;
+@use "error" as *;
+@use "fieldset" as *;
+@use "image" as *;
+@use "input" as *;
+@use "radio" as *;
+@use "reveal" as *;
+@use "select" as *;
+
+@mixin form {
+  label {
+    display: block;
+  }
+
+  input[type="radio"] + label {
+    display: initial;
+  }
+
+  input:not([type="submit"]):not([type="button"]),
+  textarea {
+    @include input;
+  }
+
+  .checkbox {
+    @include checkbox;
+  }
+
+  .radio-button {
+    @include radio;
+  }
+
+  fieldset {
+    @include fieldset;
+  }
+
+  select {
+    @include select;
+
+    &[readonly] {
+      pointer-events: none;
+    }
+  }
+
+  .field {
+    margin-bottom: 1rem;
+  }
+
+  fieldset {
+    .field:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}

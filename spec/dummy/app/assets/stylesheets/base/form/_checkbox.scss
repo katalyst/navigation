@@ -1,0 +1,70 @@
+@mixin checkbox {
+  position: relative;
+  cursor: pointer;
+  font-weight: 400;
+  margin: 0 0.5rem 0 0;
+  display: inline-block;
+  --size: 1.5rem;
+  padding-left: calc(var(--size));
+  line-height: calc(var(--size) * 1.1);
+
+  input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    width: 0;
+    height: 0;
+    padding: 0;
+
+    & + span {
+      font-weight: 400;
+
+      &::before {
+        position: absolute;
+        content: " ";
+        width: var(--size);
+        height: var(--size);
+        border: 1px solid var(--site-primary);
+        border-radius: 4px;
+        top: 50%;
+        left: 0;
+        background: white;
+        transform: translateY(-50%);
+        cursor: pointer;
+        transition: background 0.25s, border 0.25s;
+      }
+    }
+
+    &:checked + span {
+      &::before {
+        background: var(--site-primary);
+        border-color: var(--site-primary);
+      }
+
+      &::after {
+        position: absolute;
+        width: calc(var(--size) / 2);
+        cursor: pointer;
+        content: "✓";
+        color: white;
+        top: 0;
+        left: 0;
+        font-size: 1rem;
+        padding-left: calc(var(--size) / 4);
+      }
+    }
+
+    &[disabled],
+    &[readonly] {
+      border: none;
+
+      & + span,
+      &:checked + span {
+        &::before,
+        &::after {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
