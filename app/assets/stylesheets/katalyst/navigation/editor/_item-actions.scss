@@ -31,6 +31,7 @@
     border-radius: 2px;
     background: var(--icon-active-color);
     margin-right: 0.5rem;
+    flex-shrink: 0;
 
     [data-invisible="true"] & {
       background: var(--icon-passive-color);
