@@ -19,3 +19,7 @@ AllCops:
     - spec/dummy/node_modules/**/*
     - spec/dummy/vendor/bundle/**/*
   NewCops: enable
+
+Rails/ApplicationController:
+  Exclude:
+    - app/controllers/katalyst/navigation/base_controller.rb

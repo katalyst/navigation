@@ -1,0 +1,15 @@
+<% content_for :title, "New navigation" %>
+
+<%= form_with model: menu do |form| %>
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :slug %>
+    <%= form.text_field :slug %>
+  </div>
+
+  <%= form.submit %>
+<% end %>

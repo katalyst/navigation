@@ -1,0 +1,24 @@
+[data-controller="navigation--editor--list"] {
+  // Lower opacity for buttons you can't use
+  [data-deny-de-nest] [role="button"][value="de-nest"],
+  [data-deny-nest] [role="button"][value="nest"],
+  [data-deny-remove] [role="button"][value="remove"],
+  [data-deny-drag] [role="button"][value="drag"],
+  [data-deny-edit] [role="button"][value="edit"] {
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
+  // Only show 1 of the collapse / expand button
+  [data-deny-collapse] [role="button"][value="collapse"],
+  [data-deny-expand] [role="button"][value="expand"],
+  [data-invisible="false"] [role="img"][value="invisible"] {
+    display: none !important;
+    pointer-events: none;
+  }
+
+  [data-invalid-depth] {
+    border-color: red;
+    background-color: indianred;
+  }
+}

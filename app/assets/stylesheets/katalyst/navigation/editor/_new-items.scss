@@ -1,0 +1,22 @@
+@use "icon" as *;
+
+.navigation--editor--new-items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.25rem;
+
+  [role="listitem"] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translate3d(0, 0, 0);
+    cursor: grab;
+
+    &::before {
+      @extend %icon;
+      position: unset;
+      background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16 3.66667V13.3333C16 14.8 14.6909 16 13.0909 16H7.78182C6.99636 16 6.25455 15.7133 5.70909 15.2067L0 9.88667C0 9.88667 0.916364 9.06667 0.945455 9.05333C1.10545 8.92667 1.30182 8.86 1.52 8.86C1.68 8.86 1.82545 8.9 1.95636 8.96667C1.98545 8.97333 5.09091 10.6067 5.09091 10.6067V2.66667C5.09091 2.11333 5.57818 1.66667 6.18182 1.66667C6.78545 1.66667 7.27273 2.11333 7.27273 2.66667V7.33333H8V1C8 0.446667 8.48727 0 9.09091 0C9.69455 0 10.1818 0.446667 10.1818 1V7.33333H10.9091V1.66667C10.9091 1.11333 11.3964 0.666667 12 0.666667C12.6036 0.666667 13.0909 1.11333 13.0909 1.66667V7.33333H13.8182V3.66667C13.8182 3.11333 14.3055 2.66667 14.9091 2.66667C15.5127 2.66667 16 3.11333 16 3.66667Z' fill='white'/%3E%3C/svg%3E");
+    }
+  }
+}

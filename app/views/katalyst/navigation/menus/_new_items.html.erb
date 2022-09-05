@@ -1,0 +1,5 @@
+<%= turbo_frame_tag "navigation--editor--item-frame" do %>
+  <div class="navigation--editor--new-items" role="listbox">
+    <%= render partial: "katalyst/navigation/menus/new_item", collection: navigation_editor_new_items(menu), as: :item %>
+  </div>
+<% end %>
