@@ -1,0 +1,15 @@
+@mixin input {
+  padding: 0.25rem 0.5rem;
+  outline: none;
+  border: 1px solid var(--input-border);
+
+  color: var(--site-text-color);
+  background: var(--input-background);
+
+  &[disabled],
+  &[readonly] {
+    background-color: rgba(0, 0, 0, 0.12);
+    border-color: rgba(0, 0, 0, 0.37);
+    color: rgba(0, 0, 0, 0.37);
+  }
+}

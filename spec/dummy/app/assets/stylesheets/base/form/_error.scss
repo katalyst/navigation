@@ -1,0 +1,45 @@
+$error-primary-color: #ff6e6e;
+$error-secondary-color: #fff3f3;
+
+@mixin error-icon {
+  content: url("data:image/svg+xml,%3Csvg width='13' height='13' viewBox='0 0 13 13' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.33878 0H3.66122L0 3.66122V9.35204L3.66122 13H9.35204L13 9.33878V3.66122L9.33878 0ZM7.30918 11.5592H5.69082V9.94082H7.32245V10.5592L7.30918 11.5592ZM7.30918 8.30918H5.69082V1.44082H7.32245V7.30918L7.30918 8.30918Z' fill='%23ff6e6e'/%3E%3C/svg%3E");
+  display: inline-block;
+  vertical-align: -1px;
+}
+
+.error,
+.field-errors {
+  margin-bottom: 0.25rem;
+
+  .field-error {
+    background: $error-secondary-color;
+    display: inline-block;
+    padding: 0 0.375rem;
+    color: $error-primary-color;
+    font-weight: 500;
+    position: relative;
+
+    &::before {
+      @include error-icon;
+      position: relative;
+      left: -2rem;
+      width: 0;
+    }
+  }
+}
+
+.error-content {
+  display: flex;
+
+  .error-list {
+    list-style: none;
+    padding-left: 1.1rem;
+
+    li::before {
+      content: "-";
+      display: inline-block;
+      margin-left: -1rem;
+      padding-right: 1rem;
+    }
+  }
+}

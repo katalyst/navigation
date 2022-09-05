@@ -1,0 +1,51 @@
+@mixin radio {
+  position: relative;
+  cursor: pointer;
+  font-weight: 400;
+  display: inline-block;
+  --size: 1rem;
+  padding-left: calc(var(--size) * 1.5);
+  line-height: calc(var(--size) * 1.1);
+
+  input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+
+    & + span {
+      font-weight: 400;
+
+      &::before {
+        position: absolute;
+        content: " ";
+        width: var(--size);
+        height: var(--size);
+        border: 2px solid var(--site-primary);
+        border-radius: 50%;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        cursor: pointer;
+        transition: background 0.25s, border 0.25s;
+      }
+    }
+
+    &:checked + span {
+      &::before {
+        border-color: var(--site-primary);
+      }
+
+      &::after {
+        position: absolute;
+        cursor: pointer;
+        content: "";
+        top: 50%;
+        left: calc(var(--size) / 4);
+        transform: translateY(-50%);
+        width: calc(var(--size) / 2);
+        height: calc(var(--size) / 2);
+        background: var(--site-primary);
+        border-radius: 50%;
+      }
+    }
+  }
+}

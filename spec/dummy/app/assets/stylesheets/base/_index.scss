@@ -1,0 +1,26 @@
+@use "button";
+@use "form";
+@use "table";
+@use "typography";
+
+.button--primary,
+input[type="submit"] {
+  @include button.button-filled;
+}
+
+.button--secondary,
+.button--outline {
+  @include button.button-outline;
+}
+
+.button--tertiary,
+.button--text {
+  @include button.button-text;
+}
+
+form {
+  --input-background: rgba(255, 255, 255);
+  --input-border: rgb(229, 231, 235);
+
+  @include form.form;
+}
