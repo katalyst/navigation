@@ -84,7 +84,7 @@ RSpec.describe Katalyst::Navigation::Menu do
 
   describe ".versions.inactive" do
     it "filters used versions" do
-      unused   = menu.versions.create
+      unused = menu.versions.create
       expect(menu.versions.inactive).to contain_exactly(unused)
     end
   end

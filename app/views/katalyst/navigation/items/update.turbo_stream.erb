@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "navigation--editor--item-frame" do %>
+  <%= render "katalyst/navigation/menus/new_items", menu: item.menu %>
+<% end %>
+
+<%= turbo_stream.replace dom_id(previous) do %>
+  <%= render "katalyst/navigation/menus/item", item: item %>
+<% end %>

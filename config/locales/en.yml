@@ -1,0 +1,12 @@
+en:
+  views:
+    katalyst:
+      navigation:
+        editor:
+          draft_html: Draft
+          dirty_html: Unsaved changes
+          discard: Discard
+          publish: Publish
+          published_html: Published <i>(last updated %{last_update})</i>
+          revert: Revert
+          save: Save

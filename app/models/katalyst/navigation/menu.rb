@@ -29,6 +29,7 @@ module Katalyst
           menu = proxy_association.owner
           where(id: [menu.published_version_id, menu.draft_version_id].uniq.compact)
         end
+
         def inactive
           menu = proxy_association.owner
           where.not(id: [menu.published_version_id, menu.draft_version_id].uniq.compact)
