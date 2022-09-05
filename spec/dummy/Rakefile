@@ -3,4 +3,8 @@
 
 require_relative "config/application"
 
+namespace :test do
+  task :prepare
+end
+
 Rails.application.load_tasks

@@ -3,6 +3,7 @@
 /doc/
 /log/*.log
 /pkg/
+/spec/dummy/app/assets/builds/
 /spec/dummy/db/*.sqlite3
 /spec/dummy/db/*.sqlite3-*
 /spec/dummy/log/*.log
@@ -12,3 +13,8 @@
 
 # rspec failure tracking
 .rspec_status
+
+# yarn
+node_modules/
+yarn-debug.log*
+yarn-error.log*
