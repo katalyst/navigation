@@ -98,4 +98,13 @@ RSpec.describe Katalyst::Navigation::MenusController do
       it { expect { action }.to change { menu.reload.state }.from(:draft).to(:published) }
     end
   end
+
+  describe "DELETE /navigation/menus/:id" do
+    let(:action) { delete katalyst_navigation.menu_path(menu) }
+    let!(:menu) { create :katalyst_navigation_menu }
+
+    it { is_expected.to have_http_status(:see_other) }
+    it { is_expected.to redirect_to(katalyst_navigation.menus_path) }
+    it { expect { action }.to change(Katalyst::Navigation::Menu, :count).to(0) }
+  end
 end

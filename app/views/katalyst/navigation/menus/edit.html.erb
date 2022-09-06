@@ -11,5 +11,10 @@
     <%= form.text_field :slug %>
   </div>
 
-  <%= form.submit :save %>
+  <div class="button-row">
+    <%= form.submit :save %>
+    <%= link_to "Delete", url_for(action: :show),
+                class: "button button-secondary",
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+  </div>
 <% end %>

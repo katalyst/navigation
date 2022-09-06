@@ -48,3 +48,11 @@ main {
 .index-table-actions {
   grid-area: sidebar;
 }
+
+.button-row {
+  display: flex;
+  flex-direction: row;
+  > * {
+    margin-right: 0.5rem;
+  }
+}

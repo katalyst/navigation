@@ -62,7 +62,7 @@ module Katalyst
 
         menu.destroy!
 
-        redirect_to action: :index
+        redirect_to action: :index, status: :see_other
       end
 
       private
