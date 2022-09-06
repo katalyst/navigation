@@ -18,7 +18,6 @@
   }
 
   [data-invalid-depth] {
-    border-color: red;
-    background-color: indianred;
+    box-shadow: inset 0 0 0 3px var(--row-depth-invalid-color);
   }
 }

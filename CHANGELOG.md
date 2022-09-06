@@ -1,5 +1,8 @@
 ## [Unreleased]
 
+- Bugfix - invalid depth visuals
+- Bugfix - use box-shadow inset's instead of borders to stop visual stutter
+
 ## [1.0.1]
 
 - Update - Draggable "new" menu items are now styled
