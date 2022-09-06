@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Update - `data-turbo: false` added to navigation links in editor to ensure correct reloading of header content
+
 ## [1.0.1]
 
 - Update - Draggable "new" menu items are now styled
