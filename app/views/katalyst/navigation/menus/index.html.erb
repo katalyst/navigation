@@ -11,7 +11,4 @@
     <%= link_to cell.value, menu %>
   <% end %>
   <%= row.cell :slug %>
-  <%= row.cell :actions do |cell| %>
-    <%= button_to "Delete", menu, method: :delete, class: "button button--text" %>
-  <% end %>
 <% end %>

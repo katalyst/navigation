@@ -13,3 +13,6 @@
 
   <%= form.submit :save %>
 <% end %>
+
+<%= button_to "Delete", katalyst_navigation.menu_path(menu), method: :delete, data: { confirm: "Are you sure? This cannot be undone." } %>
+
