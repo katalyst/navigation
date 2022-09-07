@@ -7,7 +7,6 @@ export default class RulesEngine {
     "denyRemove",
     "denyDrag",
     "denyEdit",
-    "invalidDepth",
   ];
 
   /**
@@ -19,8 +18,12 @@ export default class RulesEngine {
   update(item) {
     this.rules = {};
 
+    // structural rules enforce a valid tree structure
     this.firstItemDepthZero(item);
     this.depthMustBeSet(item);
+    this.itemCannotHaveInvalidDepth(item);
+
+    // behavioural rules define what the user is allowed to do
     this.parentsCannotDeNest(item);
     this.rootsCannotDeNest(item);
     this.nestingNeedsParent(item);
@@ -28,7 +31,6 @@ export default class RulesEngine {
     this.needHiddenItemsToExpand(item);
     this.parentsCannotBeDeleted(item);
     this.parentsCannotBeDragged(item);
-    this.itemCannotHaveInvalidDepth(item);
 
     RulesEngine.rules.forEach((rule) => {
       item.toggleRule(rule, !!this.rules[rule]);
@@ -52,6 +54,18 @@ export default class RulesEngine {
   depthMustBeSet(item) {
     if (isNaN(item.depth) || item.depth < 0) {
       item.depth = 0;
+    }
+  }
+
+  /**
+   * Depth must increase stepwise.
+   *
+   * @param {Item} item
+   */
+  itemCannotHaveInvalidDepth(item) {
+    const previous = item.previousItem;
+    if (previous && previous.depth < item.depth - 1) {
+      item.depth = previous.depth + 1;
     }
   }
 
@@ -117,16 +131,6 @@ export default class RulesEngine {
    */
   parentsCannotBeDragged(item) {
     if (item.hasExpandedDescendants()) this.#deny("denyDrag");
-  }
-
-  /**
-   * Depth must increase stepwise.
-   *
-   * @param {Item} item
-   */
-  itemCannotHaveInvalidDepth(item) {
-    const previous = item.previousItem;
-    if (previous && previous.depth < item.depth - 1) this.#deny("invalidDepth");
   }
 
   /**

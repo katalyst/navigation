@@ -10,7 +10,6 @@ $grey: #ececec !default;
 $grey-dark: #999 !default;
 $table-hover-background: #fff0eb !default;
 $primary-color: #ff521f !default;
-$error-color: #990000 !default;
 
 $row-inset: 2rem !default;
 $row-height: 3rem !default;
@@ -20,7 +19,6 @@ $row-background-color: $grey-light !default;
 $row-hover-color: $table-hover-background !default;
 $icon-active-color: $primary-color !default;
 $icon-passive-color: $grey-dark !default;
-$row-depth-invalid-color: $error-color !default;
 
 $status-published-background-color: #ebf9eb !default;
 $status-published-border-color: #4dd45c !default;
@@ -42,7 +40,6 @@ $status-dirty-color: #aaa !default;
   --row-hover-color: #{$row-hover-color};
   --icon-active-color: #{$icon-active-color};
   --icon-passive-color: #{$icon-passive-color};
-  --row-depth-invalid-color: #{$row-depth-invalid-color};
 
   ol,
   li {
