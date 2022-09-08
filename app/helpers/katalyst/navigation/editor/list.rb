@@ -14,7 +14,7 @@ module Katalyst
         ACTIONS
 
         def build(options, &_block)
-          content_tag :ol, default_options(id: menu_form_id, **options) do
+          tag.ol **default_options(id: menu_form_id, **options) do
             yield self
           end
         end

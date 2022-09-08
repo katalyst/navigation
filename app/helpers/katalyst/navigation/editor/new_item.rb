@@ -10,7 +10,7 @@ module Katalyst
 
         def build(item, **options, &block)
           capture do
-            concat(content_tag(:div, **default_options(options)) do
+            concat(tag.div(**default_options(options)) do
               concat capture(&block)
               concat item_template(item)
             end)
@@ -31,7 +31,7 @@ module Katalyst
         # events when the user initiates drag so that it can be copied into the
         # editor list on drop.
         def item_template(item)
-          content_tag(:template, data: { "#{NEW_ITEM_CONTROLLER}-target" => "template" }) do
+          tag.template data: { "#{NEW_ITEM_CONTROLLER}-target" => "template" } do
             navigation_editor_items(item: item)
           end
         end

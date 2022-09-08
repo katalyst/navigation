@@ -8,7 +8,7 @@ module Katalyst
 
         def build(item, **options, &block)
           self.item = item
-          content_tag(:div, default_options(id: dom_id(item), **options)) do
+          tag.div **default_options(id: dom_id(item), **options) do
             concat(capture { yield self }) if block
             concat fields(item)
           end

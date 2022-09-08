@@ -16,7 +16,7 @@ module Katalyst
         end
 
         def render(tree)
-          content_tag(:ul, menu_options) do
+          tag.ul **menu_options do
             tree.each do |item|
               concat render_item(item)
             end
@@ -26,14 +26,14 @@ module Katalyst
         def render_item(item)
           return unless item.visible?
 
-          content_tag :li, item_options do
+          tag.li **item_options do
             concat public_send("render_#{item.model_name.param_key}", item)
             concat render_list(item.children) if item.children.any?
           end
         end
 
         def render_list(items)
-          content_tag :ul, list_options do
+          tag.ul **list_options do
             items.each do |child|
               concat render_item(child)
             end

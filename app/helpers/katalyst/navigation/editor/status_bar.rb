@@ -9,7 +9,7 @@ module Katalyst
         ACTIONS
 
         def build(**options)
-          content_tag(:div, default_options(**options)) do
+          tag.div **default_options(**options) do
             concat status(:published, last_update: l(menu.updated_at, format: :short))
             concat status(:draft)
             concat status(:dirty)
@@ -24,7 +24,7 @@ module Katalyst
         end
 
         def actions
-          content_tag(:menu) do
+          tag.menu do
             concat action(:discard, class: "button button--text")
             concat action(:revert, class: "button button--text") if menu.state == :draft
             concat action(:save, class: "button button--secondary")
