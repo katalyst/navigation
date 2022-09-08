@@ -39,7 +39,7 @@ module Katalyst
       def update
         menu = Menu.find(params[:id])
 
-        menu.attributes = navigation_params
+        menu.attributes = menu_params
 
         unless menu.valid?
           return render :show, locals: { menu: menu }, status: :unprocessable_entity
@@ -68,14 +68,9 @@ module Katalyst
       private
 
       def menu_params
-        params.require(:menu).permit(:title, :slug)
-      end
-
-      def navigation_params
         return {} if params[:menu].blank?
 
-        params.require(:menu)
-          .permit(:title, :slug, items_attributes: %i[id index depth])
+        params.require(:menu).permit(:title, :slug, :depth, items_attributes: %i[id index depth])
       end
     end
   end

@@ -25,11 +25,16 @@ RSpec.describe Katalyst::Navigation::MenusController do
 
   describe "POST /navigation/menus" do
     let(:action) { post katalyst_navigation.menus_path, params: { menu: menu_params } }
-    let(:menu_params) { attributes_for(:katalyst_navigation_menu) }
+    let(:menu_params) { attributes_for(:katalyst_navigation_menu, depth: 1) }
 
     it { is_expected.to redirect_to(katalyst_navigation.menu_path(assigns(:menu))) }
 
     it { expect { action }.to change(Katalyst::Navigation::Menu, :count).by(1) }
+
+    it "sets attributes correctly" do
+      action
+      expect(assigns(:menu)).to have_attributes(menu_params)
+    end
 
     context "with invalid params" do
       let(:menu_params) { { title: "" } }

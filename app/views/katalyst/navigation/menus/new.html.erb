@@ -1,14 +1,19 @@
 <% content_for :title, "New navigation" %>
 
 <%= form_with model: menu do |form| %>
-  <div class="field">
+  <div class="field required">
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
 
-  <div class="field">
+  <div class="field required">
     <%= form.label :slug %>
     <%= form.text_field :slug %>
+  </div>
+
+  <div class="field optional">
+    <%= form.label :depth %>
+    <%= form.text_field :depth %>
   </div>
 
   <%= form.submit %>

@@ -29,6 +29,10 @@ module Katalyst
           add_option(options, :data, :controller, MENU_CONTROLLER)
           add_option(options, :data, :action, ACTIONS)
 
+          depth = options.delete(:depth) || menu.depth
+
+          add_option(options, :data, :"#{MENU_CONTROLLER}-max-depth-value", depth) if depth
+
           options
         end
       end

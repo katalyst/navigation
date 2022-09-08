@@ -134,6 +134,18 @@ RSpec.describe "katalyst/navigation/editor" do
     expect(menu.published_items.map(&:depth)).to eq([0, 1])
   end
 
+  it "cannot change link depth when it would exceed limit" do
+    links = build_list :katalyst_navigation_link, 2
+    menu  = create :katalyst_navigation_menu, items: links, depth: 1
+
+    expect(menu.draft_items.map(&:depth)).to eq([0, 0])
+
+    visit katalyst_navigation.menu_path(menu)
+
+    # ensure that link is not clickable
+    expect(page).to have_selector("li[data-navigation-item-id='#{links.last.id}'][data-deny-nest]")
+  end
+
   it "can save without publishing" do
     link = build :katalyst_navigation_link
     menu = create :katalyst_navigation_menu, items: [link]

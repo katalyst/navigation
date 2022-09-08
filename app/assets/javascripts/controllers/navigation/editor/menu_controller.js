@@ -6,6 +6,9 @@ import RulesEngine from "utils/navigation/editor/rules-engine";
 
 export default class MenuController extends Controller {
   static targets = ["menu"];
+  static values = {
+    maxDepth: Number,
+  };
 
   connect() {
     this.state = this.menu.state;
@@ -85,7 +88,7 @@ export default class MenuController extends Controller {
       if (!this.updateRequested) return;
 
       this.updateRequested = false;
-      const engine = new RulesEngine();
+      const engine = new RulesEngine(this.maxDepthValue);
       this.menu.items.forEach((item) => engine.update(item));
 
       this.#notifyChange();

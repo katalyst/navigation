@@ -45,6 +45,7 @@ module Katalyst
 
       validates :title, :slug, presence: true
       validates :slug, uniqueness: true
+      validates :depth, numericality: { greater_than: 0, only_integer: true, allow_nil: true }
 
       # A menu is in draft mode if it has an unpublished draft or it has no published version.
       # @return the current state of the menu, either `published` or `draft`

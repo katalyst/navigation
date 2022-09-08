@@ -21,6 +21,7 @@ RSpec.describe Katalyst::Navigation::Menu do
   it { is_expected.to validate_presence_of(:title) }
   it { is_expected.to validate_presence_of(:slug) }
   it { is_expected.to validate_uniqueness_of(:slug).ignoring_case_sensitivity }
+  it { is_expected.to validate_numericality_of(:depth).allow_nil.only_integer.is_greater_than(0) }
 
   it { expect(menu.items).to eq(items) }
 

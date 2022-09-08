@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_26_034507) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_08_044500) do
   create_table "katalyst_navigation_items", force: :cascade do |t|
     t.integer "menu_id", null: false
     t.string "type"
@@ -38,6 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_26_034507) do
     t.integer "draft_version_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "depth"
     t.index ["draft_version_id"], name: "index_katalyst_navigation_menus_on_draft_version_id"
     t.index ["published_version_id"], name: "index_katalyst_navigation_menus_on_published_version_id"
     t.index ["slug"], name: "index_katalyst_navigation_menus_on_slug"
