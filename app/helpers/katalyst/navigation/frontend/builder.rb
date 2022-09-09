@@ -8,9 +8,9 @@ module Katalyst
 
         delegate_missing_to :@template
 
-        def initialize(template, menu: {}, list: {}, item: {})
+        def initialize(template, list: {}, item: {}, **menu_options)
           self.template     = template
-          self.menu_options = menu
+          self.menu_options = menu_options
           self.list_options = list
           self.item_options = item
         end
