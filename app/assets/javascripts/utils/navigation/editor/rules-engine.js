@@ -143,7 +143,7 @@ export default class RulesEngine {
    * @param {Item} item
    */
   nestingCannotExceedMaxDepth(item) {
-    if (this.maxDepth > 0 && this.maxDepth >= item.depth + 1) {
+    if (this.maxDepth > 0 && this.maxDepth <= item.depth + 1) {
       this.#deny("denyNest");
     }
   }
