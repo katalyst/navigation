@@ -118,7 +118,7 @@ $status-dirty-color: #aaa !default;
 }
 
 // Ensures vertical alignment of header with rows
-[data-controller="navigation--editor-menu"] {
+[data-controller="navigation--editor--menu"] {
   [role="rowheader"] {
     min-height: var(--row-height);
     background: var(--table-header-color);
