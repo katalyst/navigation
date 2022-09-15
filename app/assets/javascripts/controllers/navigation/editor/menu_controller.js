@@ -41,9 +41,7 @@ export default class MenuController extends Controller {
   nest(event) {
     const item = getEventItem(event);
 
-    item.traverse((child) => {
-      child.depth += 1;
-    });
+    item.nest();
 
     this.#update();
     event.preventDefault();
@@ -52,9 +50,7 @@ export default class MenuController extends Controller {
   deNest(event) {
     const item = getEventItem(event);
 
-    item.traverse((child) => {
-      child.depth -= 1;
-    });
+    item.deNest();
 
     this.#update();
     event.preventDefault();

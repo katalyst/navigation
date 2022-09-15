@@ -128,6 +128,26 @@ export default class Item {
     expanded.forEach((item) => item.traverse(callback));
   }
 
+  nest() {
+    this.traverse((child) => {
+      child.depth += 1;
+    });
+
+    if(this.previousItem.hasCollapsedDescendants()){
+      this.previousItem.hideMe(this);
+    }
+  }
+
+  hideMe(item){
+    this.#childrenListElement.appendChild(item.node);
+  }
+
+  deNest() {
+    this.traverse((child) => {
+      child.depth -= 1;
+    });
+  }
+
   /**
    * Collapses visible (logical) children into this element's hidden children
    * list, creating it if it doesn't already exist.
