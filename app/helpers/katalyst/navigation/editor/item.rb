@@ -14,13 +14,6 @@ module Katalyst
           end
         end
 
-        def build_all(*items)
-          render partial:    "katalyst/navigation/menus/link_item",
-                 layout:     "katalyst/navigation/menus/navigation_menu_link",
-                 collection: items,
-                 as:         :item
-        end
-
         def accordion_actions
           tag.div role: "toolbar", data: { tree_accordion_controls: "" } do
             concat tag.span(role: "button", value: "collapse",
