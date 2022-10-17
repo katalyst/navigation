@@ -9,24 +9,37 @@ export default class RulesEngine {
     "denyEdit",
   ];
 
-  constructor(maxDepth = null) {
+  constructor(maxDepth = null, debug = false) {
     this.maxDepth = maxDepth;
+    if (debug) {
+      this.debug = (...args) => console.log(...args);
+    } else {
+      this.debug = () => {};
+    }
   }
 
   /**
-   * Apply rules to the given item by computing a ruleset then merging it
-   * with the item's current state.
+   * Enforce structural rules to ensure that the given item is currently in a
+   * valid state.
    *
    * @param {Item} item
    */
-  update(item) {
-    this.rules = {};
-
+  normalize(item) {
     // structural rules enforce a valid tree structure
     this.firstItemDepthZero(item);
     this.depthMustBeSet(item);
     this.itemCannotHaveInvalidDepth(item);
     this.itemCannotExceedDepthLimit(item);
+    this.parentCannotHaveExpandedAndCollapsedChildren(item);
+  }
+
+  /**
+   * Apply rules to the given item to determine what operations are permitted.
+   *
+   * @param {Item} item
+   */
+  update(item) {
+    this.rules = {};
 
     // behavioural rules define what the user is allowed to do
     this.parentsCannotDeNest(item);
@@ -47,7 +60,9 @@ export default class RulesEngine {
    * First item can't have a parent, so its depth should always be 0
    */
   firstItemDepthZero(item) {
-    if (item.index === 0) {
+    if (item.index === 0 && item.depth !== 0) {
+      this.debug(`enforce depth on item ${item.index}: ${item.depth} => 0`);
+
       item.depth = 0;
     }
   }
@@ -59,6 +74,8 @@ export default class RulesEngine {
    */
   depthMustBeSet(item) {
     if (isNaN(item.depth) || item.depth < 0) {
+      this.debug(`unset depth on item ${item.index}: => 0`);
+
       item.depth = 0;
     }
   }
@@ -71,6 +88,12 @@ export default class RulesEngine {
   itemCannotHaveInvalidDepth(item) {
     const previous = item.previousItem;
     if (previous && previous.depth < item.depth - 1) {
+      this.debug(
+        `invalid depth on item ${item.index}: ${item.depth} => ${
+          previous.depth + 1
+        }`
+      );
+
       item.depth = previous.depth + 1;
     }
   }
@@ -88,6 +111,19 @@ export default class RulesEngine {
       // as it only occurs if the max depth is altered. The issue can be worked
       // around by saving the menu.
       item.depth = this.maxDepth - 1;
+    }
+  }
+
+  /**
+   * If a parent has expanded and collapsed children, expand.
+   *
+   * @param {Item} item
+   */
+  parentCannotHaveExpandedAndCollapsedChildren(item) {
+    if (item.hasCollapsedDescendants() && item.hasExpandedDescendants()) {
+      this.debug(`expanding collapsed children of item ${item.index}`);
+
+      item.expand();
     }
   }
 
@@ -134,7 +170,10 @@ export default class RulesEngine {
    */
   nestingNeedsParent(item) {
     const previous = item.previousItem;
-    if (!previous || previous.depth < item.depth) this.#deny("denyNest");
+    // no previous, so cannot nest
+    if (!previous) this.#deny("denyNest");
+    // previous is too shallow, nesting would increase depth too much
+    else if (previous.depth < item.depth) this.#deny("denyNest");
   }
 
   /**
@@ -154,7 +193,7 @@ export default class RulesEngine {
    * @param {Item} item
    */
   parentsCannotBeDeleted(item) {
-    if (item.hasExpandedDescendants()) this.#deny("denyRemove");
+    if (!item.itemId || item.hasExpandedDescendants()) this.#deny("denyRemove");
   }
 
   /**

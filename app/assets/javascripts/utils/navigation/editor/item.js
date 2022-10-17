@@ -120,44 +120,24 @@ export default class Item {
   traverse(callback) {
     // capture descendants before traversal in case of side-effects
     // specifically, setting depth affects calculation
-    const collapsed = this.#collapsedChildren;
     const expanded = this.#expandedDescendants;
 
     callback(this);
-    collapsed.forEach((item) => item.traverse(callback));
-    expanded.forEach((item) => item.traverse(callback));
+    this.#traverseCollapsed(callback);
+    expanded.forEach((item) => item.#traverseCollapsed(callback));
   }
 
   /**
-   * Increase the depth of this item and its descendants.
-   * If this causes it to become a child of a collapsed item, then collapse this item.
-   */
-  nest() {
-    this.traverse((child) => {
-      child.depth += 1;
-    });
-
-    if (this.previousItem.hasCollapsedDescendants()) {
-      this.previousItem.collapseChild(this);
-    }
-  }
-
-  /**
-   * Move the given item into this element's hidden children list.
-   * Assumes the list already exists.
+   * Recursively traverse the node's collapsed descendants, if any.
    *
-   * @param item {Item}
+   * @callback {Item}
    */
-  collapseChild(item) {
-    this.#childrenListElement.appendChild(item.node);
-  }
+  #traverseCollapsed(callback) {
+    if (!this.hasCollapsedDescendants()) return;
 
-  /**
-   * Decrease the depth of this item (and its descendants).
-   */
-  deNest() {
-    this.traverse((child) => {
-      child.depth -= 1;
+    this.#collapsedDescendants.forEach((item) => {
+      callback(item);
+      item.#traverseCollapsed(callback);
     });
   }
 
@@ -240,6 +220,9 @@ export default class Item {
     return this.node.querySelector(`:scope > [data-navigation-children]`);
   }
 
+  /**
+   * @returns {Item[]} all items that follow this element that have a greater depth.
+   */
   get #expandedDescendants() {
     const descendants = [];
 
@@ -252,7 +235,10 @@ export default class Item {
     return descendants;
   }
 
-  get #collapsedChildren() {
+  /**
+   * @returns {Item[]} all items directly contained inside this element's hidden children element.
+   */
+  get #collapsedDescendants() {
     if (!this.hasCollapsedDescendants()) return [];
 
     return Array.from(this.#childrenListElement.children).map(
