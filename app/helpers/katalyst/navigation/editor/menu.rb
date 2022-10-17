@@ -6,6 +6,7 @@ module Katalyst
       class Menu < Base
         ACTIONS = <<~ACTIONS.gsub(/\s+/, " ").freeze
           submit->#{MENU_CONTROLLER}#reindex
+          navigation:drop->#{MENU_CONTROLLER}#drop
           navigation:reindex->#{MENU_CONTROLLER}#reindex
           navigation:reset->#{MENU_CONTROLLER}#reset
         ACTIONS

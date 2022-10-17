@@ -46,7 +46,7 @@ export default class ListController extends Controller {
   }
 
   drop(event) {
-    const item = this.dragItem();
+    let item = this.dragItem();
 
     if (!item) return;
 
@@ -55,17 +55,22 @@ export default class ListController extends Controller {
     swap(this.dropTarget(event.target), item);
 
     if (item.dataset.hasOwnProperty("newItem")) {
+      const placeholder = item;
       const template = document.createElement("template");
       template.innerHTML = event.dataTransfer.getData("text/html");
-      const newItem = template.content.querySelector("li");
+      item = template.content.querySelector("li");
 
-      this.element.replaceChild(newItem, item);
+      this.element.replaceChild(item, placeholder);
       setTimeout(() =>
-        newItem.querySelector("[role='button'][value='edit']").click()
+        item.querySelector("[role='button'][value='edit']").click()
       );
     }
 
-    this.reindex();
+    this.dispatch("drop", {
+      target: item,
+      bubbles: true,
+      prefix: "navigation",
+    });
   }
 
   dragend() {

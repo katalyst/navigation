@@ -29,6 +29,29 @@ export default class MenuController extends Controller {
     this.menu.reset();
   }
 
+  drop(event) {
+    this.menu.reindex(); // set indexes before calculating previous
+
+    const item = getEventItem(event);
+    const previous = item.previousItem;
+
+    let delta = 0;
+    if (previous === undefined) {
+      delta = -item.depth;
+    } else if (previous.hasExpandedDescendants()) {
+      delta = previous.depth - item.depth + 1;
+    } else {
+      delta = previous.depth - item.depth;
+    }
+
+    item.traverse((child) => {
+      child.depth += delta;
+    });
+
+    this.#update();
+    event.preventDefault();
+  }
+
   remove(event) {
     const item = getEventItem(event);
 
@@ -41,7 +64,9 @@ export default class MenuController extends Controller {
   nest(event) {
     const item = getEventItem(event);
 
-    item.nest();
+    item.traverse((child) => {
+      child.depth += 1;
+    });
 
     this.#update();
     event.preventDefault();
@@ -50,7 +75,9 @@ export default class MenuController extends Controller {
   deNest(event) {
     const item = getEventItem(event);
 
-    item.deNest();
+    item.traverse((child) => {
+      child.depth -= 1;
+    });
 
     this.#update();
     event.preventDefault();
@@ -85,6 +112,7 @@ export default class MenuController extends Controller {
 
       this.updateRequested = false;
       const engine = new RulesEngine(this.maxDepthValue);
+      this.menu.items.forEach((item) => engine.normalize(item));
       this.menu.items.forEach((item) => engine.update(item));
 
       this.#notifyChange();
