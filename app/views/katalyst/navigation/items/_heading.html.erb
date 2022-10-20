@@ -1,0 +1,16 @@
+<%= form_with model: item, scope: :item, url: path do |form| %>
+  <%= form.hidden_field :type %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :visible %>
+    <%= form.check_box :visible %>
+  </div>
+
+  <%= form.submit "Done" %>
+  <%= link_to "Discard", item.menu %>
+<% end %>

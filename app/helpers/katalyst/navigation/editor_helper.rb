@@ -5,6 +5,7 @@ module Katalyst
     module EditorHelper
       def navigation_editor_new_items(menu)
         [
+          Heading.new(menu: menu),
           Link.new(menu: menu),
           Button.new(menu: menu),
         ]

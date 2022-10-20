@@ -40,6 +40,10 @@ module Katalyst
           end
         end
 
+        def render_heading(heading)
+          tag.header { tag.p heading.title }
+        end
+
         def render_link(link)
           link_to(link.title, link.url, item_options)
         end
