@@ -2,7 +2,7 @@
 
 module Katalyst
   module Navigation
-    # STI base class for menu items (links and buttons)
+    # STI base class for menu items (headings, links and buttons)
     class Item < ApplicationRecord
       belongs_to :menu, inverse_of: :items, class_name: "Katalyst::Navigation::Menu"
 
