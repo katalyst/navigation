@@ -3,7 +3,8 @@
 require "rails_helper"
 
 RSpec.describe Katalyst::Navigation::Heading do
-  subject(:link) { build :navigation_link, menu: create(:navigation_menu) }
+  subject(:heading) { build :navigation_heading, menu: create(:navigation_menu) }
 
   it { is_expected.to validate_presence_of(:title) }
+  it { is_expected.not_to validate_presence_of(:url) }
 end

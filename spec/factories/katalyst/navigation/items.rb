@@ -11,4 +11,8 @@ FactoryBot.define do
     url { Faker::Internet.unique.url }
     http_method { Katalyst::Navigation::Button::HTTP_METHODS.keys.sample }
   end
+
+  factory :katalyst_navigation_heading, aliases: [:navigation_heading], class: "Katalyst::Navigation::Heading" do
+    title { Faker::Beer.hop }
+  end
 end
