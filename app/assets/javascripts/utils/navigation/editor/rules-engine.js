@@ -30,6 +30,7 @@ export default class RulesEngine {
     this.depthMustBeSet(item);
     this.itemCannotHaveInvalidDepth(item);
     this.itemCannotExceedDepthLimit(item);
+    this.parentMustBeLayout(item);
     this.parentCannotHaveExpandedAndCollapsedChildren(item);
   }
 
@@ -115,6 +116,24 @@ export default class RulesEngine {
   }
 
   /**
+   * Parent item, if any, must be a layout.
+   *
+   * @param {Item} item
+   */
+  parentMustBeLayout(item) {
+    // if we're the first child, make sure our parent is a layout
+    // if we're a sibling, we know the previous item is valid so we must be too
+    const previous = item.previousItem;
+    if (previous && previous.depth < item.depth && !previous.isLayout) {
+      this.debug(
+        `invalid parent for item ${item.index}: ${item.depth} => ${previous.depth}`
+      );
+
+      item.depth = previous.depth;
+    }
+  }
+
+  /**
    * If a parent has expanded and collapsed children, expand.
    *
    * @param {Item} item
@@ -174,6 +193,9 @@ export default class RulesEngine {
     if (!previous) this.#deny("denyNest");
     // previous is too shallow, nesting would increase depth too much
     else if (previous.depth < item.depth) this.#deny("denyNest");
+    // new parent is not a layout
+    else if (previous.depth === item.depth && !previous.isLayout)
+      this.#deny("denyNest");
   }
 
   /**

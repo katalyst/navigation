@@ -15,7 +15,7 @@ RSpec.describe "katalyst/navigation/editor" do
     visit katalyst_navigation.menu_path(menu)
 
     add_new_link = find("div[data-controller$='new-item']:first-child")
-    drop_target = find("ol[data-controller$='list']")
+    drop_target  = find("ol[data-controller$='list']")
     add_new_link.drag_to(drop_target)
 
     expect(page).to have_selector("[data-controller$='list'] li[data-navigation-item]")
@@ -113,15 +113,16 @@ RSpec.describe "katalyst/navigation/editor" do
   end
 
   it "can change link depth" do
-    links = build_list :katalyst_navigation_link, 2
-    menu  = create :katalyst_navigation_menu, items: links
+    heading = build(:katalyst_navigation_heading)
+    link    = build(:katalyst_navigation_link)
+    menu    = create :katalyst_navigation_menu, items: [heading, link]
 
     expect(menu.draft_items.map(&:depth)).to eq([0, 0])
 
     visit katalyst_navigation.menu_path(menu)
 
     # find and click nest – checks for data-deny-nest to ensure rules have been applied
-    find("li[data-navigation-item-id='#{links.last.id}']:not([data-deny-nest]) [data-action$='#nest']").click
+    find("li[data-navigation-item-id='#{link.id}']:not([data-deny-nest]) [data-action$='#nest']").click
 
     expect(page).to have_selector("span", class: "status-text", text: "Unsaved changes", visible: :visible)
 
@@ -132,6 +133,20 @@ RSpec.describe "katalyst/navigation/editor" do
     menu.reload
 
     expect(menu.published_items.map(&:depth)).to eq([0, 1])
+  end
+
+  context "with two non-layout siblings" do
+    it "cannot change link depth" do
+      links = build_list :katalyst_navigation_link, 2
+      menu  = create :katalyst_navigation_menu, items: links
+
+      expect(menu.draft_items.map(&:depth)).to eq([0, 0])
+
+      visit katalyst_navigation.menu_path(menu)
+
+      # ensure that link is not clickable
+      expect(page).to have_selector("li[data-navigation-item-id='#{links.last.id}'][data-deny-nest]")
+    end
   end
 
   it "cannot change link depth when it would exceed limit" do

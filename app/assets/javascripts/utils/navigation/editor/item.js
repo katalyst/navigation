@@ -81,6 +81,13 @@ export default class Item {
   }
 
   /**
+   * @returns {boolean} true if this item can have children
+   */
+  get isLayout() {
+    return this.node.hasAttribute("data-content-layout");
+  }
+
+  /**
    * @returns {Item} nearest neighbour (index - 1)
    */
   get previousItem() {

@@ -10,6 +10,10 @@ module Katalyst
 
       attr_accessor :parent, :children, :index, :depth
 
+      def layout?
+        is_a? Layout
+      end
+
       private
 
       def initialize_tree

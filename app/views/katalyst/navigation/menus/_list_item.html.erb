@@ -3,6 +3,7 @@
     data-navigation-item-id="<%= item.id %>"
     data-navigation-index="<%= item.index %>"
     data-navigation-depth="<%= item.depth %>"
+    <%= "data-content-layout" if item.layout? %>
     data-deny-de-nest
     data-deny-nest
     data-deny-collapse

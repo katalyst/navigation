@@ -2,8 +2,8 @@
 
 module Katalyst
   module Navigation
-    class Heading < Layout
-      validates :title, presence: true
+    # Base class for Layout items
+    class Layout < Item
     end
   end
 end
