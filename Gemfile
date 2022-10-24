@@ -4,6 +4,7 @@ source "https://rubygems.org"
 
 gemspec
 
+gem "active_storage_validations"
 gem "dartsass-rails"
 gem "importmap-rails"
 gem "katalyst-tables"
