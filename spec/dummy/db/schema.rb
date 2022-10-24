@@ -48,6 +48,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_204927) do
     t.boolean "visible", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "caption"
+    t.string "alt_text"
     t.index ["menu_id"], name: "index_katalyst_navigation_items_on_menu_id"
   end
 

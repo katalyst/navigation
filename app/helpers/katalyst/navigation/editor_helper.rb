@@ -8,6 +8,7 @@ module Katalyst
           Heading.new(menu: menu),
           Link.new(menu: menu),
           Button.new(menu: menu),
+          Card.new(menu: menu),
         ]
       end
 

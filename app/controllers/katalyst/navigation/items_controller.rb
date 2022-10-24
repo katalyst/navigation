@@ -42,7 +42,9 @@ module Katalyst
       end
 
       def item_params
-        params.require(:item).permit(%i[title url visible http_method new_tab type])
+        params
+          .require(:item)
+          .permit(%i[title url visible http_method new_tab caption wide_image square_image alt_text type])
       end
 
       def set_menu

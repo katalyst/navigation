@@ -51,6 +51,12 @@ module Katalyst
         def render_button(link)
           link_to(link.title, link.url, **item_options, method: link.http_method)
         end
+
+        def render_card(card)
+          tag.div do
+            card.title
+          end
+        end
       end
     end
   end
