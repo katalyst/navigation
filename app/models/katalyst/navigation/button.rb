@@ -10,6 +10,10 @@ module Katalyst
 
       validates :title, :url, :http_method, presence: true
       validates :http_method, inclusion: { in: HTTP_METHODS.values.map(&:to_s) }
+
+      def self.permitted_params
+        super + %i[http_method]
+      end
     end
   end
 end

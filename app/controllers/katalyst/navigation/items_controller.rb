@@ -41,8 +41,17 @@ module Katalyst
         params[:type] || Link.name
       end
 
+      def item_params_type
+        type = params.require(:item).fetch(:type, "")
+        if Katalyst::Navigation.config.items.include?(type)
+          type.safe_constantize
+        else
+          Item
+        end
+      end
+
       def item_params
-        params.require(:item).permit(%i[title url visible http_method new_tab type])
+        params.require(:item).permit(item_params_type.permitted_params)
       end
 
       def set_menu
