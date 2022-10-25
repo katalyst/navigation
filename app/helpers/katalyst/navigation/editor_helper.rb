@@ -4,11 +4,10 @@ module Katalyst
   module Navigation
     module EditorHelper
       def navigation_editor_new_items(menu)
-        [
-          Heading.new(menu: menu),
-          Link.new(menu: menu),
-          Button.new(menu: menu),
-        ]
+        Katalyst::Navigation.config.items.map do |item_class|
+          item_class = item_class.is_a?(String) ? item_class.safe_constantize : item_class
+          item_class.new(menu: menu)
+        end
       end
 
       def navigation_editor_menu(menu:, **options, &block)
