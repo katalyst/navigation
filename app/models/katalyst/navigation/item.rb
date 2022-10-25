@@ -10,6 +10,16 @@ module Katalyst
 
       attr_accessor :parent, :children, :index, :depth
 
+      def self.permitted_params
+        %i[
+          title
+          url
+          visible
+          new_tab
+          type
+        ]
+      end
+
       def layout?
         is_a? Layout
       end
