@@ -22,8 +22,7 @@
     }
   }
 
-  [role="img"][value="link"],
-  [role="img"][value="title"] {
+  [role="img"][title="Type"] {
     width: 1.5rem;
     height: 1.5rem;
     display: grid;
@@ -44,18 +43,18 @@
       line-height: 1.125rem;
       text-align: center;
     }
+  }
 
-    &[value="link"] {
-      &::before {
-        content: "#";
-      }
-    }
+  [role="img"][value="heading"]::before {
+    content: "H";
+  }
 
-    &[value="title"] {
-      &::before {
-        content: "T";
-      }
-    }
+  [role="img"][value="link"]::before {
+    content: "#";
+  }
+
+  [role="img"][value="button"]::before {
+    content: "#";
   }
 
   [role="img"][value="invisible"] {

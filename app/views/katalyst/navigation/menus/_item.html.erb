@@ -2,7 +2,7 @@
   <div class="tree" data-invisible="<%= !item.visible? %>">
     <%= builder.accordion_actions %>
 
-    <span role="img" value="<%= item.url.present? ? "link" : "title" %>" title="Type"></span>
+    <span role="img" value="<%= item.model_name.param_key %>" title="Type"></span>
     <h4 class="title" title="<%= item.title %>"><%= item.title %></h4>
     <span role="img" value="invisible" title="Hidden"></span>
   </div>
