@@ -12,10 +12,10 @@ def transform_tree(nodes, &block)
 end
 
 RSpec.describe Katalyst::Navigation::Menu do
-  subject(:menu) { create :katalyst_navigation_menu, items: items }
+  subject(:menu) { create(:katalyst_navigation_menu, items: items) }
 
-  let(:first) { build :katalyst_navigation_link, title: "First", url: "/first" }
-  let(:last) { build :katalyst_navigation_link, title: "Last", url: "/last" }
+  let(:first) { build(:katalyst_navigation_link, title: "First", url: "/first") }
+  let(:last) { build(:katalyst_navigation_link, title: "Last", url: "/last") }
   let(:items) { [first, last] }
 
   it { is_expected.to validate_presence_of(:title) }
@@ -106,7 +106,7 @@ RSpec.describe Katalyst::Navigation::Menu do
 
   describe "add link" do
     let(:update) do
-      update = create :katalyst_navigation_link, menu: menu, title: "Update", url: "/update"
+      update = create(:katalyst_navigation_link, menu: menu, title: "Update", url: "/update")
       menu.update(items_attributes: menu.draft_nodes + [{ id: update.id }])
     end
 
@@ -120,7 +120,7 @@ RSpec.describe Katalyst::Navigation::Menu do
 
     context "with controller formatted attributes" do
       let(:update) do
-        update     = create :katalyst_navigation_link, menu: menu, title: "Update", url: "/update"
+        update     = create(:katalyst_navigation_link, menu: menu, title: "Update", url: "/update")
         attributes = { "0" => { id: first.id.to_s, index: "0", depth: "0" },
                        "1" => { id: update.id.to_s, index: "2", depth: "0" },
                        "2" => { id: last.id.to_s, index: "1", depth: "0" } }
@@ -151,7 +151,7 @@ RSpec.describe Katalyst::Navigation::Menu do
 
   describe "swap two items" do
     let(:update) do
-      update = create :katalyst_navigation_link, menu: menu, title: "Update", url: "/update"
+      update = create(:katalyst_navigation_link, menu: menu, title: "Update", url: "/update")
       menu.update(items_attributes: [{ id: first.id },
                                      { id: update.id }])
     end
@@ -270,7 +270,7 @@ RSpec.describe Katalyst::Navigation::Menu do
     end
 
     context "with multiple link changes" do
-      let(:multiple_links) { create_list :katalyst_navigation_link, 2, menu: menu }
+      let(:multiple_links) { create_list(:katalyst_navigation_link, 2, menu: menu) }
       let(:item_attributes) { [{ id: multiple_links.first.id, depth: 0 }, { id: multiple_links.last.id, depth: 1 }] }
 
       include_context "when in the future"

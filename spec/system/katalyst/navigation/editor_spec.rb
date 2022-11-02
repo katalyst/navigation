@@ -10,7 +10,7 @@ RSpec.describe "katalyst/navigation/editor" do
   # > sending the mouse press, mouse move and mouse release, because  the drag
   # > and drop events are generated from the OS level.
   xit "can add a link" do
-    menu = create :katalyst_navigation_menu
+    menu = create(:katalyst_navigation_menu)
 
     visit katalyst_navigation.menu_path(menu)
 
@@ -36,8 +36,8 @@ RSpec.describe "katalyst/navigation/editor" do
   end
 
   it "can remove a link" do
-    link = build :katalyst_navigation_link
-    menu = create :katalyst_navigation_menu, items: [link]
+    link = build(:katalyst_navigation_link)
+    menu = create(:katalyst_navigation_menu, items: [link])
 
     expect(menu.draft_items).not_to be_empty
 
@@ -58,8 +58,8 @@ RSpec.describe "katalyst/navigation/editor" do
   end
 
   it "can edit a link" do
-    link = build :katalyst_navigation_link
-    menu = create :katalyst_navigation_menu, items: [link]
+    link = build(:katalyst_navigation_link)
+    menu = create(:katalyst_navigation_menu, items: [link])
 
     expect(menu.draft_items).not_to be_empty
 
@@ -83,8 +83,8 @@ RSpec.describe "katalyst/navigation/editor" do
   end
 
   it "can re-order links" do
-    links = build_list :katalyst_navigation_link, 2
-    menu  = create :katalyst_navigation_menu, items: links
+    links = build_list(:katalyst_navigation_link, 2)
+    menu  = create(:katalyst_navigation_menu, items: links)
 
     expect(menu.items.map(&:url)).to eq([links.first.url, links.last.url])
 
@@ -115,7 +115,7 @@ RSpec.describe "katalyst/navigation/editor" do
   it "can change link depth" do
     heading = build(:katalyst_navigation_heading)
     link    = build(:katalyst_navigation_link)
-    menu    = create :katalyst_navigation_menu, items: [heading, link]
+    menu    = create(:katalyst_navigation_menu, items: [heading, link])
 
     expect(menu.draft_items.map(&:depth)).to eq([0, 0])
 
@@ -137,8 +137,8 @@ RSpec.describe "katalyst/navigation/editor" do
 
   context "with two non-layout siblings" do
     it "cannot change link depth" do
-      links = build_list :katalyst_navigation_link, 2
-      menu  = create :katalyst_navigation_menu, items: links
+      links = build_list(:katalyst_navigation_link, 2)
+      menu  = create(:katalyst_navigation_menu, items: links)
 
       expect(menu.draft_items.map(&:depth)).to eq([0, 0])
 
@@ -150,8 +150,8 @@ RSpec.describe "katalyst/navigation/editor" do
   end
 
   it "cannot change link depth when it would exceed limit" do
-    links = build_list :katalyst_navigation_link, 2
-    menu  = create :katalyst_navigation_menu, items: links, depth: 1
+    links = build_list(:katalyst_navigation_link, 2)
+    menu  = create(:katalyst_navigation_menu, items: links, depth: 1)
 
     expect(menu.draft_items.map(&:depth)).to eq([0, 0])
 
@@ -162,8 +162,8 @@ RSpec.describe "katalyst/navigation/editor" do
   end
 
   it "can save without publishing" do
-    link = build :katalyst_navigation_link
-    menu = create :katalyst_navigation_menu, items: [link]
+    link = build(:katalyst_navigation_link)
+    menu = create(:katalyst_navigation_menu, items: [link])
 
     visit katalyst_navigation.menu_path(menu)
 
@@ -183,8 +183,8 @@ RSpec.describe "katalyst/navigation/editor" do
   end
 
   it "can revert a change" do
-    link = build :katalyst_navigation_link
-    menu = create :katalyst_navigation_menu, items: [link]
+    link = build(:katalyst_navigation_link)
+    menu = create(:katalyst_navigation_menu, items: [link])
 
     visit katalyst_navigation.menu_path(menu)
 
@@ -208,8 +208,8 @@ RSpec.describe "katalyst/navigation/editor" do
   end
 
   it "can publish a change" do
-    link = build :katalyst_navigation_link
-    menu = create :katalyst_navigation_menu, items: [link]
+    link = build(:katalyst_navigation_link)
+    menu = create(:katalyst_navigation_menu, items: [link])
 
     visit katalyst_navigation.menu_path(menu)
 

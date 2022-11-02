@@ -46,21 +46,21 @@ RSpec.describe Katalyst::Navigation::MenusController do
 
   describe "GET /navigation/menus/:id" do
     let(:action) { get katalyst_navigation.menu_path(menu) }
-    let(:menu) { create :katalyst_navigation_menu }
+    let(:menu) { create(:katalyst_navigation_menu) }
 
     it { is_expected.to be_successful }
   end
 
   describe "GET /navigation/menus/:id/edit" do
     let(:action) { get katalyst_navigation.edit_menu_path(menu) }
-    let(:menu) { create :katalyst_navigation_menu }
+    let(:menu) { create(:katalyst_navigation_menu) }
 
     it { is_expected.to be_successful }
   end
 
   describe "PATCH /navigation/menus/:id" do
     let(:action) { patch katalyst_navigation.menu_path(menu), params: { menu: menu_params, commit: commit } }
-    let(:menu) { create :katalyst_navigation_menu }
+    let(:menu) { create(:katalyst_navigation_menu) }
     let(:menu_params) do
       {
         items_attributes: [
@@ -106,7 +106,7 @@ RSpec.describe Katalyst::Navigation::MenusController do
 
   describe "DELETE /navigation/menus/:id" do
     let(:action) { delete katalyst_navigation.menu_path(menu) }
-    let!(:menu) { create :katalyst_navigation_menu }
+    let!(:menu) { create(:katalyst_navigation_menu) }
 
     it { is_expected.to have_http_status(:see_other) }
     it { is_expected.to redirect_to(katalyst_navigation.menus_path) }

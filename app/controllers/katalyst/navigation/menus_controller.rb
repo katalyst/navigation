@@ -9,8 +9,20 @@ module Katalyst
         render locals: { menus: menus, sort: sort }
       end
 
+      def show
+        menu = Menu.find(params[:id])
+
+        render locals: { menu: menu }
+      end
+
       def new
         render locals: { menu: Menu.new }
+      end
+
+      def edit
+        menu = Menu.find(params[:id])
+
+        render locals: { menu: menu }
       end
 
       def create
@@ -21,18 +33,6 @@ module Katalyst
         else
           render :new, locals: { menu: @menu }, status: :unprocessable_entity
         end
-      end
-
-      def show
-        menu = Menu.find(params[:id])
-
-        render locals: { menu: menu }
-      end
-
-      def edit
-        menu = Menu.find(params[:id])
-
-        render locals: { menu: menu }
       end
 
       # PATCH /admins/navigation_menus/:slug

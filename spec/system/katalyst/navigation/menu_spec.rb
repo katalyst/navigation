@@ -20,7 +20,7 @@ RSpec.describe "katalyst/navigation/menu" do
   end
 
   it "can edit a menu" do
-    menu = create :katalyst_navigation_menu, title: "Magic", slug: "magic"
+    menu = create(:katalyst_navigation_menu, title: "Magic", slug: "magic")
 
     visit katalyst_navigation.menus_path
 
@@ -40,7 +40,7 @@ RSpec.describe "katalyst/navigation/menu" do
   end
 
   it "can delete a menu" do
-    menu = create :katalyst_navigation_menu, title: "Magic", slug: "magic"
+    menu = create(:katalyst_navigation_menu, title: "Magic", slug: "magic")
 
     visit katalyst_navigation.menus_path
 

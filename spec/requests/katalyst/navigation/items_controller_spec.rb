@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe Katalyst::Navigation::ItemsController do
   subject { action && response }
 
-  let(:menu) { create :katalyst_navigation_menu }
+  let(:menu) { create(:katalyst_navigation_menu) }
 
   describe "GET /admin/navigations/:slug/links/new" do
     let(:action) { get katalyst_navigation.new_menu_item_path(menu) }
@@ -35,7 +35,7 @@ RSpec.describe Katalyst::Navigation::ItemsController do
 
   describe "GET /admin/navigations/:slug/links/:id/edit" do
     let(:action) { get katalyst_navigation.edit_menu_item_path(menu, link) }
-    let(:link) { create :katalyst_navigation_link, menu: menu }
+    let(:link) { create(:katalyst_navigation_link, menu: menu) }
 
     it { is_expected.to be_successful }
   end
@@ -47,7 +47,7 @@ RSpec.describe Katalyst::Navigation::ItemsController do
             as:     :turbo_stream
     end
     let(:title) { Faker::Beer.name }
-    let!(:link) { create :katalyst_navigation_link, menu: menu, title: title }
+    let!(:link) { create(:katalyst_navigation_link, menu: menu, title: title) }
     let(:link_params) { { title: "A new level" } }
 
     it { is_expected.to be_successful }

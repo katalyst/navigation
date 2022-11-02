@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe Katalyst::Navigation::Button do
-  subject(:button) { build :navigation_button, menu: create(:navigation_menu) }
+  subject(:button) { build(:navigation_button, menu: create(:navigation_menu)) }
 
   it { is_expected.to validate_presence_of(:title) }
   it { is_expected.to validate_presence_of(:url) }
