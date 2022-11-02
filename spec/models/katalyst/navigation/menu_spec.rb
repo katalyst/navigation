@@ -25,6 +25,12 @@ RSpec.describe Katalyst::Navigation::Menu do
 
   it { expect(menu.items).to eq(items) }
 
+  it "validates items" do
+    expect(menu).not_to allow_value([{ id: 404, depth: 0, index: 0 }])
+                          .for(:items_attributes)
+                          .with_message(I18n.t("activerecord.errors.messages.missing_item"), against: :items)
+  end
+
   it { is_expected.to have_attributes(state: :published) }
   it { expect(menu.draft_version).to eq(menu.published_version) }
 

@@ -1,4 +1,8 @@
 en:
+  activerecord:
+    errors:
+      messages:
+        missing_item: Items are missing or invalid
   views:
     katalyst:
       navigation:

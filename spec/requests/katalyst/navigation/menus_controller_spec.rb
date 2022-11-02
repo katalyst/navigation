@@ -7,7 +7,8 @@ RSpec.describe Katalyst::Navigation::MenusController do
 
   shared_context "with draft" do
     before do
-      menu.update!(items_attributes: [{ id: 1, depth: 0, index: 0 }])
+      link = create(:navigation_link, menu: menu)
+      menu.update!(items_attributes: [{ id: link.id, depth: 0, index: 0 }])
     end
   end
 
@@ -64,8 +65,8 @@ RSpec.describe Katalyst::Navigation::MenusController do
     let(:menu_params) do
       {
         items_attributes: [
-          { id: 1, depth: 0, index: 0 },
-          { id: 2, depth: 1, index: 1 },
+          { id: create(:navigation_link, menu: menu).id, depth: 0, index: 0 },
+          { id: create(:navigation_link, menu: menu).id, depth: 1, index: 1 },
         ],
       }
     end

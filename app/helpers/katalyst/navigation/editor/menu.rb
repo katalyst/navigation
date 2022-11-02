@@ -14,6 +14,7 @@ module Katalyst
         def build(options)
           form_with(model: menu, **default_options(id: menu_form_id, **options)) do |form|
             concat hidden_input
+            concat errors
             concat(capture { yield form })
           end
         end
@@ -24,6 +25,10 @@ module Katalyst
         # receives an empty array.
         def hidden_input
           tag.input(type: "hidden", name: "#{Item::ATTRIBUTES_SCOPE}[id]")
+        end
+
+        def errors
+          Editor::Errors.new(self, menu).build
         end
 
         def default_options(options)

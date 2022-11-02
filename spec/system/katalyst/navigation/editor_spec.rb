@@ -182,6 +182,25 @@ RSpec.describe "katalyst/navigation/editor" do
     expect(menu.draft_items).to contain_exactly(having_attributes(title: "Updated", url: link.url))
   end
 
+  it "can show errors on save" do
+    link = build(:katalyst_navigation_link)
+    menu = create(:katalyst_navigation_menu, items: [link])
+
+    visit katalyst_navigation.menu_path(menu)
+
+    find("a[title='Edit']").click
+    fill_in "Title", with: "Updated"
+    click_on "Done"
+
+    expect(page).to have_selector("li", text: "Updated")
+    menu.items.reload.destroy_all
+
+    click_on "Save"
+
+    expect(page).to have_text("Items are missing or invalid")
+    expect(page).to have_selector("span", class: "status-text", text: "Unsaved changes", visible: :visible)
+  end
+
   it "can revert a change" do
     link = build(:katalyst_navigation_link)
     menu = create(:katalyst_navigation_menu, items: [link])

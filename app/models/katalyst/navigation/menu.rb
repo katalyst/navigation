@@ -69,6 +69,11 @@ module Katalyst
         self
       end
 
+      # Required for testing items validation
+      def items_attributes
+        draft_version&.nodes&.as_json
+      end
+
       # Updates the current draft version with new structure. Attributes should be structural information about the
       # items, e.g. `{index => {id:, depth:}` or `[{id:, depth:}]`.
       #
@@ -105,6 +110,8 @@ module Katalyst
 
         attribute :nodes, Types::NodesType.new, default: -> { [] }
 
+        validate :ensure_items_exists
+
         def items
           # support building menus in memory
           # requires that items are added in order and index and depth are set
@@ -112,11 +119,17 @@ module Katalyst
 
           items = parent.items.where(id: nodes.map(&:id)).index_by(&:id)
           nodes.map do |node|
-            item       = items[node.id]
-            item.index = node.index
-            item.depth = node.depth
-            item
+            items[node.id]&.tap do |item|
+              item.index = node.index
+              item.depth = node.depth
+            end
           end
+        end
+
+        private
+
+        def ensure_items_exists
+          parent.errors.add(:items, :missing_item) unless items.all?(&:present?)
         end
       end
     end

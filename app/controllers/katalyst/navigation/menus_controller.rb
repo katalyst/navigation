@@ -42,7 +42,8 @@ module Katalyst
         menu.attributes = menu_params
 
         unless menu.valid?
-          return render :show, locals: { menu: menu }, status: :unprocessable_entity
+          return render turbo_stream: helpers.navigation_editor_errors(menu: menu),
+                        status:       :unprocessable_entity
         end
 
         case params[:commit]
