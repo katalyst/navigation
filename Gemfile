@@ -17,7 +17,7 @@ gem "turbo-rails"
 
 group :development, :test do
   gem "factory_bot_rails"
-  gem "puma"
+  gem "puma", "< 6"
   gem "rspec-rails"
   gem "rubocop"
   gem "rubocop-rails"
