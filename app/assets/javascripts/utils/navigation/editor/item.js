@@ -42,7 +42,7 @@ export default class Item {
    * @returns {number} logical nesting depth of node in menu
    */
   get depth() {
-    return parseInt(this.node.dataset[`navigationDepth`]);
+    return parseInt(this.node.dataset[`navigationDepth`]) || 0;
   }
 
   get #depthInput() {
