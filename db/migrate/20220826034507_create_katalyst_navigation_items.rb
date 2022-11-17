@@ -9,6 +9,7 @@ class CreateKatalystNavigationItems < ActiveRecord::Migration[7.0]
       t.string :title
       t.string :url
       t.string :http_method
+      t.string :target
       t.boolean :visible, default: true
 
       t.timestamps
