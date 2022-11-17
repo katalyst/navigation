@@ -14,6 +14,17 @@ module Katalyst
       def self.permitted_params
         super + %i[http_method]
       end
+
+      def options_for_target
+        options = super
+
+        if target == "_blank" || target == "_top" || target == "self"
+          options.deep_merge!({ data: { method: http_method } })
+        else
+          options.deep_merge!({ data: { turbo_method: http_method } })
+        end
+        options
+      end
     end
   end
 end

@@ -46,11 +46,11 @@ module Katalyst
         end
 
         def render_link(link)
-          link_to(link.title, link.url)
+          link_to(link.title, link.url, link.item_options)
         end
 
         def render_button(link)
-          link_to(link.title, link.url, method: link.http_method)
+          link_to(link.title, link.url, link.item_options)
         end
 
         private
