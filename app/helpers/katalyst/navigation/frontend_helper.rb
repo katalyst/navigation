@@ -17,7 +17,7 @@ module Katalyst
 
         return unless menu&.published_version&.present?
 
-        cache menu.published_version do
+        cache "#{menu.published_version}_#{builder.class.name}" do
           concat builder.render(menu.published_tree)
         end
       end
