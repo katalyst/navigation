@@ -9,7 +9,7 @@ GIT
 PATH
   remote: .
   specs:
-    katalyst-navigation (1.3.3)
+    katalyst-navigation (1.3.4)
 
 GEM
   remote: https://rubygems.org/
