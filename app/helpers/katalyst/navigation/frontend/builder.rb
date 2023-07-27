@@ -9,15 +9,15 @@ module Katalyst
 
         delegate_missing_to :@template
 
-        def initialize(template, list: {}, item: {}, **menu_options)
-          self.template = template
-          @menu_options = menu_options.freeze
-          @list_options = list.freeze
-          @item_options = item.freeze
+        def initialize(template, list: {}, item: {}, **menu_attributes)
+          self.template    = template
+          @menu_attributes = menu_attributes.freeze
+          @list_attributes = list.freeze
+          @item_attributes = item.freeze
         end
 
         def render(tree)
-          tag.ul(**menu_options(tree)) do
+          tag.ul(**menu_attributes(tree)) do
             tree.each do |item|
               concat render_item(item)
             end
@@ -27,14 +27,14 @@ module Katalyst
         def render_item(item)
           return unless item.visible?
 
-          tag.li(**item_options(item)) do
+          tag.li(**item_attributes(item)) do
             concat public_send("render_#{item.model_name.param_key}", item)
             concat render_children(item) if item.children.any?
           end
         end
 
         def render_children(item)
-          tag.ul(**list_options(item)) do
+          tag.ul(**list_attributes(item)) do
             item.children.each do |child|
               concat render_item(child)
             end
@@ -46,25 +46,25 @@ module Katalyst
         end
 
         def render_link(link)
-          link_to(link.title, link.url, link.item_options)
+          link_to(link.title, link.url, **link.link_attributes)
         end
 
         def render_button(link)
-          link_to(link.title, link.url, link.item_options)
+          link_to(link.title, link.url, **link.link_attributes)
         end
 
         private
 
-        def menu_options(_tree)
-          @menu_options
+        def menu_attributes(_tree)
+          @menu_attributes
         end
 
-        def list_options(_item)
-          @list_options
+        def list_attributes(_item)
+          @list_attributes
         end
 
-        def item_options(_item)
-          @item_options
+        def item_attributes(_item)
+          @item_attributes
         end
       end
     end

@@ -4,7 +4,9 @@ module Katalyst
   module Navigation
     # Renders an HTML link using `link_to`.
     class Link < Item
-      validates :title, :url, presence: true
+      include HasLink
+
+      validates :title, presence: true
     end
   end
 end
