@@ -5,7 +5,7 @@ module Katalyst
     module EditorHelper
       def navigation_editor_new_items(menu)
         Katalyst::Navigation.config.items.map do |item_class|
-          item_class = item_class.is_a?(String) ? item_class.safe_constantize : item_class
+          item_class = item_class.safe_constantize if item_class.is_a?(String)
           item_class.new(menu: menu)
         end
       end

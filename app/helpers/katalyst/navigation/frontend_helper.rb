@@ -13,9 +13,9 @@ module Katalyst
       # @return Structured HTML containing top level + nested navigation links
       def navigation_menu_with(menu:, **options)
         builder = navigation_builder(**options)
-        menu    = menu.is_a?(Symbol) ? navigation_menu_for(menu) : menu
+        menu    = navigation_menu_for(menu) if menu.is_a?(Symbol)
 
-        return unless menu&.published_version&.present?
+        return if menu&.published_version.blank?
 
         cache menu.published_version do
           concat builder.render(menu.published_tree)

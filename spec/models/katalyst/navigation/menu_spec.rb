@@ -85,7 +85,7 @@ RSpec.describe Katalyst::Navigation::Menu do
       published = menu.published_version
       draft     = menu.draft_version
       _unused   = menu.versions.create
-      expect(menu.versions.active).to contain_exactly(*[published, draft].uniq.compact)
+      expect(menu.versions.active).to match_array([published, draft].uniq.compact)
     end
   end
 

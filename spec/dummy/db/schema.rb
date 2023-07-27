@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_08_044500) do
     t.string "title"
     t.string "url"
     t.string "http_method"
+    t.string "target"
     t.boolean "visible", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

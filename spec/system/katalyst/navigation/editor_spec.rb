@@ -9,7 +9,7 @@ RSpec.describe "katalyst/navigation/editor" do
   # > Right now the Action API cannot generate the drag and drop actions by
   # > sending the mouse press, mouse move and mouse release, because  the drag
   # > and drop events are generated from the OS level.
-  xit "can add a link" do
+  it "can add a link", pending: "missing d&d" do
     menu = create(:katalyst_navigation_menu)
 
     visit katalyst_navigation.menu_path(menu)
