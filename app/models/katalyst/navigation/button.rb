@@ -18,11 +18,10 @@ module Katalyst
       def options_for_target
         options = super
 
-        if target == "_blank" || target == "_top" || target == "self"
-          options.deep_merge!({ data: { method: http_method } })
-        else
+        unless http_get? || target__blank?
           options.deep_merge!({ data: { turbo_method: http_method } })
         end
+
         options
       end
     end

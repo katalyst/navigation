@@ -34,14 +34,19 @@ module Katalyst
       end
 
       def options_for_target
-        return {} if target == "self"
+        return {} if target_self?
 
-        options = { target: target }
-
-        unless target == "_blank" || target == "_top"
-          options = { data: { turbo: true, turbo_frame: target } }
+        if target_self?
+          {} # default
+        elsif browser_target?
+          { target: target } # browser will handle this target
+        else
+          { data: { turbo_frame: target } } # turbo target
         end
-        options
+      end
+
+      def browser_target?
+        target_self? || target__blank? || target__top?
       end
 
       private
