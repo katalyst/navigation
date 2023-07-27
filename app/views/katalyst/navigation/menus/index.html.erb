@@ -6,9 +6,4 @@
   </div>
 </nav>
 
-<%= table_with collection: menus, sort: sort, class: "index-table" do |row, menu| %>
-  <%= row.cell :title do |cell| %>
-    <%= link_to cell.value, menu %>
-  <% end %>
-  <%= row.cell :slug %>
-<% end %>
+<%= render(table) %>

@@ -4,9 +4,16 @@ module Katalyst
   module Navigation
     class MenusController < BaseController
       def index
-        sort, menus = table_sort(Menu.all)
+        collection = Katalyst::Tables::Collection::Base.new(sorting: :title).with_params(params).apply(Menu.all)
+        table      = Katalyst::Turbo::TableComponent.new(collection: collection,
+                                                         id:         "index-table",
+                                                         class:      "index-table",
+                                                         caption:    true)
 
-        render locals: { menus: menus, sort: sort }
+        respond_to do |format|
+          format.turbo_stream { render(table) } if self_referred?
+          format.html { render :index, locals: { table: table } }
+        end
       end
 
       def show
