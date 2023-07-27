@@ -4,12 +4,13 @@ module Katalyst
   module Navigation
     # Renders an HTML button using `button_to`.
     class Button < Item
-      HTTP_METHODS = %i[get post patch put delete].index_by(&:itself).freeze
+      HTTP_METHODS = %w[get post patch put delete].index_by(&:itself).freeze
 
-      enum method: HTTP_METHODS, _prefix: :http
+      attribute :http_method, :string, default: "get"
+
+      enum http_method: HTTP_METHODS, _prefix: :http
 
       validates :title, :url, :http_method, presence: true
-      validates :http_method, inclusion: { in: HTTP_METHODS.values.map(&:to_s) }
 
       def self.permitted_params
         super + %i[http_method]
@@ -18,7 +19,7 @@ module Katalyst
       def options_for_target
         options = super
 
-        unless http_get? || target__blank?
+        unless http_get? || target_blank?
           options.deep_merge!({ data: { turbo_method: http_method } })
         end
 
