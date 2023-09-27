@@ -18,17 +18,17 @@ RSpec.describe "katalyst/navigation/editor" do
     drop_target  = find("ol[data-controller$='list']")
     add_new_link.drag_to(drop_target)
 
-    expect(page).to have_selector("[data-controller$='list'] li[data-navigation-item]")
+    expect(page).to have_css("[data-controller$='list'] li[data-navigation-item]")
 
     fill_in "Title", with: "Magic"
     fill_in "URL", with: "/magic"
-    click_on "Done"
+    click_button "Done"
 
-    expect(page).to have_selector("li", text: "Magic")
+    expect(page).to have_css("li", text: "Magic")
 
-    click_on "Publish"
+    click_button "Publish"
 
-    expect(page).to have_selector("span", class: "status-text", text: "Published", visible: :visible)
+    expect(page).to have_css("span", class: "status-text", text: "Published", visible: :visible)
 
     menu.reload
 
@@ -46,11 +46,11 @@ RSpec.describe "katalyst/navigation/editor" do
     # find and click nest – checks for data-deny-remove to ensure rules have been applied
     find("li:not([data-deny-remove]) [data-action$='#remove']").click
 
-    expect(page).to have_selector("span", class: "status-text", text: "Unsaved changes", visible: :visible)
+    expect(page).to have_css("span", class: "status-text", text: "Unsaved changes", visible: :visible)
 
-    click_on "Publish"
+    click_button "Publish"
 
-    expect(page).to have_selector("span", class: "status-text", text: "Published", visible: :visible)
+    expect(page).to have_css("span", class: "status-text", text: "Published", visible: :visible)
 
     menu.reload
 
@@ -67,15 +67,15 @@ RSpec.describe "katalyst/navigation/editor" do
 
     find("a[title='Edit']").click
     fill_in "Title", with: "Updated"
-    click_on "Done"
+    click_button "Done"
 
-    expect(page).to have_selector("li", text: "Updated")
+    expect(page).to have_css("li", text: "Updated")
 
-    expect(page).to have_selector("span", class: "status-text", text: "Unsaved changes", visible: :visible)
+    expect(page).to have_css("span", class: "status-text", text: "Unsaved changes", visible: :visible)
 
-    click_on "Publish"
+    click_button "Publish"
 
-    expect(page).to have_selector("span", class: "status-text", text: "Published", visible: :visible)
+    expect(page).to have_css("span", class: "status-text", text: "Published", visible: :visible)
 
     menu.reload
 
@@ -101,11 +101,11 @@ RSpec.describe "katalyst/navigation/editor" do
     expect(page).to have_selector("li[data-navigation-index='1'][data-navigation-item-id='#{links.first.id}']")
 
     # check that state has changed
-    expect(page).to have_selector("span", class: "status-text", text: "Unsaved changes", visible: :visible)
+    expect(page).to have_css("span", class: "status-text", text: "Unsaved changes", visible: :visible)
 
-    click_on "Publish"
+    click_button "Publish"
 
-    expect(page).to have_selector("span", class: "status-text", text: "Published", visible: :visible)
+    expect(page).to have_css("span", class: "status-text", text: "Published", visible: :visible)
 
     menu.reload
 
@@ -124,11 +124,11 @@ RSpec.describe "katalyst/navigation/editor" do
     # find and click nest – checks for data-deny-nest to ensure rules have been applied
     find("li[data-navigation-item-id='#{link.id}']:not([data-deny-nest]) [data-action$='#nest']").click
 
-    expect(page).to have_selector("span", class: "status-text", text: "Unsaved changes", visible: :visible)
+    expect(page).to have_css("span", class: "status-text", text: "Unsaved changes", visible: :visible)
 
-    click_on "Publish"
+    click_button "Publish"
 
-    expect(page).to have_selector("span", class: "status-text", text: "Published", visible: :visible)
+    expect(page).to have_css("span", class: "status-text", text: "Published", visible: :visible)
 
     menu.reload
 
@@ -169,13 +169,13 @@ RSpec.describe "katalyst/navigation/editor" do
 
     find("a[title='Edit']").click
     fill_in "Title", with: "Updated"
-    click_on "Done"
+    click_button "Done"
 
-    expect(page).to have_selector("li", text: "Updated")
+    expect(page).to have_css("li", text: "Updated")
 
-    click_on "Save"
+    click_button "Save"
 
-    expect(page).to have_selector("span", class: "status-text", text: "Draft", visible: :visible)
+    expect(page).to have_css("span", class: "status-text", text: "Draft", visible: :visible)
 
     menu.reload
 
@@ -190,15 +190,15 @@ RSpec.describe "katalyst/navigation/editor" do
 
     find("a[title='Edit']").click
     fill_in "Title", with: "Updated"
-    click_on "Done"
+    click_button "Done"
 
-    expect(page).to have_selector("li", text: "Updated")
+    expect(page).to have_css("li", text: "Updated")
     menu.items.reload.destroy_all
 
-    click_on "Save"
+    click_button "Save"
 
     expect(page).to have_text("Items are missing or invalid")
-    expect(page).to have_selector("span", class: "status-text", text: "Unsaved changes", visible: :visible)
+    expect(page).to have_css("span", class: "status-text", text: "Unsaved changes", visible: :visible)
   end
 
   it "can revert a change" do
@@ -209,17 +209,17 @@ RSpec.describe "katalyst/navigation/editor" do
 
     find("a[title='Edit']").click
     fill_in "Title", with: "Updated"
-    click_on "Done"
+    click_button "Done"
 
-    expect(page).to have_selector("li", text: "Updated")
+    expect(page).to have_css("li", text: "Updated")
 
-    click_on "Save"
+    click_button "Save"
 
-    expect(page).to have_selector("span", class: "status-text", text: "Draft", visible: :visible)
+    expect(page).to have_css("span", class: "status-text", text: "Draft", visible: :visible)
 
-    click_on "Revert"
+    click_button "Revert"
 
-    expect(page).to have_selector("span", class: "status-text", text: "Published", visible: :visible)
+    expect(page).to have_css("span", class: "status-text", text: "Published", visible: :visible)
 
     menu.reload
 
@@ -234,17 +234,17 @@ RSpec.describe "katalyst/navigation/editor" do
 
     find("a[title='Edit']").click
     fill_in "Title", with: "Updated"
-    click_on "Done"
+    click_button "Done"
 
-    expect(page).to have_selector("li", text: "Updated")
+    expect(page).to have_css("li", text: "Updated")
 
-    click_on "Save"
+    click_button "Save"
 
-    expect(page).to have_selector("span", class: "status-text", text: "Draft", visible: :visible)
+    expect(page).to have_css("span", class: "status-text", text: "Draft", visible: :visible)
 
-    click_on "Publish"
+    click_button "Publish"
 
-    expect(page).to have_selector("span", class: "status-text", text: "Published", visible: :visible)
+    expect(page).to have_css("span", class: "status-text", text: "Published", visible: :visible)
 
     menu.reload
 
