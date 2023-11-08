@@ -17,7 +17,7 @@ gem "turbo-rails"
 
 group :development, :test do
   gem "factory_bot_rails"
-  gem "puma", "< 6"
+  gem "puma"
   gem "rspec-rails"
   gem "rubocop"
   gem "rubocop-rails"
@@ -26,10 +26,8 @@ group :development, :test do
 end
 
 group :test do
-  # Considering as a candidate vs cuprite, as it has partial html5 drag/drop
-  # No commits since 2021, possibly abandoned
-  gem "apparition", git: "https://github.com/twalpole/apparition.git"
   gem "capybara"
+  gem "cuprite", github: "rubycdp/cuprite"
   gem "faker"
   gem "rails-controller-testing"
   gem "shoulda-matchers"
