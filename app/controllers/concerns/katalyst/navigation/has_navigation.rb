@@ -58,7 +58,11 @@ module Katalyst
         #
         # @return {Katalyst::Navigation::Menu} menu with the given slug
         def navigation_menu_for(slug)
-          @navigation_menus[slug.to_s]
+          navigation_menus[slug.to_s]
+        end
+
+        def navigation_menus
+          @navigation_menus ||= Katalyst::Navigation::Menu.includes(:published_version).index_by(&:slug)
         end
 
         # @see ActionView::Helpers::ControllerHelper#assign_controller
@@ -76,19 +80,6 @@ module Katalyst
 
         helper Katalyst::Navigation::FrontendHelper
         helper NavigationHelper
-
-        # @see ActionController::Rendering#render
-        def render(*args)
-          set_navigation_menus
-
-          super
-        end
-      end
-
-      protected
-
-      def set_navigation_menus
-        @navigation_menus = Katalyst::Navigation::Menu.includes(:published_version).index_by(&:slug)
       end
     end
   end
