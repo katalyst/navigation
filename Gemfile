@@ -27,7 +27,7 @@ end
 
 group :test do
   gem "capybara"
-  gem "cuprite", github: "rubycdp/cuprite"
+  gem "cuprite"
   gem "faker"
   gem "rails-controller-testing"
   gem "shoulda-matchers"
