@@ -8,8 +8,8 @@ module Katalyst
           navigation:change@document->#{STATUS_BAR_CONTROLLER}#change
         ACTIONS
 
-        def build(**options)
-          tag.div **default_options(**options) do
+        def build(**)
+          tag.div **default_options(**) do
             concat status(:published, last_update: l(menu.updated_at, format: :short))
             concat status(:draft)
             concat status(:dirty)
@@ -17,8 +17,8 @@ module Katalyst
           end
         end
 
-        def status(state, **options)
-          tag.span(t("views.katalyst.navigation.editor.#{state}_html", **options),
+        def status(state, **)
+          tag.span(t("views.katalyst.navigation.editor.#{state}_html", **),
                    class: "status-text",
                    data:  { state => "" })
         end
@@ -32,13 +32,13 @@ module Katalyst
           end
         end
 
-        def action(action, **options)
+        def action(action, **)
           tag.li do
             button_tag(t("views.katalyst.navigation.editor.#{action}"),
                        name:  "commit",
                        value: action,
                        form:  menu_form_id,
-                       **options)
+                       **)
           end
         end
 

@@ -8,10 +8,10 @@ module Katalyst
           dragstart->#{NEW_ITEM_CONTROLLER}#dragstart
         ACTIONS
 
-        def build(item, **options, &block)
+        def build(item, **options, &)
           capture do
             concat(tag.div(**default_options(options)) do
-              concat capture(&block)
+              concat capture(&)
               concat item_template(item)
             end)
             concat turbo_replace_placeholder(item)
@@ -23,7 +23,7 @@ module Katalyst
         # cancels adding a new item by pressing 'discard' in the new item form.
         def turbo_replace_placeholder(item)
           turbo_stream.replace dom_id(item) do
-            navigation_editor_item(item: item, data: { delete: "" })
+            navigation_editor_item(item:, data: { delete: "" })
           end
         end
 
@@ -32,7 +32,7 @@ module Katalyst
         # editor list on drop.
         def item_template(item)
           tag.template data: { "#{NEW_ITEM_CONTROLLER}-target" => "template" } do
-            navigation_editor_items(item: item)
+            navigation_editor_items(item:)
           end
         end
 

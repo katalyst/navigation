@@ -10,7 +10,7 @@ FactoryBot.define do
     end
 
     after(:create) do |menu, _context|
-      menu.items_attributes = menu.items.map.with_index { |item, index| { id: item.id, index: index, depth: 0 } }
+      menu.items_attributes = menu.items.map.with_index { |item, index| { id: item.id, index:, depth: 0 } }
       menu.publish!
     end
   end

@@ -1,4 +1,4 @@
 <%= turbo_frame_tag "navigation--editor--item-frame" do %>
   <h3 class="heading-three">New <%= item.model_name.human.downcase %></h3>
-  <%= render item.model_name.param_key, item: item, path: menu_items_path(item.menu) %>
+  <%= render item.model_name.param_key, item:, path: menu_items_path(item.menu) %>
 <% end %>

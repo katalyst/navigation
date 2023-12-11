@@ -27,13 +27,13 @@ module Katalyst
         # Deserialize a params-style array, e.g. "0" => { ... }
         def deserialize_params(value)
           value.map do |index, attributes|
-            Node.new(index: index, **attributes)
+            Node.new(index:, **attributes)
           end.select(&:id).sort_by(&:index)
         end
 
         def deserialize_array(value)
           value.map.with_index do |attributes, index|
-            Node.new(index: index, **attributes)
+            Node.new(index:, **attributes)
           end.select(&:id).sort_by(&:index)
         end
       end

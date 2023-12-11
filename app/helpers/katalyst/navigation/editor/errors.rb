@@ -4,11 +4,11 @@ module Katalyst
   module Navigation
     module Editor
       class Errors < Base
-        def build(**options)
+        def build(**)
           turbo_frame_tag dom_id(menu, :errors) do
             next unless menu.errors.any?
 
-            tag.div(class: "navigation-errors", **options) do
+            tag.div(class: "navigation-errors", **) do
               tag.h2("Errors in navigation") +
                 tag.ul(class: "errors") do
                   menu.errors.each do |error|

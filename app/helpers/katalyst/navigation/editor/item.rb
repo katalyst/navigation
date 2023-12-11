@@ -6,9 +6,9 @@ module Katalyst
       class Item < Base
         attr_accessor :item
 
-        def build(item, **options, &block)
+        def build(item, **, &block)
           self.item = item
-          tag.div **default_options(id: dom_id(item), **options) do
+          tag.div **default_options(id: dom_id(item), **) do
             concat(capture { yield self }) if block
             concat fields(item)
           end

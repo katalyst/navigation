@@ -11,8 +11,8 @@ module Katalyst
       #
       # @param(menu: Katalyst::Navigation::Menu)
       # @return Structured HTML containing top level + nested navigation links
-      def navigation_menu_with(menu:, **options)
-        builder = navigation_builder(**options)
+      def navigation_menu_with(menu:, **)
+        builder = navigation_builder(**)
         menu    = navigation_menu_for(menu) if menu.is_a?(Symbol)
 
         return if menu&.published_version_id.blank?
@@ -26,8 +26,8 @@ module Katalyst
       #
       # @param(items: [Katalyst::Navigation::Item])
       # @return Structured HTML containing top level + nested navigation links
-      def navigation_items_with(items:, **options)
-        builder = navigation_builder(**options)
+      def navigation_items_with(items:, **)
+        builder = navigation_builder(**)
 
         capture do
           items.each do |item|

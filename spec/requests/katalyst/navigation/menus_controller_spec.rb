@@ -7,7 +7,7 @@ RSpec.describe Katalyst::Navigation::MenusController do
 
   shared_context "with draft" do
     before do
-      link = create(:navigation_link, menu: menu)
+      link = create(:navigation_link, menu:)
       menu.update!(items_attributes: [{ id: link.id, depth: 0, index: 0 }])
     end
   end
@@ -60,13 +60,13 @@ RSpec.describe Katalyst::Navigation::MenusController do
   end
 
   describe "PATCH /navigation/menus/:id" do
-    let(:action) { patch katalyst_navigation.menu_path(menu), params: { menu: menu_params, commit: commit } }
+    let(:action) { patch katalyst_navigation.menu_path(menu), params: { menu: menu_params, commit: } }
     let(:menu) { create(:katalyst_navigation_menu) }
     let(:menu_params) do
       {
         items_attributes: [
-          { id: create(:navigation_link, menu: menu).id, depth: 0, index: 0 },
-          { id: create(:navigation_link, menu: menu).id, depth: 1, index: 1 },
+          { id: create(:navigation_link, menu:).id, depth: 0, index: 0 },
+          { id: create(:navigation_link, menu:).id, depth: 1, index: 1 },
         ],
       }
     end

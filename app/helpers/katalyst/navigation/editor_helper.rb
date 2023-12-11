@@ -6,7 +6,7 @@ module Katalyst
       def navigation_editor_new_items(menu)
         Katalyst::Navigation.config.items.map do |item_class|
           item_class = item_class.safe_constantize if item_class.is_a?(String)
-          item_class.new(menu: menu)
+          item_class.new(menu:)
         end
       end
 
@@ -26,26 +26,26 @@ module Katalyst
       end
 
       # Generate a turbo stream fragment that will show structural errors to the user.
-      def navigation_editor_errors(menu:, **options)
+      def navigation_editor_errors(menu:, **)
         turbo_stream.replace(dom_id(menu, :errors),
-                             Editor::Errors.new(self, menu).build(**options))
+                             Editor::Errors.new(self, menu).build(**))
       end
 
       # Generate a new item template.
-      def navigation_editor_new_item(item:, menu: item.menu, **options, &block)
-        Editor::NewItem.new(self, menu).build(item, **options, &block)
+      def navigation_editor_new_item(item:, menu: item.menu, **, &block)
+        Editor::NewItem.new(self, menu).build(item, **, &block)
       end
 
-      def navigation_editor_item(item:, menu: item.menu, **options, &block)
-        Editor::Item.new(self, menu).build(item, **options, &block)
+      def navigation_editor_item(item:, menu: item.menu, **, &block)
+        Editor::Item.new(self, menu).build(item, **, &block)
       end
 
       def navigation_editor_item_fields(item:, menu: item.menu)
         Editor::Item.new(self, menu).fields(item)
       end
 
-      def navigation_editor_status_bar(menu:, **options)
-        Editor::StatusBar.new(self, menu).build(**options)
+      def navigation_editor_status_bar(menu:, **)
+        Editor::StatusBar.new(self, menu).build(**)
       end
     end
   end

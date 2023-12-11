@@ -5,21 +5,21 @@ module Katalyst
     class MenusController < BaseController
       def index
         collection = Katalyst::Tables::Collection::Base.new(sorting: :title).with_params(params).apply(Menu.all)
-        table      = Katalyst::Turbo::TableComponent.new(collection: collection,
+        table      = Katalyst::Turbo::TableComponent.new(collection:,
                                                          id:         "index-table",
                                                          class:      "index-table",
                                                          caption:    true)
 
         respond_to do |format|
           format.turbo_stream { render(table) } if self_referred?
-          format.html { render :index, locals: { table: table } }
+          format.html { render :index, locals: { table: } }
         end
       end
 
       def show
         menu = Menu.find(params[:id])
 
-        render locals: { menu: menu }
+        render locals: { menu: }
       end
 
       def new
@@ -29,7 +29,7 @@ module Katalyst
       def edit
         menu = Menu.find(params[:id])
 
-        render locals: { menu: menu }
+        render locals: { menu: }
       end
 
       def create
@@ -49,7 +49,7 @@ module Katalyst
         menu.attributes = menu_params
 
         unless menu.valid?
-          return render turbo_stream: helpers.navigation_editor_errors(menu: menu),
+          return render turbo_stream: helpers.navigation_editor_errors(menu:),
                         status:       :unprocessable_entity
         end
 

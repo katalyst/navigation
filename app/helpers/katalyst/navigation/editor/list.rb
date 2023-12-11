@@ -13,7 +13,7 @@ module Katalyst
           dragend->#{LIST_CONTROLLER}#dragend
         ACTIONS
 
-        def build(options, &_block)
+        def build(options, &)
           tag.ol **default_options(id: menu_form_id, **options) do
             yield self
           end
