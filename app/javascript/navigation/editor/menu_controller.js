@@ -1,8 +1,8 @@
 import { Controller } from "@hotwired/stimulus";
 
-import Item from "utils/navigation/editor/item";
-import Menu from "utils/navigation/editor/menu";
-import RulesEngine from "utils/navigation/editor/rules-engine";
+import Item from "./item";
+import Menu from "./menu";
+import RulesEngine from "./rules-engine";
 
 export default class MenuController extends Controller {
   static targets = ["menu"];

@@ -4,17 +4,41 @@ Generates and edits navigation menus.
 
 ## Installation
 
-Install the gem and add to the application's Gemfile by executing:
+Install the gem as usual
 
-    $ bundle add katalyst-navigation
+```ruby
+gem "katalyst-navigation"
+```
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+Mount the engine in your `routes.rb` file:
 
-    $ gem install katalyst-navigation
+```ruby
+mount Katalyst::Navigation::Engine, at: "navigation"
+```
+
+Add the Gem's migrations to your application:
+
+```ruby
+rake katalyst_navigation:install:migrations
+```
+
+Add the Gem's javascript and CSS to your build pipeline. This assumes that
+you're using `rails-dartsass` and `importmaps` to manage your assets.
+
+```javascript
+// app/javascript/controllers/application.js
+import { application } from "controllers/application";
+import navigation from "@katalyst/navigation";
+application.load(navigation);
+```
+
+```sass
+@use "katalyst/navigation";
+```
 
 ## Usage
 
-This gem is still experimental and is not yet ready for public consumption. See dummy app for example usage.
+See the dummy app for examples.
 
 ## Contributing
 

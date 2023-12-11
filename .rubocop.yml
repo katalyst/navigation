@@ -5,6 +5,7 @@ require:
 
 # https://raw.githubusercontent.com/thoughtbot/guides/master/style/ruby/.rubocop.yml
 AllCops:
+  TargetRubyVersion: 3.2
   Exclude:
     - bin/*
     - config/**/*

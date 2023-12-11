@@ -7,19 +7,20 @@ gemspec
 gem "dartsass-rails"
 gem "importmap-rails"
 gem "katalyst-tables"
+gem "propshaft"
 gem "rails"
 gem "rake"
-gem "rubocop-katalyst", require: false
-gem "sprockets-rails"
 gem "sqlite3"
 gem "stimulus-rails"
 gem "turbo-rails"
 
 group :development, :test do
+  gem "erb_lint", require: false
   gem "factory_bot_rails"
   gem "puma"
   gem "rspec-rails"
   gem "rubocop"
+  gem "rubocop-katalyst", require: false
   gem "rubocop-rails"
   gem "rubocop-rake"
   gem "rubocop-rspec"

@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
-import Item from "utils/navigation/editor/item";
+import Item from "./item";
 
 export default class ItemController extends Controller {
   get item() {

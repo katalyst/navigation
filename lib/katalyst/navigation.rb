@@ -2,7 +2,6 @@
 
 require "katalyst/navigation/config"
 require "katalyst/navigation/engine"
-require "katalyst/navigation/version"
 
 module Katalyst
   module Navigation # :nodoc:

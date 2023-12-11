@@ -1,9 +1,13 @@
 {
+  "main": "app/assets/builds/katalyst/content.js",
   "scripts": {
-    "lint": "prettier --check *.json app/assets spec/dummy/app/assets",
-    "format": "prettier --write *.json app/assets spec/dummy/app/assets"
+    "build": "yarn exec rollup -- -c",
+    "clean": "rm -rf app/assets/builds/*"
   },
   "devDependencies": {
-    "prettier": "2.7.1"
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "prettier": "^2.8.7",
+    "rollup": "^3.20.2"
   }
 }
