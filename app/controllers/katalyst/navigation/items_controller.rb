@@ -2,24 +2,27 @@
 
 module Katalyst
   module Navigation
-    class ItemsController < BaseController
-      before_action :set_menu
+    class ItemsController < ApplicationController
+      before_action :set_menu, only: %i[new create]
       before_action :set_item, except: %i[new create]
 
+      attr_reader :menu, :item, :editor
+
+      layout nil
+
       def new
-        render locals: { item: @menu.items.build(type: new_item_params) }
+        render_editor
       end
 
       def edit
-        render locals: { item: @item }
+        render_editor
       end
 
       def create
-        item = @menu.items.build(item_params)
         if item.save
-          render :update, locals: { item:, previous: @menu.items.build(type: item.type) }
+          render :update, locals: { editor:, item:, previous: @menu.items.build(type: item.type) }
         else
-          render :new, status: :unprocessable_entity, locals: { item: }
+          render_editor status: :unprocessable_entity
         end
       end
 
@@ -29,16 +32,17 @@ module Katalyst
         if @item.valid?
           previous = @item
           @item    = @item.dup.tap(&:save!)
-          render locals: { item: @item, previous: }
+
+          render locals: { editor:, item:, previous: }
         else
-          render :edit, status: :unprocessable_entity, locals: { item: @item }
+          render_editor status: :unprocessable_entity
         end
       end
 
       private
 
       def new_item_params
-        params[:type] || Link.name
+        { type: params[:type] || Link.name }
       end
 
       def item_params_type
@@ -55,11 +59,19 @@ module Katalyst
       end
 
       def set_menu
-        @menu = Menu.find(params[:menu_id])
+        @menu   = Menu.find(params[:menu_id])
+        @item   = @menu.items.build(item_params)
+        @editor = Katalyst::Navigation::EditorComponent.new(menu:, item:)
       end
 
       def set_item
-        @item = @menu.items.find(params[:id])
+        @item = Item.find(params[:id])
+        @menu = @item.menu
+        @editor = Katalyst::Navigation::EditorComponent.new(menu:, item:)
+      end
+
+      def render_editor(**)
+        render(:edit, locals: { item_editor: editor.item_editor(item:) }, **)
       end
     end
   end

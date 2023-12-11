@@ -14,4 +14,9 @@ Gem::Specification.new do |spec|
   spec.files = Dir["{app,config,db,lib/katalyst}/**/*", "spec/factories/**/*", "LICENSE.txt", "README.md"]
   spec.require_paths = ["lib"]
   spec.metadata["rubygems_mfa_required"] = "true"
+
+  spec.add_dependency "katalyst-html-attributes"
+  spec.add_dependency "katalyst-kpop"
+  spec.add_dependency "katalyst-tables"
+  spec.add_dependency "view_component"
 end

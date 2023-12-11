@@ -2,6 +2,10 @@ PATH
   remote: .
   specs:
     katalyst-navigation (1.5.0.beta.1)
+      katalyst-html-attributes
+      katalyst-kpop
+      katalyst-tables
+      view_component
 
 GEM
   remote: https://rubygems.org/
@@ -156,6 +160,10 @@ GEM
     katalyst-html-attributes (1.0.0)
       activesupport
       html-attributes-utils
+    katalyst-kpop (3.0.1)
+      katalyst-html-attributes
+      turbo-rails
+      view_component
     katalyst-tables (2.2.12)
       katalyst-html-attributes
       view_component
@@ -365,7 +373,6 @@ DEPENDENCIES
   faker
   importmap-rails
   katalyst-navigation!
-  katalyst-tables
   propshaft
   puma
   rails

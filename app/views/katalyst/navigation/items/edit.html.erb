@@ -1,4 +1,5 @@
-<%= turbo_frame_tag "navigation--editor--item-frame" do %>
-  <h3 class="heading-three">Edit <%= item.model_name.human.downcase %></h3>
-  <%= render item.model_name.param_key, item:, path: menu_item_path(item.menu, item) %>
+<%= render Kpop::FrameComponent.new do %>
+  <%= render Kpop::ModalComponent.new(title: item_editor.title, layout: "side-panel") do %>
+    <%= render item_editor %>
+  <% end %>
 <% end %>

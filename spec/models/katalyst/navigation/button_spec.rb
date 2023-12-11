@@ -9,6 +9,7 @@ RSpec.describe Katalyst::Navigation::Button do
   it { is_expected.to validate_presence_of(:url) }
   it { is_expected.to validate_presence_of(:http_method) }
   it { is_expected.to define_enum_for(:http_method).backed_by_column_of_type(:string).with_prefix(:http) }
+  it { is_expected.to define_enum_for(:target).backed_by_column_of_type(:string).with_prefix(:target) }
 
   describe "#link_attributes" do
     subject(:button) { build(:navigation_button, menu: create(:navigation_menu), http_method: :get) }

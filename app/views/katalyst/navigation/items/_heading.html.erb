@@ -1,5 +1,6 @@
 <%= form_with model: item, scope: :item, url: path do |form| %>
   <%= form.hidden_field :type %>
+  <%= render "form_errors", form: %>
 
   <div class="field">
     <%= form.label :title %>

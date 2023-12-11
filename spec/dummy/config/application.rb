@@ -33,9 +33,5 @@ module Dummy
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-
-    config.to_prepare do
-      Katalyst::Navigation::BaseController.layout "application"
-    end
   end
 end

@@ -1,0 +1,12 @@
+<turbo-frame id="<%= dom_id(menu, :errors) %>">
+  <% if menu.errors.any? %>
+    <%= tag.div(class: "navigation-errors", **html_attributes) do %>
+      <h2>Errors in navigation</h2>
+      <ul class="errors">
+        <% menu.errors.each do |error| %>
+          <li class="error"><%= error.message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</turbo-frame>

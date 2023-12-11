@@ -14,6 +14,10 @@ module Katalyst
           Katalyst::Navigation::Button
         ]
       end
+
+      config_accessor(:errors_component) { "Katalyst::Navigation::Editor::ErrorsComponent" }
+
+      config_accessor(:base_controller) { "ApplicationController" }
     end
   end
 end

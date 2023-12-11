@@ -3,13 +3,15 @@
 module Katalyst
   module Navigation
     module Editor
-      class StatusBar < Base
+      class StatusBarComponent < BaseComponent
         ACTIONS = <<~ACTIONS.gsub(/\s+/, " ").freeze
           navigation:change@document->#{STATUS_BAR_CONTROLLER}#change
         ACTIONS
 
-        def build(**)
-          tag.div **default_options(**) do
+        attr_reader :container
+
+        def call
+          tag.div(**html_attributes) do
             concat status(:published, last_update: l(menu.updated_at, format: :short))
             concat status(:draft)
             concat status(:dirty)
@@ -44,12 +46,14 @@ module Katalyst
 
         private
 
-        def default_options(**options)
-          add_option(options, :data, :controller, STATUS_BAR_CONTROLLER)
-          add_option(options, :data, :action, ACTIONS)
-          add_option(options, :data, :state, menu.state)
-
-          options
+        def default_html_attributes
+          {
+            data: {
+              controller: STATUS_BAR_CONTROLLER,
+              action:     ACTIONS,
+              state:      menu.state,
+            },
+          }
         end
       end
     end

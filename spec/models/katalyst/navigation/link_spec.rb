@@ -8,6 +8,7 @@ RSpec.describe Katalyst::Navigation::Link do
   it { is_expected.to validate_presence_of(:title) }
   it { is_expected.to validate_presence_of(:url) }
   it { is_expected.to define_enum_for(:target).backed_by_column_of_type(:string).with_prefix(:target) }
+  it { is_expected.to define_enum_for(:http_method).backed_by_column_of_type(:string).with_prefix(:http) }
 
   describe "#link_attributes" do
     subject(:link) { build(:navigation_link, menu: create(:navigation_menu), target: :self) }

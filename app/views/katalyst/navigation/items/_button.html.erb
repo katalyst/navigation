@@ -1,5 +1,6 @@
 <%= form_with model: item, scope: :item, url: path do |form| %>
   <%= form.hidden_field :type %>
+  <%= render "form_errors", form: %>
 
   <div class="input">
     <%= form.label :title %>
@@ -14,6 +15,11 @@
   <div class="input">
     <%= form.label :http_method %>
     <%= form.select :http_method, Katalyst::Navigation::Button::HTTP_METHODS %>
+  </div>
+
+  <div class="field">
+    <%= form.label :target %>
+    <%= form.select :target, Katalyst::Navigation::Button::TARGETS %>
   </div>
 
   <div class="input">

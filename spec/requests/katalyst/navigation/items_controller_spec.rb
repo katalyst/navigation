@@ -8,7 +8,8 @@ RSpec.describe Katalyst::Navigation::ItemsController do
   let(:menu) { create(:katalyst_navigation_menu) }
 
   describe "GET /admin/navigations/:slug/links/new" do
-    let(:action) { get katalyst_navigation.new_menu_item_path(menu) }
+    let(:action) { get katalyst_navigation.new_menu_item_path(menu), params: { item: item_params } }
+    let(:item_params) { { type: Katalyst::Navigation::Link.name } }
 
     it { is_expected.to be_successful }
   end

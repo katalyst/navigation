@@ -1,0 +1,11 @@
+<div role="rowheader">
+  <h4>Title</h4>
+  <h4>URL</h4>
+  <h4>Actions</h4>
+</div>
+
+<%= tag.ol(id: menu_form_id, **html_attributes) do %>
+  <% items.each do |item| %>
+    <%= item %>
+  <% end %>
+<% end %>

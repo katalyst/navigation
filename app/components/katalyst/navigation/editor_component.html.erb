@@ -1,0 +1,9 @@
+<%= form_with(model: menu, url: helpers.katalyst_navigation.menu_path, **html_attributes) do |form| %>
+  <%# Hidden input ensures that if the container is empty then the controller receives an empty array. %>
+  <input type="hidden" name="<%= attributes_scope %>[id]">
+  <%= render errors %>
+
+  <%= render Katalyst::Navigation::Editor::TableComponent.new(menu:) do |list| %>
+    <%= menu.draft_items.each { |item| list.with_item(item) } %>
+  <% end %>
+<% end %>

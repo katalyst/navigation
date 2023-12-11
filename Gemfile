@@ -6,7 +6,6 @@ gemspec
 
 gem "dartsass-rails"
 gem "importmap-rails"
-gem "katalyst-tables"
 gem "propshaft"
 gem "rails"
 gem "rake"
