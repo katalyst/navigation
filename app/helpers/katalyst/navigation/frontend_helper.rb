@@ -15,10 +15,10 @@ module Katalyst
         builder = navigation_builder(**)
         menu    = navigation_menu_for(menu) if menu.is_a?(Symbol)
 
-        return if menu&.published_version_id.blank?
+        return if menu.blank?
 
         cache menu do
-          concat builder.render(menu.published_tree)
+          concat builder.render(menu.published_tree) if menu.published_version.present?
         end
       end
 
