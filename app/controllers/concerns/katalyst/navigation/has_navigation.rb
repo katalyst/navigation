@@ -62,7 +62,7 @@ module Katalyst
         end
 
         def navigation_menus
-          @navigation_menus ||= Katalyst::Navigation::Menu.with_published_version.index_by(&:slug)
+          @navigation_menus ||= Katalyst::Navigation::Menu.published.index_by(&:slug)
         end
 
         # @see ActionView::Helpers::ControllerHelper#assign_controller

@@ -43,7 +43,7 @@ module Katalyst
                inverse_of: :menu,
                validate:   true
 
-      scope :with_published_version, -> { where.not(published_version_id: nil) }
+      scope :published, -> { where.not(published_version_id: nil) }
 
       validates :title, :slug, presence: true
       validates :slug, uniqueness: true
