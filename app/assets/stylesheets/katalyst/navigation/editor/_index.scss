@@ -55,7 +55,7 @@ $status-dirty-color: #aaa !default;
 }
 
 [data-controller="navigation--editor--list"] {
-  min-height: var(--row-height);
+  min-height: calc(var(--row-height) * 8);
 
   // tree items
   & > li {
@@ -111,7 +111,7 @@ $status-dirty-color: #aaa !default;
 [data-controller="navigation--editor--menu"] [role="rowheader"],
 [data-controller="navigation--editor--item"] {
   display: grid;
-  grid-template-columns: 40% 2fr auto;
+  grid-template-columns: minmax(10rem, calc(100% - 12rem)) 1fr 10rem;
   padding: 0.25rem 0.5rem;
   gap: 1rem;
   align-items: center;

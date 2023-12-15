@@ -86,7 +86,10 @@ export default class ListController extends Controller {
   }
 
   dropTarget(e) {
-    return e && e.closest("[data-controller='navigation--editor--list'] > *");
+    return (
+      e.closest("[data-controller='navigation--editor--list'] > *") ||
+      e.closest("[data-controller='navigation--editor--list']")
+    );
   }
 
   reindex() {
@@ -99,12 +102,19 @@ export default class ListController extends Controller {
 }
 
 function swap(target, item) {
-  if (target && target !== item) {
+  if (!target) return;
+  if (target === item) return;
+
+  if (target.nodeName === "LI") {
     const positionComparison = target.compareDocumentPosition(item);
     if (positionComparison & Node.DOCUMENT_POSITION_FOLLOWING) {
       target.insertAdjacentElement("beforebegin", item);
     } else if (positionComparison & Node.DOCUMENT_POSITION_PRECEDING) {
       target.insertAdjacentElement("afterend", item);
     }
+  }
+
+  if (target.nodeName === "OL") {
+    target.appendChild(item);
   }
 }
