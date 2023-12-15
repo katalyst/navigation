@@ -2,7 +2,7 @@
 
 module Katalyst
   module Navigation
-    class ItemsController < ApplicationController
+    class ItemsController < Katalyst::Navigation.config.base_controller.constantize
       before_action :set_menu, only: %i[new create]
       before_action :set_item, except: %i[new create]
 
@@ -11,6 +11,9 @@ module Katalyst
       layout nil
 
       def new
+        @item   = @menu.items.build(new_item_params)
+        @editor = Katalyst::Navigation::EditorComponent.new(menu:, item:)
+
         render_editor
       end
 
@@ -19,6 +22,9 @@ module Katalyst
       end
 
       def create
+        @item   = @menu.items.build(item_params)
+        @editor = Katalyst::Navigation::EditorComponent.new(menu:, item:)
+
         if item.save
           render :update, locals: { editor:, item:, previous: @menu.items.build(type: item.type) }
         else
@@ -60,8 +66,6 @@ module Katalyst
 
       def set_menu
         @menu   = Menu.find(params[:menu_id])
-        @item   = @menu.items.build(item_params)
-        @editor = Katalyst::Navigation::EditorComponent.new(menu:, item:)
       end
 
       def set_item
