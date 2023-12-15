@@ -264,7 +264,6 @@ function createChildrenList(node) {
   const childrenList = document.createElement("ol");
   childrenList.setAttribute("class", "hidden");
 
-  // if objectType is "rich-content" set richContentChildren as a data attribute
   childrenList.dataset[`navigationChildren`] = "";
 
   node.appendChild(childrenList);

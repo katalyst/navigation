@@ -1,5 +1,5 @@
 {
-  "main": "app/assets/builds/katalyst/content.js",
+  "main": "app/assets/builds/katalyst/navigation.js",
   "scripts": {
     "build": "yarn exec rollup -- -c",
     "clean": "rm -rf app/assets/builds/*"
