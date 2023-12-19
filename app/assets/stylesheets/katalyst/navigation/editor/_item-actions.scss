@@ -38,6 +38,7 @@
 
     &::before {
       @extend %icon;
+      position: static;
       color: white;
       font-size: 1.125rem;
       line-height: 1.125rem;

@@ -45,9 +45,10 @@ main {
   grid-area: content;
 }
 
-#navigation--editor--item-frame,
+.navigation--editor--new-items,
 .index-table-actions {
   grid-area: sidebar;
+  margin-bottom: auto;
 }
 
 .button-row {

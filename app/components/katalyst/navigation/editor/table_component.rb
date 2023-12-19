@@ -11,6 +11,7 @@ module Katalyst
           dragleave->#{LIST_CONTROLLER}#dragleave
           drop->#{LIST_CONTROLLER}#drop
           dragend->#{LIST_CONTROLLER}#dragend
+          keyup.esc@document->#{LIST_CONTROLLER}#dragend
         ACTIONS
 
         renders_many :items, ->(item) do
