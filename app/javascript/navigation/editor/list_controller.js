@@ -113,7 +113,7 @@ export default class ListController extends Controller {
 
       this.element.replaceChild(item, placeholder);
       requestAnimationFrame(() =>
-        item.querySelector("[role='button'][value='edit']").click()
+        item.querySelector("[role='button'][value='edit']").click(),
       );
     }
 

@@ -21,7 +21,7 @@ export default class Menu {
    */
   get items() {
     return createItemList(
-      this.node.querySelectorAll("[data-navigation-index]")
+      this.node.querySelectorAll("[data-navigation-index]"),
     );
   }
 
