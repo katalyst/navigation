@@ -8,12 +8,12 @@ RSpec.describe "katalyst/navigation/menu" do
 
     expect(page).to have_text("Title")
 
-    click_link "Add"
+    click_on "Add"
 
     fill_in "Title", with: "Magic"
     fill_in "Slug", with: "magic"
 
-    click_button "Create Menu"
+    click_on "Create Menu"
 
     # Menu show page
     expect(page).to have_text "Publish"
@@ -31,7 +31,7 @@ RSpec.describe "katalyst/navigation/menu" do
     fill_in "Title", with: "Not Magic"
     fill_in "Depth", with: "2"
 
-    click_button "save"
+    click_on "save"
 
     visit katalyst_navigation.menus_path
     expect(page).to have_text("Not Magic")
@@ -48,8 +48,8 @@ RSpec.describe "katalyst/navigation/menu" do
 
     visit katalyst_navigation.edit_menu_path(menu)
 
-    click_link "Delete"
+    click_on "Delete"
 
-    expect(page).not_to have_text("Magic")
+    expect(page).to have_no_text("Magic")
   end
 end
