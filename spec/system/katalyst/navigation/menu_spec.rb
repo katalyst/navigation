@@ -48,7 +48,9 @@ RSpec.describe "katalyst/navigation/menu" do
 
     visit katalyst_navigation.edit_menu_path(menu)
 
-    click_on "Delete"
+    accept_confirm do
+      click_on "Delete"
+    end
 
     expect(page).to have_no_text("Magic")
   end
