@@ -28,7 +28,7 @@ module Katalyst
           return unless item.visible?
 
           tag.li(**item_attributes(item)) do
-            concat public_send("render_#{item.model_name.param_key}", item)
+            concat public_send(:"render_#{item.model_name.param_key}", item)
             concat render_children(item) if item.children.any?
           end
         end

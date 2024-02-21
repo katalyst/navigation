@@ -8,8 +8,6 @@ module Katalyst
 
       attr_reader :menu, :item, :editor
 
-      layout nil
-
       def new
         @item   = @menu.items.build(new_item_params)
         @editor = Katalyst::Navigation::EditorComponent.new(menu:, item:)
