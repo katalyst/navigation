@@ -9,7 +9,7 @@ gem "importmap-rails"
 gem "propshaft"
 gem "rails"
 gem "rake"
-gem "sqlite3"
+gem "sqlite3", "~> 1.7"
 gem "stimulus-rails"
 gem "turbo-rails"
 
