@@ -3,19 +3,12 @@
 module Katalyst
   module Navigation
     class MenusController < Katalyst::Navigation.config.base_controller.constantize
-      include Katalyst::Tables::Backend
+      helper Katalyst::Tables::Frontend
 
       def index
         collection = Katalyst::Tables::Collection::Base.new(sorting: :title).with_params(params).apply(Menu.all)
-        table      = Katalyst::Turbo::TableComponent.new(collection:,
-                                                         id:         "index-table",
-                                                         class:      "index-table",
-                                                         caption:    true)
 
-        respond_to do |format|
-          format.turbo_stream { render(table) } if self_referred?
-          format.html { render :index, locals: { table: } }
-        end
+        render locals: { collection: }
       end
 
       def show
@@ -40,7 +33,7 @@ module Katalyst
       end
 
       def create
-        @menu = Menu.new(menu_params)
+        @menu  = Menu.new(menu_params)
         editor = Katalyst::Navigation::EditorComponent.new(menu: @menu)
 
         if @menu.save
@@ -54,7 +47,7 @@ module Katalyst
 
       # PATCH /admins/navigation_menus/:slug
       def update
-        menu = Menu.find(params[:id])
+        menu   = Menu.find(params[:id])
         editor = Katalyst::Navigation::EditorComponent.new(menu:)
 
         menu.attributes = menu_params

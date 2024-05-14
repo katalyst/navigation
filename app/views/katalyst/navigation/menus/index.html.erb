@@ -6,4 +6,9 @@
   </div>
 </nav>
 
-<%= render(table) %>
+<%= table_with(collection:) do |row, menu| %>
+  <%= row.text :title do |cell| %>
+    <%= link_to cell, menu %>
+  <% end %>
+  <%= row.text :slug %>
+<% end %>
