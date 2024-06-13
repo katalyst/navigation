@@ -1,18 +1,9 @@
 require:
   - rubocop-katalyst
-  - rubocop-capybara
-  - rubocop-factory_bot
 
-# https://raw.githubusercontent.com/thoughtbot/guides/master/style/ruby/.rubocop.yml
 AllCops:
-  TargetRubyVersion: 3.2
+  TargetRubyVersion: 3.2.0
   Exclude:
-    - bin/*
-    - config/**/*
-    - db/**/*
-    - deploy/*
-    - node_modules/**/*
-    - vendor/bundle/**/*
     # Dummy app
     - spec/dummy/*
     - spec/dummy/bin/*
@@ -21,7 +12,6 @@ AllCops:
     - spec/dummy/deploy/*
     - spec/dummy/node_modules/**/*
     - spec/dummy/vendor/bundle/**/*
-  NewCops: enable
 
 Rails/ApplicationController:
   Exclude:
