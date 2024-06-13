@@ -11,7 +11,7 @@ module Katalyst
         with_collection_parameter :item
 
         def initialize(item:, menu: item.menu)
-          super(item:, menu:)
+          super
         end
 
         def item_component(**)
