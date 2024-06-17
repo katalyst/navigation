@@ -2,7 +2,7 @@ require:
   - rubocop-katalyst
 
 AllCops:
-  TargetRubyVersion: 3.2.0
+  TargetRubyVersion: 3.3.0
   Exclude:
     # Dummy app
     - spec/dummy/*
