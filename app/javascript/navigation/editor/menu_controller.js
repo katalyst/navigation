@@ -10,6 +10,7 @@ export default class MenuController extends Controller {
     maxDepth: Number,
   };
 
+  // Caution: connect is called on attachment, but also on morph/render
   connect() {
     this.state = this.menu.state;
 

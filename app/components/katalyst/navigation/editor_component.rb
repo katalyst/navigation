@@ -8,6 +8,7 @@ module Katalyst
         navigation:drop->#{MENU_CONTROLLER}#drop
         navigation:reindex->#{MENU_CONTROLLER}#reindex
         navigation:reset->#{MENU_CONTROLLER}#reset
+        turbo:render@document->#{MENU_CONTROLLER}#connect
       ACTIONS
 
       def status_bar
