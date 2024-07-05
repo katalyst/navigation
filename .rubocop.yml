@@ -1,6 +1,10 @@
 require:
   - rubocop-katalyst
 
+inherit_mode:
+  merge:
+    - Exclude
+
 AllCops:
   TargetRubyVersion: 3.3.0
   Exclude:
