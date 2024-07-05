@@ -8,7 +8,7 @@ RSpec.describe "katalyst/navigation/menu" do
 
     expect(page).to have_text("Title")
 
-    click_on "Add"
+    click_on "New"
 
     fill_in "Title", with: "Magic"
     fill_in "Slug", with: "magic"

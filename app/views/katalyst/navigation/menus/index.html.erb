@@ -1,10 +1,6 @@
 <% content_for :title, "Navigations" %>
 
-<nav class="index-table-actions">
-  <div class="item-actions">
-    <%= link_to "Add", %i[new menu], class: "button button--primary" %>
-  </div>
-</nav>
+<%= link_to "New", %i[new menu], class: "button button--primary" %>
 
 <%= table_with(collection:) do |row, menu| %>
   <%= row.text :title do |cell| %>

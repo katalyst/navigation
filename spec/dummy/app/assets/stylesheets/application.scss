@@ -1,5 +1,6 @@
 @use "base";
 @use "katalyst/kpop";
+@use "katalyst/tables";
 @use "katalyst/navigation/editor";
 
 :root {
@@ -27,28 +28,8 @@
   --paragraph--small: 0.88rem;
 }
 
-main {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-areas:
-    "header header"
-    "content sidebar";
-  column-gap: 1rem;
-}
-
 [data-controller$="status-bar"] {
   grid-area: header;
-}
-
-.index-table,
-[data-controller$="menu"] {
-  grid-area: content;
-}
-
-.navigation--editor--new-items,
-.index-table-actions {
-  grid-area: sidebar;
-  margin-bottom: auto;
 }
 
 .button-row {
