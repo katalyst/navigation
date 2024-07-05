@@ -6,6 +6,7 @@ module Katalyst
       class StatusBarComponent < BaseComponent
         ACTIONS = <<~ACTIONS.gsub(/\s+/, " ").freeze
           navigation:change@document->#{STATUS_BAR_CONTROLLER}#change
+          turbo:morph-element->#{STATUS_BAR_CONTROLLER}#morph
         ACTIONS
 
         attr_reader :container
