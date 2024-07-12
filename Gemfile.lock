@@ -158,18 +158,18 @@ GEM
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.7.2)
-    irb (1.13.2)
+    irb (1.14.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     json (2.7.2)
-    katalyst-html-attributes (1.1.0)
+    katalyst-html-attributes (1.1.1)
       activesupport
       html-attributes-utils
-    katalyst-kpop (3.1.3)
+    katalyst-kpop (3.2.1)
       katalyst-html-attributes
       turbo-rails
       view_component
-    katalyst-tables (3.4.4)
+    katalyst-tables (3.4.6)
       katalyst-html-attributes
       view_component
     language_server-protocol (3.17.0.3)
@@ -206,7 +206,7 @@ GEM
     nokogiri (1.16.6-x86_64-linux)
       racc (~> 1.4)
     parallel (1.25.1)
-    parser (3.3.3.0)
+    parser (3.3.4.0)
       ast (~> 2.4.1)
       racc
     propshaft (0.9.0)
@@ -220,7 +220,7 @@ GEM
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.8.0)
-    rack (3.1.6)
+    rack (3.1.7)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -287,13 +287,13 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.1)
-    rubocop (1.64.1)
+    rubocop (1.65.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
-      regexp_parser (>= 1.8, < 3.0)
+      regexp_parser (>= 2.4, < 3.0)
       rexml (>= 3.2.5, < 4.0)
       rubocop-ast (>= 1.31.1, < 2.0)
       ruby-progressbar (~> 1.7)
@@ -304,7 +304,7 @@ GEM
       rubocop (~> 1.41)
     rubocop-factory_bot (2.26.1)
       rubocop (~> 1.61)
-    rubocop-katalyst (2.0.1)
+    rubocop-katalyst (2.0.4)
       rubocop
       rubocop-capybara
       rubocop-factory_bot
@@ -323,19 +323,19 @@ GEM
       rubocop-ast (>= 1.31.1, < 2.0)
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
-    rubocop-rspec (3.0.2)
+    rubocop-rspec (3.0.3)
       rubocop (~> 1.61)
     rubocop-rspec_rails (2.30.0)
       rubocop (~> 1.61)
       rubocop-rspec (~> 3, >= 3.0.1)
     ruby-progressbar (1.13.0)
-    sass-embedded (1.77.5)
-      google-protobuf (>= 3.25, < 5.0)
+    sass-embedded (1.77.8)
+      google-protobuf (~> 4.26)
       rake (>= 13)
-    sass-embedded (1.77.5-arm64-darwin)
-      google-protobuf (>= 3.25, < 5.0)
-    sass-embedded (1.77.5-x86_64-linux-gnu)
-      google-protobuf (>= 3.25, < 5.0)
+    sass-embedded (1.77.8-arm64-darwin)
+      google-protobuf (~> 4.26)
+    sass-embedded (1.77.8-x86_64-linux-gnu)
+      google-protobuf (~> 4.26)
     shoulda-matchers (6.2.0)
       activesupport (>= 5.2.0)
     smart_properties (1.17.0)
@@ -400,4 +400,4 @@ DEPENDENCIES
   turbo-rails
 
 BUNDLED WITH
-   2.5.13
+   2.5.15
