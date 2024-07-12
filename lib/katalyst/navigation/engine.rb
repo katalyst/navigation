@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
-require "rails"
+require "katalyst/kpop"
+require "katalyst/tables"
+require "rails/engine"
 
 module Katalyst
   module Navigation
     class Engine < ::Rails::Engine
       isolate_namespace Katalyst::Navigation
+      config.eager_load_namespaces << Katalyst::Navigation
 
       initializer "katalyst-navigation.asset" do
         config.after_initialize do |app|
