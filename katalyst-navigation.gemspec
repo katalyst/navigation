@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name = "katalyst-navigation"
-  spec.version = "1.8.3"
+  spec.version = "1.8.4"
   spec.authors = ["Katalyst Interactive"]
   spec.email = ["developers@katalyst.com.au"]
 
