@@ -19,11 +19,11 @@ module Katalyst
 
         attribute :http_method, :string, default: "get"
 
-        enum http_method: HTTP_METHODS, _prefix: :http
+        enum :http_method, HTTP_METHODS, prefix: :http
 
         attribute :target, :string, default: "self"
 
-        enum target: TARGETS, _prefix: :target
+        enum :target, TARGETS, prefix: :target
       end
 
       def link_attributes
