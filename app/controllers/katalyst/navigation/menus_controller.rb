@@ -83,7 +83,7 @@ module Katalyst
       def menu_params
         return {} if params[:menu].blank?
 
-        params.require(:menu).permit(:title, :slug, :depth, items_attributes: %i[id index depth])
+        params.expect(menu: [:title, :slug, :depth, { items_attributes: [%i[id index depth]] }])
       end
     end
   end

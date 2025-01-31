@@ -59,7 +59,7 @@ module Katalyst
       end
 
       def item_params
-        params.require(:item).permit(item_params_type.permitted_params)
+        params.expect(item: item_params_type.permitted_params)
       end
 
       def set_menu
