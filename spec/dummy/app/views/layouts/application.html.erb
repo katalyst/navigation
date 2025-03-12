@@ -14,13 +14,13 @@
 </head>
 
 <body>
-<main>
+<main class="flow wrapper">
   <%= yield %>
-
-  <%= render ScrimComponent.new %>
-  <%= render Kpop::FrameComponent.new do %>
-    <%= yield :kpop %>
-  <% end %>
 </main>
+
+<%= render ScrimComponent.new %>
+<%= render Kpop::FrameComponent.new do %>
+  <%= yield :kpop %>
+<% end %>
 </body>
 </html>

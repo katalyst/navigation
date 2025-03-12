@@ -4,7 +4,6 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "dartsass-rails"
 gem "importmap-rails"
 gem "propshaft"
 gem "rails"

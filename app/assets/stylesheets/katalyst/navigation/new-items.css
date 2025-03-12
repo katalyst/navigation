@@ -1,5 +1,3 @@
-@use "icon" as *;
-
 .navigation--editor--new-items {
   display: grid;
   grid-template-columns: repeat(3, calc((100% - 1rem) / 3));
@@ -32,23 +30,24 @@
     }
 
     &::before {
+      content: "";
+      background-position: center;
+      background-repeat: no-repeat;
       display: block;
-      @extend %icon;
-      width: 2rem;
       height: 2rem;
-      position: unset;
       margin: 0 auto;
+      width: 2rem;
     }
 
-    &[data-item-type="heading"]:before {
+    &[data-item-type="heading"]::before {
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cstyle%3Etext %7B font: 72px serif %7D%3C/style%3E%3Ctext x='7' y='56' textLength='48'%3EH%3C/text%3E%3C/svg%3E%0A");
     }
 
-    &[data-item-type="link"]:before {
+    &[data-item-type="link"]::before {
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_67_1273)'%3E%3Cpath d='M16 22H32V26H16V22ZM40.2 24H44C44 18.48 39.52 14 34 14H26V17.8H34C37.42 17.8 40.2 20.58 40.2 24ZM7.8 24C7.8 20.58 10.58 17.8 14 17.8H22V14H14C8.48 14 4 18.48 4 24C4 29.52 8.48 34 14 34H22V30.2H14C10.58 30.2 7.8 27.42 7.8 24ZM38 24H34V30H28V34H34V40H38V34H44V30H38V24Z' /%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_67_1273'%3E%3Crect width='48' height='48' /%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
     }
 
-    &[data-item-type="button"]:before {
+    &[data-item-type="button"]::before {
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_67_1276)'%3E%3Cpath d='M44 18V30C44 32.2 42.2 34 40 34H38V30H40V18H8V30H20V34H8C5.8 34 4 32.2 4 30V18C4 15.8 5.8 14 8 14H40C42.2 14 44 15.8 44 18ZM29 38L31.18 33.18L36 31L31.18 28.82L29 24L26.82 28.82L22 31L26.82 33.18L29 38ZM34 28L35.24 25.24L38 24L35.24 22.76L34 20L32.76 22.76L30 24L32.76 25.24L34 28ZM29 38L31.18 33.18L36 31L31.18 28.82L29 24L26.82 28.82L22 31L26.82 33.18L29 38ZM34 28L35.24 25.24L38 24L35.24 22.76L34 20L32.76 22.76L30 24L32.76 25.24L34 28Z' /%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_67_1276'%3E%3Crect width='48' height='48' /%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
     }
   }

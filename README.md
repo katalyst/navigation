@@ -23,7 +23,7 @@ rake katalyst_navigation:install:migrations
 ```
 
 Add the Gem's javascript and CSS to your build pipeline. This assumes that
-you're using `rails-dartsass` and `importmaps` to manage your assets.
+you're using `propshaft` and `importmaps` to manage your assets.
 
 ```javascript
 // app/javascript/controllers/application.js
@@ -32,7 +32,16 @@ import navigation from "@katalyst/navigation";
 application.load(navigation);
 ```
 
-```sass
+Import the styles as css:
+
+```css
+@import "/katalyst/navigation.css";
+```
+
+Or, if you're using `dartsass-rails`:
+
+```scss
+// app/assets/stylesheets/application.scss
 @use "katalyst/navigation";
 ```
 

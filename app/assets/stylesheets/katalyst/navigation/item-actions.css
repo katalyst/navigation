@@ -1,5 +1,3 @@
-@use "icon" as *;
-
 [data-controller="navigation--editor--item"] {
   [data-tree-accordion-controls] {
     min-width: 2.5rem;
@@ -15,9 +13,20 @@
   [data-tree-accordion-controls],
   [data-tree-controls] {
     [role="button"] {
-      @extend %icon-block;
+      display: block;
+      cursor: pointer;
+      position: relative;
+      padding: 0.65rem;
+      min-width: 2.5rem;
+      min-height: 2.5rem;
+
       &::before {
-        @extend %icon;
+        position: absolute;
+        content: "";
+        width: 1.2rem;
+        height: 1.2rem;
+        background-repeat: no-repeat;
+        background-position: center;
       }
     }
   }
@@ -37,12 +46,15 @@
     }
 
     &::before {
-      @extend %icon;
-      position: static;
+      content: "";
+      background-position: center;
+      background-repeat: no-repeat;
       color: white;
       font-size: 1.125rem;
+      height: 1.2rem;
       line-height: 1.125rem;
       text-align: center;
+      width: 1.2rem;
     }
   }
 
@@ -59,10 +71,20 @@
   }
 
   [role="img"][value="invisible"] {
-    @extend %icon-block;
+    display: block;
+    cursor: pointer;
+    position: relative;
+    padding: 0.65rem;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
 
     &::before {
-      @extend %icon;
+      position: absolute;
+      content: "";
+      width: 1.2rem;
+      height: 1.2rem;
+      background-repeat: no-repeat;
+      background-position: center;
       background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_58_2189)'%3E%3Cpath d='M22.1699 0.329991C21.7304 -0.109509 21.0179 -0.109509 20.5784 0.329991L15.8399 5.06849C14.6219 4.69949 13.3334 4.50149 11.9984 4.50149C6.76494 4.50149 2.22744 7.54949 -0.00156052 12.0015C0.962939 13.926 2.35794 15.588 4.05294 16.8555L0.326939 20.5815C-0.112561 21.021 -0.112561 21.7335 0.326939 22.173C0.545939 22.392 0.833939 22.503 1.12194 22.503C1.40994 22.503 1.69794 22.3935 1.91694 22.173L22.1669 1.92299C22.6064 1.48349 22.6064 0.770991 22.1669 0.331491L22.1699 0.329991ZM9.74994 7.49999C10.7399 7.49999 11.5799 8.13899 11.8814 9.02849L9.02844 11.8815C8.14044 11.58 7.49994 10.74 7.49994 9.74999C7.49994 8.50799 8.50794 7.49999 9.74994 7.49999ZM2.58144 12C3.47844 10.581 4.67394 9.37649 6.08394 8.47799C6.17544 8.41949 6.26844 8.36249 6.36144 8.30699C6.12744 8.94749 5.99994 9.63899 5.99994 10.3605C5.99994 11.6475 6.40494 12.8385 7.09494 13.815L5.66694 15.243C4.43844 14.379 3.38844 13.2765 2.58144 12V12Z' fill='%2358607A'/%3E%3Cpath d='M18.0001 10.3589C18.0001 9.72295 17.9011 9.10945 17.7166 8.53345L10.1746 16.0754C10.7506 16.2599 11.3641 16.3589 12.0001 16.3589C15.3136 16.3589 18.0001 13.6724 18.0001 10.3589V10.3589Z' fill='%2358607A'/%3E%3Cpath d='M19.4536 6.79651L17.8276 8.42251C17.8576 8.44051 17.8876 8.45851 17.9161 8.47801C19.3261 9.37801 20.5216 10.5825 21.4186 12C20.5216 13.419 19.3261 14.6235 17.9161 15.522C16.1446 16.6515 14.0986 17.25 12.0001 17.25C11.0941 17.25 10.1971 17.139 9.3286 16.9215L7.5271 18.723C8.9266 19.2255 10.4326 19.5 12.0001 19.5C17.2336 19.5 21.7711 16.452 24.0001 12C22.9456 9.89251 21.3721 8.10001 19.4536 6.79651V6.79651Z' fill='%2358607A'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_58_2189'%3E%3Crect width='24' height='24' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
     }
   }

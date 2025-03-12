@@ -1,0 +1,129 @@
+[data-controller="navigation--editor--menu"] {
+  --row-height: 3rem;
+  --row-inset: 2rem;
+  --table-header-color: #ececec;
+  --row-background-color: #f4f4f4;
+  --row-hover-color: #fff0eb;
+  --icon-active-color: #ff521f;
+  --icon-passive-color: #999;
+
+  ol,
+  li {
+    margin: 0;
+    padding: 0;
+    padding-inline-start: 0;
+    list-style: none;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+}
+
+[data-controller="navigation--editor--list"] {
+  min-height: calc(var(--row-height) * 8);
+
+  /* tree items */
+  & > li {
+    display: block;
+    min-height: var(--row-height);
+
+    /* https://github.com/react-dnd/react-dnd/issues/832 */
+    transform: translate3d(0, 0, 0);
+
+    /* Pinstripe effect */
+    &:nth-of-type(even) {
+      background: var(--row-background-color);
+    }
+
+    &:hover {
+      background: var(--row-hover-color);
+    }
+
+    &[draggable] {
+      cursor: grab;
+    }
+
+    /* Dragged visuals */
+    &[data-dragging] {
+      box-shadow: inset 0 0 0 2px var(--icon-passive-color);
+
+      > * {
+        visibility: hidden;
+      }
+    }
+
+    /* Depth spacing */
+    &[data-navigation-depth="1"] .tree {
+      padding-left: calc(var(--row-inset) * 1);
+    }
+
+    &[data-navigation-depth="2"] .tree {
+      padding-left: calc(var(--row-inset) * 2);
+    }
+
+    &[data-navigation-depth="3"] .tree {
+      padding-left: calc(var(--row-inset) * 3);
+    }
+
+    &[data-navigation-depth="4"] .tree {
+      padding-left: calc(var(--row-inset) * 4);
+    }
+
+    &[data-navigation-depth="5"] .tree {
+      padding-left: calc(var(--row-inset) * 5);
+    }
+
+    &[data-navigation-depth="6"] .tree {
+      padding-left: calc(var(--row-inset) * 6);
+    }
+
+    .tree {
+      display: flex;
+      align-items: center;
+    }
+
+    .title,
+    .url {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+}
+
+[data-controller="navigation--editor--menu"] [role="rowheader"],
+[data-controller="navigation--editor--item"] {
+  display: grid;
+  grid-template-columns: minmax(10rem, calc(100% - 12rem)) 1fr 10rem;
+  padding: 0.25rem 0.5rem;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Ensures vertical alignment of header with rows */
+[data-controller="navigation--editor--menu"] {
+  [role="rowheader"] {
+    min-height: var(--row-height);
+    background: var(--table-header-color);
+    padding-inline: 1.25rem 1rem;
+  }
+}
+
+[data-controller="navigation--editor--status-bar"] {
+  --background: #ebf9eb;
+  --color: #4dd45c;
+  --border: #4dd45c;
+
+  &[data-state="draft"] {
+    --background: #fefaf3;
+    --color: #ffa800;
+    --border: #ffa800;
+  }
+
+  &[data-state="dirty"] {
+    --background: #eee;
+    --color: #aaa;
+    --border: #888;
+  }
+}
