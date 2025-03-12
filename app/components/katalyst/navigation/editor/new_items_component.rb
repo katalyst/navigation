@@ -4,8 +4,6 @@ module Katalyst
   module Navigation
     module Editor
       class NewItemsComponent < BaseComponent
-        include ::Turbo::FramesHelper
-
         renders_many :items, Editor::NewItemComponent
 
         def items

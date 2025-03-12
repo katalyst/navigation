@@ -1,3 +1,20 @@
-<div class="navigation--editor--new-items" role="listbox">
-  <%= render Katalyst::Navigation::Editor::NewItemComponent.with_collection(items) %>
+<div class="navigation--editor--new-items"
+     data-controller="<%= NEW_ITEMS_CONTROLLER %>"
+     data-action="turbo:before-morph-element-><%= NEW_ITEMS_CONTROLLER %>#morph">
+  <%= tag.button(aria:  { controls: "#{NEW_ITEMS_CONTROLLER}-dialog" },
+                 class: "navigation--editor--add-button",
+                 data:  { action: "#{NEW_ITEMS_CONTROLLER}#open" }) do %>
+    Add item
+  <% end %>
+  <%= tag.div(class:  "navigation--editor--inline-add",
+              data:   { "#{NEW_ITEMS_CONTROLLER}_target" => "inline" },
+              hidden: "") do %>
+    <%= tag.button(aria: { controls: "#{NEW_ITEMS_CONTROLLER}-dialog", label: "Add navigation here" },
+                   data: { action: "#{NEW_ITEMS_CONTROLLER}#open" }) %>
+  <% end %>
+  <%= tag.dialog(id: "#{NEW_ITEMS_CONTROLLER}-dialog", data: { action: "click->#{NEW_ITEMS_CONTROLLER}#close" }) do %>
+    <%= tag.div(role: "list", data: { action: "click->#{NEW_ITEMS_CONTROLLER}#noop:stop" }) do %>
+      <%= render Katalyst::Navigation::Editor::NewItemComponent.with_collection(items) %>
+    <% end %>
+  <% end %>
 </div>

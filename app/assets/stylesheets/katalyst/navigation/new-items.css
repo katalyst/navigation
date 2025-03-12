@@ -1,42 +1,117 @@
 .navigation--editor--new-items {
-  display: grid;
-  grid-template-columns: repeat(3, calc((100% - 1rem) / 3));
-  grid-auto-rows: minmax(5rem, auto);
-  gap: 0.5rem;
+  .navigation--editor--add-button {
+    appearance: none;
+    background: unset;
+    border: unset;
+    color: unset;
+    cursor: pointer;
+    display: block;
+    font-weight: unset;
+    min-height: var(--row-height);
+    padding-inline: 1rem;
+    text-align: left;
+    width: 100%;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
+    }
+  }
+
+  .navigation--editor--inline-add {
+    position: absolute;
+    display: block;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 0;
+    z-index: 1;
+
+    &::before {
+      background-color: var(--icon-active-color);
+      content: "";
+      display: block;
+      margin-top: -1px;
+      height: 2px;
+    }
+
+    button {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      margin: 0;
+      padding: 0.25rem;
+
+      animation: navigation--editor--pulse 200ms ease;
+      appearance: none;
+      border: none;
+      background-color: var(--icon-active-color);
+      border-radius: 0.125rem;
+      color: white;
+      cursor: pointer;
+      text-align: center;
+      transform: translate(-0.75rem, -0.75rem) scale(1);
+
+      &::before {
+        content: "";
+        display: block;
+        min-height: 1rem;
+        min-width: 1rem;
+        -webkit-mask: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMjQgMTBoLTEwdi0xMGgtNHYxMGgtMTB2NGgxMHYxMGg0di0xMGgxMHoiLz48L3N2Zz4=")
+          center/contain;
+        mask: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMjQgMTBoLTEwdi0xMGgtNHYxMGgtMTB2NGgxMHYxMGg0di0xMGgxMHoiLz48L3N2Zz4=")
+          center/contain;
+        background-color: white;
+      }
+    }
+
+    &[hidden] button {
+      transform: translate(-0.75rem, -0.75rem) scale(0);
+    }
+  }
+
+  dialog {
+    width: 80%;
+    max-width: min(100svw, 36rem);
+    container-type: inline-size;
+  }
+
+  dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  [role="list"] {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fill,
+      clamp(6rem, calc(25cqw - 0.5rem), 8rem)
+    );
+    grid-auto-rows: minmax(6rem, auto);
+    gap: 0.5rem;
+    padding-inline-start: 0;
+  }
 
   [role="listitem"] {
-    display: grid;
-    grid-template-rows: 1fr auto;
-    text-align: center;
-    transform: translate3d(0, 0, 0);
-    cursor: grab;
-    background: white;
-    padding: 0.5rem;
-    white-space: nowrap;
     border-radius: 0.5rem;
+    background: unset;
+    color: inherit;
+    padding: 0.5rem;
 
-    label {
-      font-weight: 400;
-      font-size: 0.8rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin: 0 auto;
-    }
-
-    &:hover {
-      box-shadow:
-        rgb(0 0 0 / 25%) 0 1px 2px,
-        rgb(0 0 0 / 31%) 0 0 5px;
-    }
+    font-weight: 400;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
 
     &::before {
       content: "";
       background-position: center;
       background-repeat: no-repeat;
       display: block;
-      height: 2rem;
-      margin: 0 auto;
       width: 2rem;
+      height: 2rem;
+      margin-inline: auto;
+      margin-block-end: 0.25rem;
     }
 
     &[data-item-type="heading"]::before {
@@ -53,14 +128,16 @@
   }
 }
 
-@media (max-width: 75rem) {
-  .navigation--editor--new-items {
-    grid-template-columns: repeat(2, calc((100% - 0.5rem) / 2));
+@keyframes navigation--editor--pulse {
+  0% {
+    transform: translate(-0.75rem, -0.75rem) scale(0);
   }
-}
 
-@media (max-width: 60rem) {
-  .navigation--editor--new-items {
-    grid-template-columns: 1fr;
+  50% {
+    transform: translate(-0.75rem, -0.75rem) scale(1.2);
+  }
+
+  100% {
+    transform: translate(-0.75rem, -0.75rem) scale(1);
   }
 }

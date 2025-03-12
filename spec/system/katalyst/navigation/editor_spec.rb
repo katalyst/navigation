@@ -3,25 +3,16 @@
 require "rails_helper"
 
 RSpec.describe "katalyst/navigation/editor" do
-  # Disabled because we need an HTML5 drag/drop implementation of `drag_to`.
-  # Checked selenium, cuprite, and apparition and none of them have one
-  # https://bugs.chromium.org/p/chromium/issues/detail?id=850071
-  # > Right now the Action API cannot generate the drag and drop actions by
-  # > sending the mouse press, mouse move and mouse release, because  the drag
-  # > and drop events are generated from the OS level.
-  it "can add a link", pending: "missing d&d" do
+  it "can add a link" do
     menu = create(:katalyst_navigation_menu)
 
     visit katalyst_navigation.menu_path(menu)
 
-    add_new_link = find("div[data-controller$='new-item']:first-child")
-    drop_target  = find("ol[data-controller$='list']")
-    add_new_link.drag_to(drop_target)
-
-    expect(page).to have_css("[data-controller$='list'] li[data-navigation-item]")
+    click_on "Add item"
+    click_on "Link"
 
     fill_in "Title", with: "Magic"
-    fill_in "URL", with: "/magic"
+    fill_in "Url", with: "/magic"
     click_on "Done"
 
     expect(page).to have_css("li", text: "Magic")

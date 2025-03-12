@@ -10,7 +10,7 @@ module Katalyst
         LIST_CONTROLLER       = "navigation--editor--list"
         ITEM_CONTROLLER       = "navigation--editor--item"
         STATUS_BAR_CONTROLLER = "navigation--editor--status-bar"
-        NEW_ITEM_CONTROLLER   = "navigation--editor--new-item"
+        NEW_ITEMS_CONTROLLER = "navigation--editor--new-items"
 
         attr_accessor :menu, :item
 

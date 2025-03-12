@@ -5,7 +5,7 @@ module Katalyst
     module Editor
       class NewItemComponent < BaseComponent
         ACTIONS = <<~ACTIONS.gsub(/\s+/, " ").freeze
-          dragstart->#{NEW_ITEM_CONTROLLER}#dragstart
+          #{NEW_ITEMS_CONTROLLER}#add
         ACTIONS
 
         with_collection_parameter :item
@@ -34,12 +34,10 @@ module Katalyst
 
         def default_html_attributes
           {
-            draggable: "true",
-            role:      "listitem",
-            data:      {
+            role: "listitem",
+            data: {
               item_type:,
-              controller: NEW_ITEM_CONTROLLER,
-              action:     ACTIONS,
+              action:    ACTIONS,
             },
           }
         end

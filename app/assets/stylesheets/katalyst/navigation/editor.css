@@ -7,6 +7,8 @@
   --icon-active-color: #ff521f;
   --icon-passive-color: #999;
 
+  position: relative;
+
   ol,
   li {
     margin: 0;
@@ -21,8 +23,6 @@
 }
 
 [data-controller="navigation--editor--list"] {
-  min-height: calc(var(--row-height) * 8);
-
   /* tree items */
   & > li {
     display: block;

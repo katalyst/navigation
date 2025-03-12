@@ -7,8 +7,6 @@ module Katalyst
         ACTIONS = <<~ACTIONS.gsub(/\s+/, " ").freeze
           dragstart->#{LIST_CONTROLLER}#dragstart
           dragover->#{LIST_CONTROLLER}#dragover
-          dragenter->#{LIST_CONTROLLER}#dragenter
-          dragleave->#{LIST_CONTROLLER}#dragleave
           drop->#{LIST_CONTROLLER}#drop
           dragend->#{LIST_CONTROLLER}#dragend
           keyup.esc@document->#{LIST_CONTROLLER}#dragend
@@ -24,7 +22,8 @@ module Katalyst
 
         def default_html_attributes
           {
-            data: {
+            class: "katalyst--navigation--editor",
+            data:  {
               controller:                  LIST_CONTROLLER,
               action:                      ACTIONS,
               "#{MENU_CONTROLLER}_target": "menu",

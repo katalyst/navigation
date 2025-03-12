@@ -6,4 +6,6 @@
   <%= render Katalyst::Navigation::Editor::TableComponent.new(menu:) do |list| %>
     <%= menu.draft_items.each { |item| list.with_item(item) } %>
   <% end %>
+
+  <%= render Katalyst::Navigation::Editor::NewItemsComponent.new(menu:) %>
 <% end %>
