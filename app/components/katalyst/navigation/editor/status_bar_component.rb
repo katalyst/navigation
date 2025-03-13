@@ -28,10 +28,10 @@ module Katalyst
 
         def actions
           tag.menu do
-            concat action(:discard, class: "button button--text")
-            concat action(:revert, class: "button button--text") if menu.state == :draft
-            concat action(:save, class: "button button--secondary")
-            concat action(:publish, class: "button button--primary")
+            concat action(:discard, class: "button", data: { text_button: "" })
+            concat action(:revert, class: "button", data: { text_button: "" }) if menu.state == :draft
+            concat action(:save, class: "button", data: { ghost_button: "" })
+            concat action(:publish, class: "button")
           end
         end
 

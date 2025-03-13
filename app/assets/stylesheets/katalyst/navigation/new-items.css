@@ -1,26 +1,6 @@
 .navigation--editor--new-items {
-  .navigation--editor--add-button {
-    appearance: none;
-    background: unset;
-    border: unset;
-    color: unset;
-    cursor: pointer;
-    display: block;
-    font-weight: unset;
-    min-height: var(--row-height);
-    padding-inline: 1rem;
-    text-align: left;
-    width: 100%;
-
-    &:hover,
-    &:focus-visible {
-      text-decoration: underline;
-    }
-  }
-
   .navigation--editor--inline-add {
     position: absolute;
-    display: block;
     left: 0;
     right: 0;
     top: 0;
@@ -68,16 +48,6 @@
     &[hidden] button {
       transform: translate(-0.75rem, -0.75rem) scale(0);
     }
-  }
-
-  dialog {
-    width: 80%;
-    max-width: min(100svw, 36rem);
-    container-type: inline-size;
-  }
-
-  dialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.6);
   }
 
   [role="list"] {

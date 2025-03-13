@@ -109,21 +109,3 @@
     padding-inline: 1.25rem 1rem;
   }
 }
-
-[data-controller="navigation--editor--status-bar"] {
-  --background: #ebf9eb;
-  --color: #4dd45c;
-  --border: #4dd45c;
-
-  &[data-state="draft"] {
-    --background: #fefaf3;
-    --color: #ffa800;
-    --border: #ffa800;
-  }
-
-  &[data-state="dirty"] {
-    --background: #eee;
-    --color: #aaa;
-    --border: #888;
-  }
-}

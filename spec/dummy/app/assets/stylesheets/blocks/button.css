@@ -68,6 +68,13 @@
     pointer-events: none;
   }
 
+  &[data-icon-button] {
+    --button-bg: transparent;
+    --button-border-color: transparent;
+    --button-color: currentColor;
+    --button-padding: 0.5em;
+  }
+
   &[data-ghost-button] {
     --button-bg: transparent;
     --button-border-color: currentColor;

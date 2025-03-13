@@ -2,28 +2,29 @@
       "navigation--editor--item-editor",
       data: { controller: "navigation--editor--item-editor" },
     ) do %>
-  <dialog data-navigation--editor--item-editor-target="dialog"
+  <dialog class="modal"
+          data-navigation--editor--item-editor-target="dialog"
           data-action="
             click->navigation--editor--item-editor#dismiss
             close->navigation--editor--item-editor#dismiss
           "
           data-item-id="<%= dom_id(item_editor.item) %>"
           <%= "data-item-persisted" if item_editor.item.persisted? %>>
-    <article data-action="click->navigation--editor--item-editor#noop:stop">
+    <article class="flow" data-action="click->navigation--editor--item-editor#noop:stop">
       <header class="repel" data-nowrap>
-        <%= item_editor.title %>
+        <h2><%= item_editor.title %></h2>
         <button form="<%= item_editor.id %>"
                 formmethod="dialog"
                 class="button"
-                data-icon-button
-                data-icon="close">
-          Close
+                data-icon-button>
+          <icon aria-hidden="true" class="icon" data-icon="close">\A</icon>
+          <span class="visually-hidden">Close</span>
         </button>
       </header>
       <main>
         <%= render item_editor %>
       </main>
-      <footer>
+      <footer class="actions" data-reverse>
         <button form="<%= item_editor.id %>" class="button">
           Done
         </button>

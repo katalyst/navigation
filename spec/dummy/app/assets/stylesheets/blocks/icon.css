@@ -1,0 +1,12 @@
+.icon {
+  background-color: currentColor;
+  width: 1em;
+
+  --scale: 1;
+  --size: 1em;
+  aspect-ratio: 1;
+  font-size: calc(var(--scale) * var(--size));
+  height: 1em;
+  line-height: 1em;
+  transform: translateY(var(--offset, 0));
+}
