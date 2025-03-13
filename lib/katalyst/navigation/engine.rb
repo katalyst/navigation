@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "katalyst/kpop"
 require "katalyst/tables"
 require "rails/engine"
 

@@ -4,8 +4,6 @@ module Katalyst
   module Navigation
     module Editor
       class ItemComponent < BaseComponent
-        include KpopHelper
-
         def edit_item_link
           if item.persisted?
             helpers.katalyst_navigation.edit_menu_item_path(menu, item)

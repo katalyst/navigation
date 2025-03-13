@@ -1,4 +1,5 @@
-<%= turbo_stream.kpop.dismiss %>
+<%# TODO close the dialog %>
+<%# TODO remove the 'new' row if required %>
 <%= turbo_stream.replace dom_id(previous) do %>
   <%= render editor.item(item:) %>
 <% end %>

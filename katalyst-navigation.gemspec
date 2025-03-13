@@ -16,7 +16,6 @@ Gem::Specification.new do |spec|
   spec.metadata["rubygems_mfa_required"] = "true"
 
   spec.add_dependency "katalyst-html-attributes"
-  spec.add_dependency "katalyst-kpop"
   spec.add_dependency "katalyst-tables"
   spec.add_dependency "view_component"
 end

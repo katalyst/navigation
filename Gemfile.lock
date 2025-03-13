@@ -3,7 +3,6 @@ PATH
   specs:
     katalyst-navigation (1.8.4)
       katalyst-html-attributes
-      katalyst-kpop
       katalyst-tables
       view_component
 
@@ -152,10 +151,6 @@ GEM
     katalyst-html-attributes (1.1.1)
       activesupport
       html-attributes-utils
-    katalyst-kpop (3.2.7)
-      katalyst-html-attributes
-      turbo-rails
-      view_component
     katalyst-tables (3.8.0)
       katalyst-html-attributes
       view_component
