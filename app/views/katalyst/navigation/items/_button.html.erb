@@ -1,34 +1,30 @@
-<%= form_with model: item, scope: :item, url: path do |form| %>
-  <%= form.hidden_field :type %>
-  <%= render "form_errors", form: %>
+<%# locals: (form:) %>
 
-  <div class="input">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+<%= render "form_errors", form: %>
 
-  <div class="input">
-    <%= form.label :url %>
-    <%= form.text_field :url %>
-  </div>
+<div class="field">
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+</div>
 
-  <div class="input">
-    <%= form.label :http_method %>
-    <%= form.select :http_method, Katalyst::Navigation::Button::HTTP_METHODS %>
-  </div>
+<div class="field">
+  <%= form.label :url %>
+  <%= form.text_field :url %>
+</div>
 
-  <div class="field">
-    <%= form.label :target %>
-    <%= form.select :target, Katalyst::Navigation::Button::TARGETS %>
-  </div>
+<div class="field">
+  <%= form.label :http_method %>
+  <%= form.select :http_method, Katalyst::Navigation::Button::HTTP_METHODS %>
+</div>
 
-  <div class="input">
+<div class="field">
+  <%= form.label :target %>
+  <%= form.select :target, Katalyst::Navigation::Button::TARGETS %>
+</div>
+
+<div class="field">
+  <%= form.label(:visible) do %>
     <%= form.check_box :visible %>
-    <%= form.label :visible %>
-  </div>
-
-  <div class="button-row">
-    <%= form.submit "Done" %>
-    <%= link_to "Discard", menu_path(item.menu), class: "button--text" %>
-  </div>
-<% end %>
+    Visible
+  <% end %>
+</div>

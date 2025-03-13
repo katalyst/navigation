@@ -1,4 +1,4 @@
-<%= tag.ul class: "errors" do %>
+<%= tag.ul(class: "errors", role: "list") do %>
   <% form.object.errors.full_messages.each do |error| %>
     <li class="error"><%= error %></li>
   <% end %>

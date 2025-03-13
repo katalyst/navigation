@@ -1,5 +1,6 @@
 import MenuController from "./editor/menu_controller";
 import ItemController from "./editor/item_controller";
+import ItemEditorController from "./editor/item_editor_controller";
 import ListController from "./editor/list_controller";
 import NewItemsController from "./editor/new_items_controller";
 import StatusBarController from "./editor/status_bar_controller";
@@ -12,6 +13,10 @@ const Definitions = [
   {
     identifier: "navigation--editor--item",
     controllerConstructor: ItemController,
+  },
+  {
+    identifier: "navigation--editor--item-editor",
+    controllerConstructor: ItemEditorController,
   },
   {
     identifier: "navigation--editor--list",

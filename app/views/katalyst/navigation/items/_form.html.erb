@@ -1,0 +1,6 @@
+<%# locals: (model:, scope:, url:, id:) %>
+
+<%= form_with(model:, scope:, url:, id:) do |form| %>
+  <%= form.hidden_field(:type) %>
+  <%= render(model.model_name.param_key, form:) %>
+<% end %>

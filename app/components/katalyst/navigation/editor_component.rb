@@ -3,6 +3,8 @@
 module Katalyst
   module Navigation
     class EditorComponent < Editor::BaseComponent
+      include ::Turbo::FramesHelper
+
       ACTIONS = <<~ACTIONS.gsub(/\s+/, " ").freeze
         submit->#{MENU_CONTROLLER}#reindex
         navigation:drop->#{MENU_CONTROLLER}#drop
@@ -13,12 +15,6 @@ module Katalyst
 
       def status_bar
         @status_bar ||= Editor::StatusBarComponent.new(menu:)
-      end
-
-      # @deprecated this component is now part of the editor
-      def new_items
-        # no-op, no longer required
-        Class.new { define_method(:render_in) { |_| nil } }.new
       end
 
       def item_editor(item:)

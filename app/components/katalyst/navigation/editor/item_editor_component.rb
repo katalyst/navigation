@@ -3,24 +3,28 @@
 module Katalyst
   module Navigation
     module Editor
-      class ItemEditorComponent < BaseComponent
-        include ::Turbo::FramesHelper
+      class ItemEditorComponent < ViewComponent::Base
+        attr_reader :menu, :item
 
-        module Helpers
-          def prefix_partial_path_with_controller_namespace
-            false
-          end
+        alias_method :model, :item
+
+        def initialize(menu:, item:)
+          super()
+
+          @menu = menu
+          @item = item
         end
 
         def call
-          tag.div(**html_attributes) do
-            helpers.extend(Helpers)
-            helpers.render(item.model_name.param_key, item:, path:)
-          end
+          render("form", model:, scope:, url:, id:)
         end
 
         def id
-          "item-editor-#{item.id}"
+          dom_id(item, :form)
+        end
+
+        def scope
+          :item
         end
 
         def title
@@ -31,19 +35,12 @@ module Katalyst
           end
         end
 
-        def path
+        def url
           if item.persisted?
             view_context.katalyst_navigation.menu_item_path(menu, item)
           else
             view_context.katalyst_navigation.menu_items_path(menu)
           end
-        end
-
-        def default_html_attributes
-          {
-            id:,
-            class: "navigation--item-editor",
-          }
         end
       end
     end

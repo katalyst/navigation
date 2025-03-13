@@ -1,2 +1,39 @@
-<%= item_editor.title %>
-<%= render item_editor %>
+<%= turbo_frame_tag(
+      "navigation--editor--item-editor",
+      data: { controller: "navigation--editor--item-editor" },
+    ) do %>
+  <dialog data-navigation--editor--item-editor-target="dialog"
+          data-action="
+            click->navigation--editor--item-editor#dismiss
+            close->navigation--editor--item-editor#dismiss
+          "
+          data-item-id="<%= dom_id(item_editor.item) %>"
+          <%= "data-item-persisted" if item_editor.item.persisted? %>>
+    <article data-action="click->navigation--editor--item-editor#noop:stop">
+      <header class="repel" data-nowrap>
+        <%= item_editor.title %>
+        <button form="<%= item_editor.id %>"
+                formmethod="dialog"
+                class="button"
+                data-icon-button
+                data-icon="close">
+          Close
+        </button>
+      </header>
+      <main>
+        <%= render item_editor %>
+      </main>
+      <footer>
+        <button form="<%= item_editor.id %>" class="button">
+          Done
+        </button>
+        <button form="<%= item_editor.id %>"
+                formmethod="dialog"
+                class="button"
+                data-ghost-button>
+          Discard
+        </button>
+      </footer>
+    </article>
+  </dialog>
+<% end %>

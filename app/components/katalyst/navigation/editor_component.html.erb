@@ -9,3 +9,8 @@
 
   <%= render Katalyst::Navigation::Editor::NewItemsComponent.new(menu:) %>
 <% end %>
+
+<%= turbo_frame_tag(
+      "navigation--editor--item-editor",
+      data: { controller: "navigation--editor--item-editor" },
+    ) %>
