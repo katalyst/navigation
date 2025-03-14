@@ -6,12 +6,6 @@ module Katalyst
       class BaseComponent < ViewComponent::Base
         include Katalyst::HtmlAttributes
 
-        MENU_CONTROLLER       = "navigation--editor--menu"
-        LIST_CONTROLLER       = "navigation--editor--list"
-        ITEM_CONTROLLER       = "navigation--editor--item"
-        STATUS_BAR_CONTROLLER = "navigation--editor--status-bar"
-        NEW_ITEMS_CONTROLLER = "navigation--editor--new-items"
-
         attr_accessor :menu, :item
 
         delegate :config, to: ::Katalyst::Navigation

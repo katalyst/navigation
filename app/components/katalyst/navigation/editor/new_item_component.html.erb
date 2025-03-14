@@ -1,12 +1,15 @@
-<%= tag.button(**html_attributes) do %>
-  <%= label %>
-  <%#
+<li>
+  <%= tag.button(**html_attributes) do %>
+    <icon class="icon" data-icon="<%= icon_name %>" role="img">&nbsp;</icon>
+    <%= label %>
+    <%#
     # Template is stored inside the new item dom, and copied into the dom when
     # the user selects the item.
-  %>
-  <template>
-    <%= render row_component do %>
-      <%= render item_component %>
-    <% end %>
-  </template>
-<% end %>
+    %>
+    <template>
+      <%= render row_component do %>
+        <%= render item_component %>
+      <% end %>
+    </template>
+  <% end %>
+</li>

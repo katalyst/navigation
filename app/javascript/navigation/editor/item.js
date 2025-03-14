@@ -262,7 +262,7 @@ export default class Item {
  */
 function createChildrenList(node) {
   const childrenList = document.createElement("ol");
-  childrenList.setAttribute("class", "hidden");
+  childrenList.toggleAttribute("hidden", true);
 
   childrenList.dataset[`navigationChildren`] = "";
 

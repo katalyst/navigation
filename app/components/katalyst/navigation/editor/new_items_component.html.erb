@@ -4,13 +4,19 @@
   <button aria-controls="navigation--editor--new-items-dialog"
           class="button"
           data-action="click->navigation--editor--new-items#open"
+          data-button-padding="tight"
           data-text-button>
-    <icon aria-hidden="true" class="icon" data-icon="add">\A</icon>
+    <icon aria-hidden="true" class="icon" data-icon="add">&nbsp;</icon>
     Add item
   </button>
   <div class="navigation--editor--inline-add" data-navigation--editor--new-items-target="inline" hidden>
-    <%= tag.button(aria: { controls: "navigation--editor--new-items-dialog", label: "Add navigation here" },
-                   data: { action: "navigation--editor--new-items#open" }) %>
+    <button aria-controls="navigation--editor--new-items-dialog"
+            class="button"
+            data-action="navigation--editor--new-items#open"
+            data-button-padding="tight">
+      <icon aria-hidden="true" class="icon" data-icon="add">&nbsp;</icon>
+      <span class="visually-hidden">Add item here</span>
+    </button>
   </div>
   <dialog id="navigation--editor--new-items-dialog" class="modal" data-action="click->navigation--editor--new-items#close">
     <article class="flow" data-action="click->navigation--editor--new-items#noop:stop">
@@ -18,14 +24,17 @@
         <h2>Add item</h2>
         <button class="button"
                 data-action="click->navigation--editor--new-items#close"
-                data-icon-button>
-          <icon aria-hidden="true" class="icon" data-icon="close">\A</icon>
+                data-button-padding="tight"
+                data-text-button>
+          <icon aria-hidden="true" class="icon" data-icon="close">&nbsp;</icon>
           <span class="visually-hidden">Close</span>
         </button>
       </header>
       <main>
         <%= tag.div(role: "list", data: { action: "click->navigation--editor--new-items#noop:stop" }) do %>
-          <%= render Katalyst::Navigation::Editor::NewItemComponent.with_collection(items) %>
+          <ul role="list" class="items-list">
+            <%= render Katalyst::Navigation::Editor::NewItemComponent.with_collection(items) %>
+          </ul>
         <% end %>
       </main>
     </article>

@@ -1,111 +1,175 @@
-[data-controller="navigation--editor--menu"] {
-  --row-height: 3rem;
+.navigation--editor {
   --row-inset: 2rem;
-  --table-header-color: #ececec;
-  --row-background-color: #f4f4f4;
-  --row-hover-color: #fff0eb;
-  --icon-active-color: #ff521f;
-  --icon-passive-color: #999;
+  --row-hover-bg: var(--color-tint, #fff0eb);
+  --row-padding: 0 var(--space-2xs, 0.25rem);
 
   position: relative;
+}
 
-  ol,
-  li {
-    margin: 0;
-    padding: 0;
-    padding-inline-start: 0;
-    list-style: none;
+/* Rows */
+
+.navigation--editor--item {
+  /* https://github.com/react-dnd/react-dnd/issues/832 */
+  transform: translate3d(0, 0, 0);
+
+  &:hover {
+    background: var(--row-hover-bg);
   }
 
-  .hidden {
+  &[draggable] {
+    cursor: grab;
+  }
+
+  /* Dragged visuals */
+
+  &[data-dragging] {
+    box-shadow: inset 0 0 0 2px var(--color-tint, #fff0eb);
+
+    > * {
+      visibility: hidden;
+    }
+  }
+
+  /* Hidden items */
+
+  [data-invisible] {
+    color: var(--color-mid, #aaa);
+  }
+
+  /* row item controller */
+
+  > [data-controller] {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    padding: var(--row-padding);
+  }
+
+  /* row content */
+
+  .tree {
+    display: flex;
+    gap: var(--space-xs, 0.5rem);
+    align-items: baseline;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .actions-group {
+    display: flex;
+    gap: var(--space-3xs, 0.25em);
+    align-items: baseline;
+  }
+
+  /* Depth */
+
+  &[data-navigation-depth="1"] .tree {
+    padding-left: calc(var(--row-inset) * 1);
+  }
+
+  &[data-navigation-depth="2"] .tree {
+    padding-left: calc(var(--row-inset) * 2);
+  }
+
+  &[data-navigation-depth="3"] .tree {
+    padding-left: calc(var(--row-inset) * 3);
+  }
+
+  &[data-navigation-depth="4"] .tree {
+    padding-left: calc(var(--row-inset) * 4);
+  }
+
+  &[data-navigation-depth="5"] .tree {
+    padding-left: calc(var(--row-inset) * 5);
+  }
+
+  &[data-navigation-depth="6"] .tree {
+    padding-left: calc(var(--row-inset) * 6);
+  }
+
+  /* Lower opacity for buttons you can't use */
+
+  &[data-deny-de-nest] .button:has([data-icon="outdent"]),
+  &[data-deny-nest] .button:has([data-icon="indent"]),
+  &[data-deny-remove] .button:has([data-icon="remove"]),
+  &[data-deny-drag] .button:has([data-icon="drag"]),
+  &[data-deny-edit] .button:has([data-icon="edit"]) {
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
+  &:not(:hover) .actions-group .button {
+    opacity: 0;
+  }
+
+  /* Only show 1 of the collapse / expand button */
+
+  &[data-deny-collapse] .button:has([data-icon="collapse"]),
+  &[data-deny-expand] .button:has([data-icon="expand"]) {
     display: none !important;
+    pointer-events: none;
+  }
+
+  /* Always show the expand button when there are hidden children */
+
+  &:has([data-navigation-children]) .button:has([data-icon="expand"]) {
+    opacity: 1 !important;
   }
 }
 
-[data-controller="navigation--editor--list"] {
-  /* tree items */
-  & > li {
-    display: block;
-    min-height: var(--row-height);
+/* Inline add link */
 
-    /* https://github.com/react-dnd/react-dnd/issues/832 */
-    transform: translate3d(0, 0, 0);
+.navigation--editor--inline-add {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 0;
+  z-index: 1;
+  outline: 1px solid var(--color-dark-glare, #555);
 
-    /* Pinstripe effect */
-    &:nth-of-type(even) {
-      background: var(--row-background-color);
-    }
+  button {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin: 0;
+    padding: 0.25rem;
 
-    &:hover {
-      background: var(--row-hover-color);
-    }
+    animation: navigation--editor--pulse 200ms ease;
+    transform: translate(-50%, -50%) scale(1);
+  }
 
-    &[draggable] {
-      cursor: grab;
-    }
+  button:active {
+    transform: translate(-50%, -50%) scale(99%);
+  }
 
-    /* Dragged visuals */
-    &[data-dragging] {
-      box-shadow: inset 0 0 0 2px var(--icon-passive-color);
-
-      > * {
-        visibility: hidden;
-      }
-    }
-
-    /* Depth spacing */
-    &[data-navigation-depth="1"] .tree {
-      padding-left: calc(var(--row-inset) * 1);
-    }
-
-    &[data-navigation-depth="2"] .tree {
-      padding-left: calc(var(--row-inset) * 2);
-    }
-
-    &[data-navigation-depth="3"] .tree {
-      padding-left: calc(var(--row-inset) * 3);
-    }
-
-    &[data-navigation-depth="4"] .tree {
-      padding-left: calc(var(--row-inset) * 4);
-    }
-
-    &[data-navigation-depth="5"] .tree {
-      padding-left: calc(var(--row-inset) * 5);
-    }
-
-    &[data-navigation-depth="6"] .tree {
-      padding-left: calc(var(--row-inset) * 6);
-    }
-
-    .tree {
-      display: flex;
-      align-items: center;
-    }
-
-    .title,
-    .url {
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-    }
+  &[hidden] button {
+    transform: translate(-50%, -50%) scale(0);
   }
 }
 
-[data-controller="navigation--editor--menu"] [role="rowheader"],
-[data-controller="navigation--editor--item"] {
-  display: grid;
-  grid-template-columns: minmax(10rem, calc(100% - 12rem)) 1fr 10rem;
-  padding: 0.25rem 0.5rem;
-  gap: 1rem;
-  align-items: center;
+@keyframes navigation--editor--pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  80% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
-/* Ensures vertical alignment of header with rows */
-[data-controller="navigation--editor--menu"] {
-  [role="rowheader"] {
-    min-height: var(--row-height);
-    background: var(--table-header-color);
-    padding-inline: 1.25rem 1rem;
+/* New items picker */
+
+.navigation--editor--new-items {
+  .items-list {
+    display: flex;
+    gap: var(--space-2xs, 0.25rem);
+    flex-wrap: wrap;
   }
 }

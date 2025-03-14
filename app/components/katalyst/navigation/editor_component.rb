@@ -5,14 +5,6 @@ module Katalyst
     class EditorComponent < Editor::BaseComponent
       include ::Turbo::FramesHelper
 
-      ACTIONS = <<~ACTIONS.gsub(/\s+/, " ").freeze
-        submit->#{MENU_CONTROLLER}#reindex
-        navigation:drop->#{MENU_CONTROLLER}#drop
-        navigation:reindex->#{MENU_CONTROLLER}#reindex
-        navigation:reset->#{MENU_CONTROLLER}#reset
-        turbo:render@document->#{MENU_CONTROLLER}#connect
-      ACTIONS
-
       def status_bar
         @status_bar ||= Editor::StatusBarComponent.new(menu:)
       end
@@ -33,11 +25,18 @@ module Katalyst
 
       def default_html_attributes
         {
-          id:   menu_form_id,
-          data: {
-            controller:                           MENU_CONTROLLER,
-            action:                               ACTIONS,
-            "#{MENU_CONTROLLER}-max-depth-value": menu.depth,
+          id:    menu_form_id,
+          class: "navigation--editor",
+          data:  {
+            controller:                                 "navigation--editor--menu",
+            action:                                     %w[
+              submit->navigation--editor--menu#reindex
+              navigation:drop->navigation--editor--menu#drop
+              navigation:reindex->navigation--editor--menu#reindex
+              navigation:reset->navigation--editor--menu#reset
+              turbo:render@document->navigation--editor--menu#connect
+            ],
+            "navigation--editor--menu-max-depth-value": menu.depth,
           },
         }
       end

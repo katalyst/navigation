@@ -18,7 +18,8 @@ module Katalyst
           {
             id:   dom_id(item),
             data: {
-              controller: ITEM_CONTROLLER,
+              controller: "navigation--editor--item",
+              invisible:  ("" unless item.visible?),
             },
           }
         end

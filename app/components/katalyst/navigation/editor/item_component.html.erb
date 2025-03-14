@@ -1,26 +1,34 @@
 <%= tag.div(**html_attributes) do %>
-  <div class="tree" data-invisible="<%= !item.visible? %>">
-    <div role="toolbar" data-tree-accordion-controls>
-      <span role="button" value="collapse" data-action="click-><%= MENU_CONTROLLER %>#collapse" title="Collapse tree"></span>
-      <span role="button" value="expand" data-action="click-><%= MENU_CONTROLLER %>#expand" title="Expand tree"></span>
-    </div>
+  <div class="tree">
+    <icon class="icon" data-icon="<%= item.model_name.param_key %>" aria-hidden="true">&nbsp;</icon>
 
-    <span role="img" value="<%= item.model_name.param_key %>" title="Type"></span>
-    <h4 class="heading" title="<%= item.title %>"><%= item.title %></h4>
-    <span role="img" value="invisible" title="Hidden"></span>
+    <%= link_to_if(item.url.presence, item.title, item.url, target: "_blank", rel: "noopener") %>
+
+    <% unless item.visible? %>
+      <icon class="icon" data-icon="hidden" title="Hidden" role="img">&nbsp;</icon>
+    <% end %>
   </div>
 
-  <div class="url">
-    <%= link_to item.url || "", item.url || "", data: { turbo: false } %>
-  </div>
-
-  <div role="toolbar" data-tree-controls>
-    <span role="button" value="de-nest" data-action="click-><%= MENU_CONTROLLER %>#deNest" title="Outdent"></span>
-    <span role="button" value="nest" data-action="click-><%= MENU_CONTROLLER %>#nest" title="Indent"></span>
-    <%= link_to("", edit_item_link, role: "button", title: "Edit", value: "edit", data: {
-                  turbo_frame: "navigation--editor--item-editor",
-                }) %>
-    <span role="button" value="remove" data-action="click-><%= MENU_CONTROLLER %>#remove" title="Remove"></span>
+  <div role="toolbar" class="actions-group">
+    <button class="button" data-button-padding="tight" data-text-button data-action="navigation--editor--menu#collapse" title="Collapse tree">
+      <icon class="icon" data-icon="collapse" role="img">&nbsp;</icon>
+    </button>
+    <button class="button" data-button-padding="tight" data-text-button data-action="navigation--editor--menu#expand" title="Expand tree">
+      <icon class="icon" data-icon="expand" role="img">&nbsp;</icon>
+    </button>
+    <button class="button" data-button-padding="tight" data-text-button data-action="navigation--editor--menu#deNest" title="Outdent">
+      <icon class="icon" data-icon="outdent" role="img">&nbsp;</icon>
+    </button>
+    <button class="button" data-button-padding="tight" data-text-button data-action="navigation--editor--menu#nest" title="Indent">
+      <icon class="icon" data-icon="indent" role="img">&nbsp;</icon>
+    </button>
+    <%= link_to(edit_item_link, class: "button", title: "Edit", value: "edit",
+                data: { text_button: "", button_padding: "tight", turbo_frame: "navigation--editor--item-editor" }) do %>
+      <icon class="icon" data-icon="edit" role="img">&nbsp;</icon>
+    <% end %>
+    <button class="button" data-button-padding="tight" data-text-button data-action="navigation--editor--menu#remove" title="Remove">
+      <icon class="icon" data-icon="remove" role="img">&nbsp;</icon>
+    </button>
   </div>
 
   <input autocomplete="off" type="hidden" name="<%= attributes_scope %>[id]" value="<%= item.id %>">

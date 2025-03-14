@@ -68,10 +68,7 @@
     pointer-events: none;
   }
 
-  &[data-icon-button] {
-    --button-bg: transparent;
-    --button-border-color: transparent;
-    --button-color: currentColor;
+  &[data-button-padding="tight"] {
     --button-padding: 0.5em;
   }
 

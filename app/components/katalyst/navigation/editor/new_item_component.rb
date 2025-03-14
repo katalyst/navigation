@@ -4,10 +4,6 @@ module Katalyst
   module Navigation
     module Editor
       class NewItemComponent < BaseComponent
-        ACTIONS = <<~ACTIONS.gsub(/\s+/, " ").freeze
-          #{NEW_ITEMS_CONTROLLER}#add
-        ACTIONS
-
         with_collection_parameter :item
 
         def initialize(item:, menu: item.menu)
@@ -30,14 +26,17 @@ module Katalyst
           item.model_name.param_key
         end
 
+        alias icon_name item_type
+
         private
 
         def default_html_attributes
           {
-            role: "listitem",
-            data: {
-              item_type:,
-              action:    ACTIONS,
+            class: "button",
+            role:  "listitem",
+            data:  {
+              ghost_button: "",
+              action:       "navigation--editor--new-items#add",
             },
           }
         end

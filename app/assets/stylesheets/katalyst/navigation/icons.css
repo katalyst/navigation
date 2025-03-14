@@ -1,0 +1,54 @@
+.navigation--editor {
+  [data-icon="outdent"] {
+    -webkit-mask: url("/katalyst/navigation/icons/outdent.svg");
+    mask: url("/katalyst/navigation/icons/outdent.svg");
+  }
+
+  [data-icon="indent"] {
+    -webkit-mask: url("/katalyst/navigation/icons/indent.svg");
+    mask: url("/katalyst/navigation/icons/indent.svg");
+  }
+
+  [data-icon="collapse"] {
+    -webkit-mask: url("/katalyst/navigation/icons/collapse.svg");
+    mask: url("/katalyst/navigation/icons/collapse.svg");
+    aspect-ratio: 12/16;
+  }
+
+  [data-icon="expand"] {
+    -webkit-mask: url("/katalyst/navigation/icons/expand.svg") no-repeat center;
+    mask: url("/katalyst/navigation/icons/expand.svg") no-repeat center;
+    aspect-ratio: 12/16;
+  }
+
+  [data-icon="edit"] {
+    -webkit-mask: url("/katalyst/navigation/icons/edit.svg");
+    mask: url("/katalyst/navigation/icons/edit.svg");
+  }
+
+  [data-icon="remove"] {
+    -webkit-mask: url("/katalyst/navigation/icons/remove.svg");
+    mask: url("/katalyst/navigation/icons/remove.svg");
+    aspect-ratio: 14/16;
+  }
+
+  [data-icon="hidden"] {
+    -webkit-mask: url("/katalyst/navigation/icons/hidden.svg");
+    mask: url("/katalyst/navigation/icons/hidden.svg");
+  }
+
+  [data-icon="heading"] {
+    -webkit-mask: url("/katalyst/navigation/icons/heading.svg");
+    mask: url("/katalyst/navigation/icons/heading.svg");
+  }
+
+  [data-icon="link"] {
+    -webkit-mask: url("/katalyst/navigation/icons/link.svg");
+    mask: url("/katalyst/navigation/icons/link.svg");
+  }
+
+  [data-icon="button"] {
+    -webkit-mask: url("/katalyst/navigation/icons/button.svg");
+    mask: url("/katalyst/navigation/icons/button.svg");
+  }
+}

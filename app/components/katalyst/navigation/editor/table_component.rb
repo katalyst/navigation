@@ -4,14 +4,6 @@ module Katalyst
   module Navigation
     module Editor
       class TableComponent < BaseComponent
-        ACTIONS = <<~ACTIONS.gsub(/\s+/, " ").freeze
-          dragstart->#{LIST_CONTROLLER}#dragstart
-          dragover->#{LIST_CONTROLLER}#dragover
-          drop->#{LIST_CONTROLLER}#drop
-          dragend->#{LIST_CONTROLLER}#dragend
-          keyup.esc@document->#{LIST_CONTROLLER}#dragend
-        ACTIONS
-
         renders_many :items, ->(item) do
           row = RowComponent.new(item:, menu:)
           row.with_content(render(ItemComponent.new(item:, menu:)))
@@ -24,10 +16,17 @@ module Katalyst
           {
             class: "katalyst--navigation--editor",
             data:  {
-              controller:                  LIST_CONTROLLER,
-              action:                      ACTIONS,
-              "#{MENU_CONTROLLER}_target": "menu",
+              controller:                        "navigation--editor--list",
+              action:                            %w[
+                dragstart->navigation--editor--list#dragstart
+                dragover->navigation--editor--list#dragover
+                drop->navigation--editor--list#drop
+                dragend->navigation--editor--list#dragend
+                keyup.esc@document->navigation--editor--list#dragend
+              ],
+              "navigation--editor--menu-target": "menu",
             },
+            role:  "list",
           }
         end
       end

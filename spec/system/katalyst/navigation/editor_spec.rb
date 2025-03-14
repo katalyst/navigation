@@ -34,8 +34,10 @@ RSpec.describe "katalyst/navigation/editor" do
 
     visit katalyst_navigation.menu_path(menu)
 
-    # find and click nest – checks for data-deny-remove to ensure rules have been applied
-    find("li:not([data-deny-remove]) [data-action$='#remove']").click
+    within(".navigation--editor--item:not([data-deny-remove])") do |item|
+      item.hover
+      item.find("[data-icon='remove']").click
+    end
 
     expect(page).to have_css("span", class: "status-text", text: "Unsaved changes", visible: :visible)
 
@@ -56,7 +58,11 @@ RSpec.describe "katalyst/navigation/editor" do
 
     visit katalyst_navigation.menu_path(menu)
 
-    find("a[title='Edit']").click
+    within(".navigation--editor--item:not([data-deny-edit])") do |item|
+      item.hover
+      item.find("[data-icon='edit']").click
+    end
+
     fill_in "Title", with: "Updated"
     click_on "Done"
 
@@ -112,8 +118,10 @@ RSpec.describe "katalyst/navigation/editor" do
 
     visit katalyst_navigation.menu_path(menu)
 
-    # find and click nest – checks for data-deny-nest to ensure rules have been applied
-    find("li[data-navigation-item-id='#{link.id}']:not([data-deny-nest]) [data-action$='#nest']").click
+    within(".navigation--editor--item:not([data-deny-nest])") do |item|
+      item.hover
+      item.find("[data-icon='indent']").click
+    end
 
     expect(page).to have_css("span", class: "status-text", text: "Unsaved changes", visible: :visible)
 
@@ -158,7 +166,11 @@ RSpec.describe "katalyst/navigation/editor" do
 
     visit katalyst_navigation.menu_path(menu)
 
-    find("a[title='Edit']").click
+    within(".navigation--editor--item:not([data-deny-edit])") do |item|
+      item.hover
+      item.find("[data-icon='edit']").click
+    end
+
     fill_in "Title", with: "Updated"
     click_on "Done"
 
@@ -179,7 +191,11 @@ RSpec.describe "katalyst/navigation/editor" do
 
     visit katalyst_navigation.menu_path(menu)
 
-    find("a[title='Edit']").click
+    within(".navigation--editor--item:not([data-deny-edit])") do |item|
+      item.hover
+      item.find("[data-icon='edit']").click
+    end
+
     fill_in "Title", with: "Updated"
     click_on "Done"
 
@@ -198,7 +214,11 @@ RSpec.describe "katalyst/navigation/editor" do
 
     visit katalyst_navigation.menu_path(menu)
 
-    find("a[title='Edit']").click
+    within(".navigation--editor--item:not([data-deny-edit])") do |item|
+      item.hover
+      item.find("[data-icon='edit']").click
+    end
+
     fill_in "Title", with: "Updated"
     click_on "Done"
 
@@ -223,7 +243,11 @@ RSpec.describe "katalyst/navigation/editor" do
 
     visit katalyst_navigation.menu_path(menu)
 
-    find("a[title='Edit']").click
+    within(".navigation--editor--item:not([data-deny-edit])") do |item|
+      item.hover
+      item.find("[data-icon='edit']").click
+    end
+
     fill_in "Title", with: "Updated"
     click_on "Done"
 
