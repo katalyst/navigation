@@ -32,7 +32,7 @@ export default class NewItemsController extends Controller {
   add(e) {
     e.preventDefault();
 
-    const template = e.target.querySelector("template");
+    const template = e.target.closest("li").querySelector("template");
     const item = template.content.querySelector("li").cloneNode(true);
     const target = this.currentItem;
 

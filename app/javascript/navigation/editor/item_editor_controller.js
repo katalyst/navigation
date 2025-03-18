@@ -29,7 +29,10 @@ export default class ItemEditorController extends Controller {
   }
 
   onSubmit = (event) => {
-    if (event.detail.success) {
+    if (
+      event.detail.success &&
+      "closeDialog" in event.detail.formSubmission?.submitter?.dataset
+    ) {
       this.dialogTarget.close();
       this.element.removeAttribute("src");
       this.dialogTarget.remove();
