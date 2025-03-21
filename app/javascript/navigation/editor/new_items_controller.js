@@ -1,5 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
+import Item from "./item";
+
 const EDGE_AREA = 24;
 
 export default class NewItemsController extends Controller {
@@ -38,6 +40,7 @@ export default class NewItemsController extends Controller {
 
     if (target) {
       target.insertAdjacentElement("beforebegin", item);
+      new Item(item).depth = new Item(target).depth;
     } else {
       this.list.insertAdjacentElement("beforeend", item);
     }
