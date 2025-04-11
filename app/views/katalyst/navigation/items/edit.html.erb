@@ -13,11 +13,10 @@
     <article class="flow">
       <header class="repel" data-nowrap>
         <h2><%= item_editor.title %></h2>
-        <button form="<%= item_editor.id %>"
-                formmethod="dialog"
-                class="button"
+        <button class="button"
                 data-button-padding="tight"
-                data-text-button>
+                data-text-button
+                data-action="navigation--editor--item-editor#dismiss">
           <icon aria-hidden="true" class="icon" data-icon="close">&nbsp;</icon>
           <span class="visually-hidden">Close</span>
         </button>
