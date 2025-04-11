@@ -16,6 +16,10 @@ export default class NewItemsController extends Controller {
     delete this.currentItem;
   }
 
+  click(e) {
+    if (e.target.tagName === "DIALOG") this.close(e);
+  }
+
   open(e) {
     e.preventDefault();
     this.dialog.showModal();
@@ -25,8 +29,6 @@ export default class NewItemsController extends Controller {
     e.preventDefault();
     this.dialog.close();
   }
-
-  noop(e) {}
 
   /**
    * Add the selected item to the DOM at the current position or the end of the list.

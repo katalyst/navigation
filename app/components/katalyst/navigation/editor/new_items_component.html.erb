@@ -18,8 +18,10 @@
       <span class="visually-hidden">Add item here</span>
     </button>
   </div>
-  <dialog id="navigation--editor--new-items-dialog" class="modal" data-action="click->navigation--editor--new-items#close">
-    <article class="flow" data-action="click->navigation--editor--new-items#noop:stop">
+  <dialog id="navigation--editor--new-items-dialog"
+          class="modal"
+          data-action="click->navigation--editor--new-items#click">
+    <article class="flow">
       <header class="repel" data-nowrap>
         <h2>Add item</h2>
         <button class="button"
@@ -31,11 +33,9 @@
         </button>
       </header>
       <main>
-        <%= tag.div(role: "list", data: { action: "click->navigation--editor--new-items#noop:stop" }) do %>
-          <ul role="list" class="items-list">
-            <%= render Katalyst::Navigation::Editor::NewItemComponent.with_collection(items) %>
-          </ul>
-        <% end %>
+        <ul role="list" class="items-list">
+          <%= render Katalyst::Navigation::Editor::NewItemComponent.with_collection(items) %>
+        </ul>
       </main>
     </article>
   </dialog>

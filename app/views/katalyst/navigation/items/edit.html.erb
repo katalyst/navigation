@@ -5,12 +5,12 @@
   <dialog class="modal"
           data-navigation--editor--item-editor-target="dialog"
           data-action="
-            click->navigation--editor--item-editor#dismiss
+            click->navigation--editor--item-editor#click
             close->navigation--editor--item-editor#dismiss
           "
           data-item-id="<%= dom_id(item_editor.item) %>"
           <%= "data-item-persisted" if item_editor.item.persisted? %>>
-    <article class="flow" data-action="click->navigation--editor--item-editor#noop:stop">
+    <article class="flow">
       <header class="repel" data-nowrap>
         <h2><%= item_editor.title %></h2>
         <button form="<%= item_editor.id %>"
