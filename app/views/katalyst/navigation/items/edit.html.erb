@@ -3,9 +3,10 @@
       data: { controller: "navigation--editor--item-editor" },
     ) do %>
   <dialog class="modal"
+          closedby="any"
           data-navigation--editor--item-editor-target="dialog"
           data-action="
-            click->navigation--editor--item-editor#click
+            mousedown->navigation--editor--item-editor#outside
             close->navigation--editor--item-editor#dismiss
           "
           data-item-id="<%= dom_id(item_editor.item) %>"
