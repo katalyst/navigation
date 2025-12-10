@@ -41,7 +41,7 @@ module Katalyst
           @menu.save!
           redirect_to @menu, status: :see_other
         else
-          render :new, locals: { menu: @menu, editor: }, status: :unprocessable_entity
+          render :new, locals: { menu: @menu, editor: }, status: :unprocessable_content
         end
       end
 
@@ -54,7 +54,7 @@ module Katalyst
 
         unless menu.valid?
           return respond_to do |format|
-            format.turbo_stream { render editor.errors, status: :unprocessable_entity }
+            format.turbo_stream { render editor.errors, status: :unprocessable_content }
           end
         end
 
