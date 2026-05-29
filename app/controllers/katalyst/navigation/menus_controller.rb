@@ -12,7 +12,7 @@ module Katalyst
       end
 
       def show
-        menu   = Menu.find(params[:id])
+        menu   = Menu.find(params.expect(:id))
         editor = Katalyst::Navigation::EditorComponent.new(menu:)
 
         render locals: { menu:, editor: }
@@ -26,7 +26,7 @@ module Katalyst
       end
 
       def edit
-        menu   = Menu.find(params[:id])
+        menu   = Menu.find(params.expect(:id))
         editor = Katalyst::Navigation::EditorComponent.new(menu:)
 
         render locals: { menu:, editor: }
@@ -47,7 +47,7 @@ module Katalyst
 
       # PATCH /admins/navigation_menus/:slug
       def update
-        menu   = Menu.find(params[:id])
+        menu   = Menu.find(params.expect(:id))
         editor = Katalyst::Navigation::EditorComponent.new(menu:)
 
         menu.attributes = menu_params
@@ -71,7 +71,7 @@ module Katalyst
       end
 
       def destroy
-        menu = Menu.find(params[:id])
+        menu = Menu.find(params.expect(:id))
 
         menu.destroy!
 

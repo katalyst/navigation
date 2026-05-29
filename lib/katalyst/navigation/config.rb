@@ -8,9 +8,9 @@ module Katalyst
                     :items
 
       def initialize
-        self.base_controller = "ApplicationController"
+        self.base_controller  = "ApplicationController"
         self.errors_component = "Katalyst::Navigation::Editor::ErrorsComponent"
-        self.items = %w[
+        self.items            = %w[
           Katalyst::Navigation::Heading
           Katalyst::Navigation::Link
           Katalyst::Navigation::Button

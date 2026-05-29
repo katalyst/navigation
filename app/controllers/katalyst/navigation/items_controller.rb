@@ -63,12 +63,12 @@ module Katalyst
       end
 
       def set_menu
-        @menu   = Menu.find(params[:menu_id])
+        @menu   = Menu.find(params.expect(:menu_id))
       end
 
       def set_item
-        @item = Item.find(params[:id])
-        @menu = @item.menu
+        @item   = Item.find(params.expect(:id))
+        @menu   = @item.menu
         @editor = Katalyst::Navigation::EditorComponent.new(menu:, item:)
       end
 
