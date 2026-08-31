@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Rails/HelperInstanceVariable
+# rubocop:disable-next Rails/HelperInstanceVariable
 module Katalyst
   module Navigation
     module Frontend
@@ -70,4 +70,3 @@ module Katalyst
     end
   end
 end
-# rubocop:enable Rails/HelperInstanceVariable
