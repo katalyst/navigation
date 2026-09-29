@@ -79,7 +79,7 @@ RSpec.describe "katalyst/navigation/editor" do
     expect(menu.published_items).to contain_exactly(having_attributes(title: "Updated", url: link.url))
   end
 
-  it "can re-order links", pending: "missing d&d" do
+  it "can re-order links" do
     links = build_list(:katalyst_navigation_link, 2)
     menu  = create(:katalyst_navigation_menu, items: links)
 
