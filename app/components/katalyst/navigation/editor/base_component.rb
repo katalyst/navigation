@@ -17,8 +17,6 @@ module Katalyst
           @item = item
         end
 
-        def call; end
-
         def menu_form_id
           dom_id(menu, :items)
         end
